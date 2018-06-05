@@ -1,0 +1,81 @@
+mat-slider{
+  color: deepskyblue;
+  border-color: #eeeeee;
+  width: 100%;
+}
+h1{
+  color:white;
+  font-size: 20px;
+}
+
+.centerColumn {
+  float: none;
+  margin: 0 auto;
+}
+
+.buttons2 {
+  width: 48%;
+  float: right;
+}
+
+.buttons1 {
+  width: 48%;
+  float: left;
+}
+
+.questionFont {
+  color: white;
+}
+
+.sectionWrap {
+  text-align: center;
+}
+
+.radio-label {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 3%;
+}
+.radio-input {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.right {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+button {
+  background-color: #004273;
+  font-family: 'Roboto';
+  color: white;
+  border: 2px solid #93b9dd;
+  border-radius: 8px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-size: 1em;
+}
+
+#space1{
+  color: white;
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+#space2{
+  color: white;
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+@media all and (max-width: 325px) {
+  .buttons1, .buttons2 {
+    font-size: .9em;
+  }
+}

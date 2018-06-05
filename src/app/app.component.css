@@ -1,0 +1,40 @@
+html, body{
+  height: 100%;
+  /*font-family: Arial, Helvetica, sans-serif;*/
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  min-height: 375px;
+
+  font-family: 'Roboto';font-size: 22px;
+ }
+
+ .mainPage {
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background: url(/assets/images/background.png) no-repeat center center fixed;
+   background-size: cover;
+ }
+
+main {
+  height: 100%;
+  width: 100%;
+}
+
+ home {
+   display: flex;
+   text-align: center;
+   height: 100%;
+   width: 100%;
+ }
+
+
+ h1 {
+   background-color: transparent;
+ }
+
+a.active {
+  background-color: #004273;
+}

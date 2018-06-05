@@ -1,0 +1,192 @@
+.options {
+  color: white;
+}
+
+button {
+  background-color: #004273;
+  font-family: 'Roboto';
+  color: white;
+  border: 2px solid #93b9dd;
+  border-radius: 8px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-size: 1em;
+}
+
+.buttons2 {
+  width: 48%;
+  float: right;
+}
+
+.buttons1 {
+  width: 48%;
+  float: left;
+}
+
+.radio-1 {
+  padding-left: 15%;
+}
+
+.radio-2 {
+  padding-left: 10%;
+}
+
+.radio-3 {
+  padding-left: 12%;
+}
+
+@media all and (max-width: 1595px) {
+  .radio-1 {
+    padding-left: 14.5%;
+  }
+
+  .radio-2 {
+    padding-left: 9%;
+  }
+
+  .radio-3 {
+    padding-left: 11%;
+  }
+}
+
+@media all and (max-width: 1495px) {
+  .radio-1 {
+    padding-left: 14%;
+  }
+
+  .radio-2 {
+    padding-left: 8%;
+  }
+
+  .radio-3 {
+    padding-left: 10%;
+  }
+}
+
+@media all and (max-width: 1332px) {
+  .radio-1 {
+    padding-left: 13.5%;
+  }
+  .radio-2 {
+    padding-left: 7%;
+  }
+
+  .radio-3 {
+    padding-left: 9%;
+  }
+}
+
+@media all and (max-width: 1332px) {
+  .radio-2 {
+    padding-left: 6%;
+  }
+
+  .radio-3 {
+    padding-left: 8%;
+  }
+}
+
+@media all and (max-width: 1040px) {
+  .radio-1 {
+    padding-left: 13%;
+  }
+  .radio-2 {
+    padding-left: 4%;
+  }
+
+  .radio-3 {
+    padding-left: 7%;
+  }
+}
+
+@media all and (max-width: 905px) {
+  .radio-1 {
+    padding-left: 12%;
+  }
+  .radio-2 {
+    padding-left: 2%;
+  }
+
+  .radio-3 {
+    padding-left: 5%;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .radio-1 {
+    padding-left: 11%;
+  }
+  .radio-2 {
+    padding-left: 0;
+  }
+
+  .radio-3 {
+    padding-left: 3%;
+  }
+}
+
+@media all and (max-width: 665px) {
+  .radio-2 {
+    margin-left: 31%;
+  }
+
+  .radio-3 {
+    padding-left: 0;
+  }
+}
+
+@media all and (max-width: 620px) {
+  .radio-2 {
+    margin-left: 29%;
+  }
+
+  .radio-3 {
+    margin-left: 31%;
+  }
+}
+
+@media all and (max-width: 532px) {
+  .radio-1 {
+    padding-left: 9%;
+  }
+
+  .radio-2 {
+    margin-left: 25%;
+  }
+
+  .radio-3 {
+    margin-left: 29%;
+  }
+}
+
+@media all and (max-width: 440px) {
+  .radio-1 {
+    padding-left: 8%;
+    font-size: .9em;
+  }
+
+  .radio-2 {
+    margin-left: 17%;
+  }
+
+  .radio-3 {
+    margin-left: 24%;
+  }
+}
+
+@media all and (max-width: 340px) {
+  .radio-1 {
+    padding-left: 5%;
+    font-size: .87em;
+  }
+
+  .radio-2, .radio-3 {
+    margin-left: 5%;
+  }
+}
+
+@media all and (max-width: 325px) {
+  .buttons1, .buttons2 {
+    font-size: .9em;
+  }
+}

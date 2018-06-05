@@ -1,0 +1,22 @@
+.otoscopy .head {
+  margin-left: 1%;
+  margin-right: 1%;
+  /* margin-top:10%; */
+  background-color: lightgray;
+  padding-top: 1.2%;
+  padding-bottom: 1.2%;
+  font: bold 1.4em Veranda, sans-serif;
+  color: black;
+}
+
+.otoscopy .subhead {
+  padding-top: 2%;
+  font: bold 1em Veranda, sans-serif;
+  padding-left: 5%;
+  color: black;
+}
+
+.otoscopy .radio {
+  padding-left: 10%;
+  padding-bottom: 2%;
+}

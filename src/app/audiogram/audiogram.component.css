@@ -1,0 +1,107 @@
+.audiogram .head {
+  margin-left: 1%;
+  margin-right: 1%;
+  background-color: lightgray;
+  padding-top: 1.2%;
+  padding-bottom: 1.2%;
+  font: bold 1.4em Veranda, sans-serif;
+  color: black;
+}
+
+.audiogram .subhead {
+  padding-top: 2%;
+  font: bold 1em Veranda, sans-serif;
+  padding-left: 5%;
+  color: black;
+}
+
+.audiogram .radio {
+  padding-left: 10%;
+  display: inline-flex;
+  flex-direction: column;
+  color: black;
+}
+
+.audiogram .card-radio {
+  padding-left: 10%;
+  line-height: 1.5em;
+  display: inline-flex;
+  flex-direction: column;
+  color: black;
+}
+
+.audiogram .leftear {
+  padding-left: 2%;
+  padding-right: 1%;
+}
+
+.audiogram .rightear {
+  padding-left: 2%;
+  padding-right: 1%;
+}
+
+.audiogram .leftear .subhead {
+  padding-left: 2%;
+}
+
+.audiogram .rightear .subhead {
+  padding-left: 2%;
+}
+
+/* Removes the column gutter between High Frequency and Low Frequency */
+.audiogram .row.no-pad > [class*='col-'] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.audiogram .leftear .toolbar {
+  width: 100%;
+  border-style: solid;
+  border-color: rgba(134,134,134,.9);
+  border-width: 1.4px;
+  background-color: #06517E;
+  color: white;
+}
+
+.audiogram .rightear .toolbar {
+  width: 100%;
+  border-style: solid;
+  border-color: rgba(134,134,134,.9) !important;
+  border-width: 1.4px;
+  background-color: #9C2937;
+  color: white;
+}
+
+/* Changes the width of the line that wraps the checkbox */
+.audiogram .checkboxwrap {
+  display: inline;
+  width: 300px;
+}
+
+/* This is the actual checkbox which includes the text and the checkbox icon */
+.audiogram .checkbox {
+  display: block;
+  line-height: .5em;
+  width: 100px;
+}
+
+.audiogram .hline {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+/* Makes it so that the edges are sharp, by default the card edges are round */
+mat-card {
+  border-radius: 0px;
+  margin: 0.7px
+}
+
+/* Makes so that the background color does not override the radio & checkbox color
+*/
+/deep/ .mat-checkbox-inner-container {
+  background-color: white !important;
+}
+
+/deep/ .mat-radio-outer-circle {
+  background-color: white !important;
+}

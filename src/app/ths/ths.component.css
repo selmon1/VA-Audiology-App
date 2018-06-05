@@ -1,0 +1,11 @@
+.titleFont {
+  color: white;
+  text-align: center;
+  margin-top: 1%;
+}
+
+@media all and (max-width: 290px) {
+  .titleFont {
+      font-size: .9em;
+  }
+}

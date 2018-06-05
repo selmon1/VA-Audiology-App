@@ -1,0 +1,136 @@
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.parent-container {
+  /* padding-top: 20%; */
+  width: 100%;
+  height: 25%;
+}
+
+.child-container {
+  width: 100%;
+  /* transform: translate(20%, 10%); */
+}
+
+label {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  color: white;
+  font-family: 'Roboto';
+  font-size: 2em;
+  background: transparent;
+  border-bottom: 1px solid #93b9dd;
+}
+
+input::placeholder {
+  color: rgb(160, 159, 159);
+}
+
+button {
+  height: 60%;
+  width: 100%;
+  background-color: #004273;
+  font-family: 'Roboto';
+  font-size: 2em;
+  color: white;
+  border: 2px solid #93b9dd;
+  border-radius: 8px;
+  margin-top: 5%;
+  padding: 4%;
+}
+
+.failLogIn {
+  color: orange;
+  font-size: 1em;
+}
+
+
+@media all and (orientation:landscape) {
+  button {
+    height: 85%;
+  }
+}
+
+
+@media all and (max-width:610px) {
+    button {
+      font-size: 0.9em;
+      height: 80%;
+    }
+    input {
+      font-size: 0.9em;
+    }
+    .failLogIn {
+      font-size: 0.5em;
+    }
+  }
+
+@media all and (orientation:landscape) and (max-width: 650px ){
+  button {
+    font-size: 0.95em;
+  }
+  input {
+    font-size: 0.95em;
+  }
+  .failLogIn {
+    font-size: 0.5em;
+  }
+}
+
+@media all and (max-height: 700px) and (min-height: 410px) {
+  input {
+    font-size: 1em;
+  }
+  .failLogIn {
+    font-size: 0.5em;
+  }
+}
+
+@media all and (max-height: 600px) and (min-height: 410px) {
+  button {
+    font-size: 0.95em;
+    margin-bottom: 5%;
+  }
+  input {
+    font-size: 0.9em;
+  }
+  .failLogIn {
+    font-size: 0.6em;
+  }
+}
+
+
+@media all and (min-height: 1350px) and (min-width: 1024px) {
+  button {
+    font-size: 2em;
+  }
+  input {
+    font-size: 2em;
+  }
+}
+@media all and (max-height: 400px) {
+  button {
+    font-size: 0.8em;
+    margin-bottom: 5%;
+  }
+
+  input {
+    font-size: 0.7em;
+  }
+  .failLogIn {
+    font-size: 0.5em;
+  }
+}
+
+button:hover {
+  background-color: #005690;
+  cursor: pointer;
+}

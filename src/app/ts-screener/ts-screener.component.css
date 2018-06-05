@@ -1,0 +1,16 @@
+.centerColumn {
+  float: none;
+  margin: 0 auto;
+}
+
+.sectionWrap {
+  text-align: center;
+}
+
+.right {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}

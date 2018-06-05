@@ -1,0 +1,31 @@
+<html>
+<div class="container">
+  <div class="parent-container">
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-4" style="text-align: left;">
+          <logo logoRouteOption="1"></logo>
+      </div>
+    </div>
+  </div>
+
+<div class="child-container" (keydown)="keyDownFunction($event)">
+    <div class="row">
+      <div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+          <label><input id="usercode" type="text" autofocus [(ngModel)]='patientId' placeholder="Usercode" > </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+        <div *ngIf="!authenticationFlag" class="failLogIn">Check-in ID is incorrect, please try again.</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+          <button (click)= "onClick()" type="button">Log In</button>
+      </div>
+    </div>
+</div>
+</div>
+</html>

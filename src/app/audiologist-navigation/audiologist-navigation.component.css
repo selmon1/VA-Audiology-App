@@ -1,0 +1,205 @@
+@font-face {
+  font-family: lableFont;
+  src: url("/assets/fonts/robotocondensed-bold.ttf");
+  font-weight: bold;
+}
+
+.icon-button {
+  margin-top: 5%;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+.audio {
+  height: 100%;
+}
+
+.audio .container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.audio .row {
+  margin : 0;
+  padding: 0;
+
+}
+
+.audio .left-container {
+  width: 35%;
+  height: 100%;
+  display: inline-block;
+  background-color: #014e88;
+  /* transition: all ease-out .4s; */
+}
+
+.audio .left-container-hide {
+  /* transition: all ease-in-out .2s; */
+  display: none
+  /* margin-left: -130%; */
+}
+
+.audio .right-container {
+  height: 100%;
+  width: 65%;
+  background-color: white;
+  float: right;
+  transition: all ease-in-out .2s;
+  overflow: scroll;
+}
+.audio .right-container::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+
+.audio .right-container-full {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  float: right;
+  transition: all ease-in-out .2s;
+  overflow: scroll;
+}
+
+.pdf-btn {
+  float: right;
+  /* width: 25%; */
+  padding: 6px;
+  margin-top: 8px;
+  margin-bottom: 5%;
+  margin-right: 2%;
+  background: #ddd;
+  font-size: 0.6em;
+  border: none;
+  cursor: pointer;
+}
+
+.pdf-btn-hidden {
+  display: none;
+}
+
+
+/*
+ * This class is for filling the right side of the screen
+ * with the desired content.
+ * The comma allows this to work for regular or full versions.
+ */
+.audio .right-container .main-right-container::-webkit-scrollbar,
+.audio .right-container-full .main-right-container::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+/*
+ * This class is for hiding the undesired content on the
+ * right side of the screen.
+ * The comma allows this to work for regular or full versions.
+ */
+.audio .right-container .main-right-container-hidden,
+.audio .right-container-full .main-right-container-hidden {
+  display: none
+}
+
+.glyphicon-th-list {
+  margin-top: 10px;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  color:rgb(109, 109, 109);
+}
+
+.audio .left-container .main-btn {
+  color: white;
+  font-family: 'Roboto';
+  font-size: 1em;
+  margin-bottom: 5%;
+  height: 100%;
+  left: 20%;
+  width: 100%;
+  text-align: left;
+  background: linear-gradient(to right, #025798, #0171bb);
+  border-left-color: #0070bb;
+  padding: 3% 0 3% 3%;
+  border-left-width: 20px;
+  border-radius: 4px;
+  border-top: 0;
+  border-bottom: 0;
+  border-right: 0;
+  background-repeat: no-repeat;
+}
+
+.audio .left-container .search-container {
+  float: left;
+  width: 100%;
+}
+
+.audio .left-container .search-container input[type=text] {
+  float: left;
+  padding: 6px;
+  width: 75%;
+  border: none;
+  margin-right: 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.audio .left-container .search-container button {
+  float: right;
+  width: 25%;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background: #ddd;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+}
+
+.audio .left-container .sec-label {
+  color: #f2f2f2;
+  background-color: rgb(109, 109, 109);
+  width: 100%;
+  padding: 2%;
+  margin-bottom: 2%;
+  font-size: 0.6em;
+}
+
+.audio .left-container .search-container button:hover {
+  background: rgb(160, 159, 159);
+  cursor: pointer;
+}
+
+.audio .left-container .main-btn:hover {
+  background-repeat: no-repeat;
+  background: linear-gradient(to right, #0086D1, #0098DB);
+  cursor: pointer;
+}
+
+
+
+@media all and (max-width:425px) {
+  .audio .left-container {
+      width: 70%;
+  }
+  .audio .right-container {
+      width: 30%;
+  }
+}
+
+@media all and (min-width:1024px) {
+  .audio .left-container {
+    width: 25%;
+   }
+  .audio .right-container {
+  width: 75%;
+  }
+}

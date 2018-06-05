@@ -1,0 +1,92 @@
+<div class="audiogram">
+  <div style="text-align: center;">
+    <label>
+      Patient ID: {{patientID}}
+    </label>
+  </div>
+  <!-- Title -->
+  <div class="head" align="center">AUDIOGRAM</div>
+  <!-- Type -->
+  <div class="subhead" align="left">TYPE</div>
+  <mat-radio-group class = "radio">
+    <mat-radio-button *ngFor="let type of testTypes" [value]="type">
+      {{type}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <div class="hline"><hr></div>
+
+  <!-- Template for showing all the serverity options -->
+  <ng-template #severity let-side="side">
+    <mat-card class="mat-elevation-z1"
+              [style.background]="side=='left' ? 'rgba(98,159,195, 0.1)':'rgba(195,98,98, 0.08)'">
+    <mat-card-header>
+      <mat-card-subtitle>SERVERITY</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-radio-group class="card-radio">
+        <mat-radio-button *ngFor="let severity of severities" [value]="severity">
+          {{severity}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<!-- Template for showing all the configurations checkboxes -->
+<ng-template #configs let-side="side">
+  <mat-card class="mat-elevation-z1"
+            [style.background]="side=='left' ? 'rgba(98,159,195, 0.1)':'rgba(195,98,98, 0.08)'">
+  <mat-card-header>
+    <mat-card-subtitle>CONFIGURATION</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-checkbox class="checkboxwrap" *ngFor="let config of configurations" [value]="configurations">
+      <div class="checkbox">{{config}}</div>
+    </mat-checkbox>
+  </mat-card-content>
+</mat-card>
+</ng-template>
+
+<!-- Template for displaying the left and right ear test -->
+<div class="leftear">
+  <div class="row no-pad">
+    <div class="subhead" align="left">LEFT EAR</div>
+    <div class="col-sm-6">
+      <div class="toolbar" align="center">High Frequency</div>
+      <ng-container *ngTemplateOutlet="severity;context:{side:'left'}"></ng-container>
+      <ng-container *ngTemplateOutlet="configs;context:{side:'left'}"></ng-container>
+    </div>
+    <div class="col-sm-6">
+      <div class="toolbar" align="center">Low Frequency</div>
+      <ng-container *ngTemplateOutlet="severity;context:{side:'left'}"></ng-container>
+      <ng-container *ngTemplateOutlet="configs;context:{side:'left'}"></ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="rightear">
+  <div class="row no-pad">
+    <div class="subhead" align="left">RIGHT EAR</div>
+    <div class="col-sm-6">
+      <div class="toolbar" align="center">High Frequency</div>
+      <ng-container *ngTemplateOutlet="severity;context:{side:'right'}"></ng-container>
+      <ng-container *ngTemplateOutlet="configs;context:{side:'right'}"></ng-container>
+    </div>
+    <div class="col-sm-6">
+      <div class="toolbar" align="center">Low Frequency</div>
+      <ng-container *ngTemplateOutlet="severity;context:{side:'right'}"></ng-container>
+      <ng-container *ngTemplateOutlet="configs;context:{side:'right'}"></ng-container>
+    </div>
+  </div>
+  <br>
+
+</div>
+
+<!-- Shelving this for now to make the styling to easily to work with.
+However, without this, there will be more repeated HTML codes.
+<ng-container *ngTemplateOutlet="audiogramTests;context:{ear: 'LEFT EAR'}"></ng-container>
+<br>
+<ng-container *ngTemplateOutlet="audiogramTests;context:{ear: 'RIGHT EAR'}"></ng-container> -->
+
+</div>

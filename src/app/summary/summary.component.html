@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="summary-container">
+    <div class="row">
+      <div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2" style="text-align: center;">
+        <label class="title">
+          SUMMARY
+        </label>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2" style="text-align: center;">
+          <label class="patientID">
+            Patient ID: {{patientID}}
+          </label>
+          <label class="patientID">
+            Appointment Type: {{appointmentType}}
+          </label>
+
+        </div>
+      </div>
+  </div>
+  <hr>
+
+  <ul *ngFor="let item of summaryItems">
+    <div class="row" *ngIf="item.type == 'SurveyTitle'">
+      <div class="col-sm-8 col-md-6 col-lg-4"  style="text-align: left;">
+        <label class="title">
+          {{item.title}}
+        </label>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="item.type == 'SectionTitle'">
+      <div class = "col-sm-8 col-md-8 col-lg-8">
+          {{item.title}}
+      </div>
+    </div>
+
+    <div class="row" *ngIf="item.type == 'Question'">
+      <div class = "col-sm-8 col-md-8 col-lg-8">
+        <div class="question-content">
+          {{item.content}}
+        </div>
+      </div>
+      <div class = "col-sm-3 col-md-3 col-lg-3" *ngIf="item.score >= 0">
+        <div class = "questionScore">
+          {{item.score}}
+        </div>
+      </div>
+      <div class = "col-sm-3 col-md-3 col-lg-3" style="text-align: right;" *ngIf="item.answer != '-1'">
+        <div class="answer" >
+            {{item.answer}}
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="item.type == 'SectionFooter'">
+      <div class="col-sm-8 col-md-8 col-lg-8">
+        <label class="THSscore">
+          {{item.section}}: {{item.totalScore}}
+        </label>
+      </div>
+    </div>
+
+  </ul>
+
+</div>
