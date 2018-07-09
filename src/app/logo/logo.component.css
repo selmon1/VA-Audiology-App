@@ -7,8 +7,9 @@
 }*/
 
 img.logo{
-  position: relative;
+  position: fixed;
   right: 0;
+  bottom: 0;
   max-width: 250px;
   padding: 15px;
   padding-top: 25px;
