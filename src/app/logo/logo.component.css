@@ -1,18 +1,26 @@
-
 /* LogoComponent's private CSS styles */
-img.logo {
+/*img.logo {
+  max-width: 250px;
+  padding: 15px;
+  padding-top: 25px;
+  padding-left: 0;
+}*/
+
+img.logo{
+  position: relative;
+  right: 0;
   max-width: 250px;
   padding: 15px;
   padding-top: 25px;
   padding-left: 0;
 }
 
-img.logo:hover
+/*img.logo:hover
 {
   opacity: 0.5;
   cursor: pointer;
   border: none;
-}
+}*/
 
 @media all and (max-width: 280px) {
   img.logo {

@@ -29,9 +29,9 @@ export class LogoComponent {
      * #2 indicating - the logo button is disabled, it stays on the current page.
      */
     public onClick() {
-      if (this.logoRouteOption === '1') {
+      if (this.logoRouteOption === '2') {
         Utilities.removeItemFromSessionStorage('audiologist-pin'); // this is for navigating away from audiologist page
-        this.router.navigateByUrl('/home');
+        /*this.router.navigateByUrl('/home');*/
         console.log('back to home page.');
       }
       if (this.logoRouteOption === '2') {

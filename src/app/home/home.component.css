@@ -15,9 +15,15 @@
   /* transform: translate(20%, 10%); */
 }
 
+#navigation{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background-color: #005690;
+}
+
 button {
   height: 60%;
-  background-color: #004273;
+  background-color: #3a9202; /*Changed the original color #004273*/
   font-family: 'Roboto';
   font-size: 2em;
   color: white;
@@ -25,6 +31,31 @@ button {
   border-radius: 8px;
   margin-bottom: 10%;
   padding: 4%;
+}
+
+.row{
+  margin-top: 0.05%;
+  margin-bottom: 5%;
+}
+
+#aud-button{
+  margin-right: 2%;
+}
+
+a{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+a:hover{
+  color: green;
+}
+
+img{
+  height: auto;
+}
+logo{
+  float: right;
 }
 
 @media all and (orientation:landscape) {
@@ -65,7 +96,7 @@ button {
 }
 
 
-button:hover {
+/*button:hover {
   background-color: #005690;
   cursor: pointer;
-}
+}*/
