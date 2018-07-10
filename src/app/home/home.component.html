@@ -1,22 +1,51 @@
 <html lang='en'>
+
+  <nav class="navbar navbar-fixed-top" id="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-home"></span> Home
+        </a>
+      </div>
+
+      <div class="aud-login" style="float: right" id="aud-login">
+          <a href="audiologist">Audiologist Login</a>
+      </div>
+      <!--<div class="aud-login" id="aud-button" style="float: right">
+            <button (click)="patientOnClick()" type="button" class="btn btn-primary btn-sm">Audiologist Log In</button>
+      </div>-->
+    </div>
+  </nav>
+
   <div class="container">
   <div class="parent-container">
       <div class="row">
-        <div class="col-sm-6 col-lg-4" style="text-align: left;">
-            <logo></logo>
+        <!--<div class="col-lg-6 col-lg-4" style="text-align: left;">-->
+            <!--<logo></logo>-->
+        <div class="float-left">
+          <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-home"></span> Home
+          </a>
         </div>
       </div>
   </div>
     <div class="child-container">
       <div class="row">
+        <img src="https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/FyKJcnp/senior-doctor-and-patient-talking-in-the-office_eyxlrm8mx__F0000.png"
+             style="max-width: 90%">
+      </div>
+      <div class="navbar-bottom">
         <div class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2">
             <button (click)="patientOnClick()" type="button" style="width:100%;">Patient Check In</button>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2">
+        <!--<div class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2">
             <button (click)="patientOnClick()" type="button" style="width:100%;">Audiologist Log In</button>
-        </div>
+        </div> -->
+        <footer class="navbar-fixed-bottom">
+          <logo></logo> <!--It will sometimes overlap with the patient button-->
+        </footer>
       </div>
     </div>
   </div>

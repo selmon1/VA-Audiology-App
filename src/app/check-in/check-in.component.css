@@ -47,6 +47,23 @@ button {
   padding: 4%;
 }
 
+nav{
+  margin-top: 1%;
+}
+
+a{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+a:hover{
+  color: chartreuse;
+}
+
+logo{
+  float: right;
+}
+
 .failLogIn {
   color: orange;
   font-size: 1em;

@@ -42,6 +42,23 @@ button {
   background-repeat: no-repeat;
 }
 
+nav{
+  margin-top: 1%;
+}
+
+a{
+  color: #FFFFFF;
+}
+
+a:hover{
+  color: chartreuse;
+  text-decoration: none;
+}
+
+logo{
+  float: right;
+}
+
 button:hover {
   background-repeat: no-repeat;
   background: linear-gradient(to right, #0086D1, #0098DB);
