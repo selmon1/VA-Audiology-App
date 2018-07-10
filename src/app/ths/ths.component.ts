@@ -82,7 +82,7 @@ export class ThsComponent implements OnInit {
 
         if (nextComponent === 'true') { // if it is finished
             Utilities.removeItemFromSessionStorage('nextComponent'); // clears it right after use
-            this.router.navigateByUrl('/thank-you');
+            this.router.navigateByUrl('/summary');
         } else { // If it is not finished
             this.router.navigateByUrl('/tfi');
         }
