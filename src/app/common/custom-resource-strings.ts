@@ -33,9 +33,9 @@ export class TsScreenerAnswerStrings {
 }
 
 export class TfiQuestionStrings {
-  public question1: string = 'What percentage of your time awake were you consciously AWARE OF your tinnitus?';
+  public question1: string = 'How often during your time awake were you consciously AWARE OF your tinnitus?';
   public question2: string = 'How STRONG or LOUD was your tinnitus?';
-  public question3: string = 'What percentage of your time awake were you ANNOYED by your tinnitus?';
+  public question3: string = 'How often during your time awake were you ANNOYED by your tinnitus?';
   public question4: string = 'Did you feel IN CONTROL in regard to your tinnitus?';
   public question5: string = 'How easy was it for you to COPE with your tinnitus?';
   public question6: string = 'How easy was it for you to IGNORE your tinnitus?';
@@ -119,7 +119,7 @@ export class ThsQuestionStrings {
 
   public question6: string = 'Over the last week, I couldn\'t understand what people were saying on TV or in movies:';
 
-  public question7: string = 'Over the last week, I couldn\'t understandpeople with soft voices:';
+  public question7: string = 'Over the last week, I couldn\'t understand people with soft voices:';
 
   public question8: string = 'Over the last week, I couldn\'t understand what was being said in group conversations:';
 
