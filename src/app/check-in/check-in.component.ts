@@ -14,6 +14,8 @@ import { ThsDataService } from '../services/ths-data.service';
 
 export class CheckInComponent {
    public patientId: string = '';
+   public firstName: string = '';
+   public lastName: string = '';
    public authenticationFlag: boolean = true;
 
    constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService) {};
@@ -25,24 +27,26 @@ export class CheckInComponent {
     * if the value of length 4, then the page will be route to the "appointment" page.
     * If the value has different length, then it will be informed as incorrect check in.
     */
+
    public onClick() {
       if (this.patientId === '123456') {
-          Utilities.setSessionStorage('audiologist-pin', this.patientId);
-          console.log('Audiologist log in ' + this.patientId);
-          this.router.navigateByUrl('/audiologist');
-      } else if (this.patientId.length === 4) {
-        sessionStorage.clear();
-        this.tsDataService.clearHistory();
-        this.tfiDataService.clearHistory();
-        this.thsDataService.clearHistory();
-        Utilities.setSessionStorage('patient-id', this.patientId);
-        this.router.navigateByUrl('/appointments');
-        console.log('log in with ' + this.patientId);
+        Utilities.setSessionStorage('audiologist-pin', this.patientId);
+        console.log('Audiologist log in ' + this.patientId);
+        this.router.navigateByUrl('/audiologist');
+        // } // else if (this.patientId.length === 4) {
       } else {
-          this.authenticationFlag = false;
-          this.patientId = '';
-          console.log('failed log in ' + this.patientId);
-      }
+            sessionStorage.clear();
+            this.tsDataService.clearHistory();
+            this.tfiDataService.clearHistory();
+            this.thsDataService.clearHistory();
+            Utilities.setSessionStorage('patient-id', this.firstName + this.lastName);
+            this.router.navigateByUrl('/appointments');
+            console.log('log in with ' + this.patientId);
+      } // else {
+        //  this.authenticationFlag = false;
+        //  this.patientId = '';
+        //  console.log('failed log in ' + this.patientId);
+      // }
    }
 
    /**
