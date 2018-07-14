@@ -8,7 +8,17 @@ import { Utilities } from '../common/utlilities';
 @Component({
   selector: 'screener',
   styleUrls: ['./ts-screener.component.css'],
-  template: `
+  template: `    
+    <nav class="navbar navbar-fixed-top" id="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-home"></span> Home
+          </a>
+        </div>
+      </div>
+  </nav>
+    
   <div class="row">
     <div class="col-sm-6 col-md-6 col-lg-4" style="text-align: left;">
         <logo logoRouteOption="2"></logo>
