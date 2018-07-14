@@ -6,6 +6,16 @@ import { ThsDataService } from '../../services/ths-data.service';
   selector: 'ths-question',
   styleUrls: ['./ths-question.component.css'],
   template: `
+    <nav class="navbar navbar-fixed-top" id="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-home"></span> Home
+          </a>
+        </div>
+      </div>
+  </nav>
+    
     <h2 class="questionHeader">{{question}}</h2>
     <div *ngIf="question !== 'Please list two examples of sounds that are too loud or uncomfortable for you, but seem normal to others:'; else input_questions" class="row">
       <div class="col-sm-4 col-sm-offset-3 col-xs-offset-2 questionFont">
