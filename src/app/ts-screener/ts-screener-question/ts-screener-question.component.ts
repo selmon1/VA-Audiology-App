@@ -17,13 +17,15 @@ import { TsScreenerDataService } from '../../services/ts-screener-data.service';
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6 col-sm-offset-3" style="padding-top: 2%;">
-        <button *ngIf="state !== 1; else disabled_btn" class="buttons1 btn btn-primary" (click)="onClickedBack.emit(selectedValue)">BACK</button>
-        <ng-template #disabled_btn>
-          <button class="buttons1 btn" (click)="onClickedBack.emit(selectedValue)" disabled>BACK</button>
-        </ng-template>
+      <div *ngIf="state !== 1; else no_back_btn" class="col-sm-6 col-sm-offset-3" style="padding-top: 2%;">
+        <button class="buttons1 btn btn-primary" (click)="onClickedBack.emit(selectedValue)">BACK</button>
         <button class="buttons2 btn btn-primary" (click)="onClickedNext.emit(selectedValue)">NEXT</button>
-      </div>
+			</div>
+			<ng-template #no_back_btn>
+				<div class="col-sm-6 col-sm-offset-4" style="padding-top: 2%;">
+					<button class="buttons1 btn btn-primary" (click)="onClickedNext.emit(selectedValue)">NEXT</button>
+				</div>
+			</ng-template>
     </div>
   `
 })
