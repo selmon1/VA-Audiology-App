@@ -23,6 +23,11 @@ button {
   float: left;
 }
 
+.button-next-only {
+	width: 48%;
+	margin-right: -4px;
+}
+
 .radio-1 {
   padding-left: 15%;
 }
