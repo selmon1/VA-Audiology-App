@@ -131,15 +131,15 @@ export class ThsQuestionStrings {
 }
 
 export class ThsAnswerStrings {
-  public NO: string = '0 - No, not a problem';
+  public NO: string = 'No, not a problem';
 
-  public SMALL_YES: string = '1 - Yes, a small problem';
+  public SMALL_YES: string = 'Yes, a small problem';
 
-  public MODERATE_YES: string = '2 - Yes, a moderate problem';
+  public MODERATE_YES: string = 'Yes, a moderate problem';
 
-  public BIG_YES: string = '3 - Yes, a big problem';
+  public BIG_YES: string = 'Yes, a big problem';
 
-  public VERY_BIG_YES: string = '4 - Yes, a very big problem';
+  public VERY_BIG_YES: string = 'Yes, a very big problem';
 
   public note: string = '*If sounds are too loud for you when wearing hearing aids, please tell your audiologist.';
 
