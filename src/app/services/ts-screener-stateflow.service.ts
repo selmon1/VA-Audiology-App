@@ -53,6 +53,9 @@ export class TsScreenerStateflowService {
       case 6:
           this.dataService.saveData(7, choice);
           return 7;
+      case 7:
+          let x: number = this.dataService.moveStateBackward(state);
+          return x;
       default:
         return 7;
     }

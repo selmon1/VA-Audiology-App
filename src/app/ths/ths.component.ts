@@ -53,6 +53,19 @@ export class ThsComponent implements OnInit {
   public moveStateBackward(): void {
     let prevState: number = this.stateMachine.moveStateBackward(this.currentState);
 
+    // Link up the two surveys with the back button
+    if (!prevState) {
+        let tinscreenhistory = Utilities.getSessionStorage('ts-history');
+        let tinscreendata = Utilities.getSessionStorage('ts-dataRecord');
+        if (!tinscreendata || !tinscreenhistory) {
+            this.router.navigateByUrl('appointments');
+        }
+        else {
+            this.router.navigateByUrl('ts');
+        }
+    }
+
+
     if (prevState) {
       this.currentState = prevState;
     }
