@@ -50,6 +50,9 @@ button:hover {
   cursor: pointer;
 }
 
+logo{
+  float: right;
+}
 
 @media all and (max-width: 550px) {
 
