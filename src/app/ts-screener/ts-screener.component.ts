@@ -30,10 +30,11 @@ import { Utilities } from '../common/utlilities';
     <screener-question *ngIf="currentState === 6" [questionType]="2" [question]="questionStrings.question6" [radio1]="answerStrings.DAILY_OR_WEEKLY_BASIS" [radio2]="answerStrings.MONTHLY_OR_YEARLY_BASIS"
                        [state]="currentState" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></screener-question>
 
+    <!--Moves the logo to the bottom of the screen-->
     <div class="row">
       <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">
         <footer class="navbar-fixed-bottom">
-          <logo logoRouteOption="2"></logo> <!--It will sometimes overlap with the patient button-->
+          <logo logoRouteOption="2"></logo> <!--Makes it so logo cannot click-->
         </footer>
       </div>
     </div>

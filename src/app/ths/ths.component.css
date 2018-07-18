@@ -4,6 +4,10 @@
   margin-top: 1%;
 }
 
+logo{
+  float: right;
+}
+
 @media all and (max-width: 290px) {
   .titleFont {
       font-size: .9em;
