@@ -7,7 +7,7 @@
 }*/
 
 img.logo{
-  position: fixed;
+  position: relative;
   right: 0;
   bottom: 0;
   max-width: 250px;
