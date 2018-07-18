@@ -184,6 +184,10 @@
   cursor: pointer;
 }
 
+/*This adjusts the margins for the home button*/
+.navbar-header{
+  margin: 2%;
+}
 
 
 @media all and (max-width:425px) {
