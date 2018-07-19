@@ -60,6 +60,10 @@ button {
   font-size: 1em;
 }
 
+logo{
+  float: right;
+}
+
 #space1{
   color: white;
   display: flex;

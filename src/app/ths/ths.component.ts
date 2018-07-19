@@ -8,12 +8,7 @@ import { Utilities } from '../common/utlilities';
 @Component({
   selector: 'app-ths',
   styleUrls: ['./ths.component.css'],
-  template: `
-  <div class="row">
-    <div class="col-sm-6 col-md-6 col-lg-4" style="text-align: left;">
-        <logo logoRouteOption="2"></logo>
-    </div>
-  </div>
+  template: `    
   <h3 class="titleFont">Tinnitus & Hearing Survey</h3>
   <ths-question *ngIf="currentState === 1" [state]="currentState" [question]="questionStrings.question1" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></ths-question>
   <ths-question *ngIf="currentState === 2" [state]="currentState" [question]="questionStrings.question2" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></ths-question>
@@ -25,6 +20,14 @@ import { Utilities } from '../common/utlilities';
   <ths-question *ngIf="currentState === 8" [state]="currentState" [question]="questionStrings.question8" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></ths-question>
   <ths-question *ngIf="currentState === 9" [state]="currentState" [question]="questionStrings.question9" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></ths-question>
   <ths-question *ngIf="currentState === 10" [state]="currentState" [question]="questionStrings.question10" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></ths-question>
+
+  <div class="row">
+    <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">
+      <footer class="navbar-fixed-bottom">
+        <logo logoRouteOption="2"></logo> <!--Makes it so logo cannot click-->
+      </footer>
+    </div>
+  </div> 
 `
 })
 export class ThsComponent implements OnInit {
