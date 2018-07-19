@@ -16,8 +16,8 @@
       <mat-slider min="0" max="10" step="1" value="{{selectedValue}}" thumbLabel="true" tickInterval="1" [(ngModel)]="selectedValue"></mat-slider>
     </div>
     <div *ngIf="percent === true">
-      <div id="space2"> <span>0 {{min}}</span> <span>{{max}} 100</span> </div>
-      <mat-slider min="0" max="100" step="5" value="{{selectedValue}}" thumbLabel="true" tickInterval="5" [(ngModel)]="selectedValue"></mat-slider>
+      <div id="space2"> <span>0 {{min}}</span> <span>{{max}} 10</span> </div>
+      <mat-slider min="0" max="10" step="1" value="{{selectedValue}}" thumbLabel="true" tickInterval="1" [(ngModel)]="selectedValue"></mat-slider>
     </div>
     <button *ngIf="state !== 1; else disabled_btn" class="buttons1 btn btn-primary" (click)="onClickedBack.emit(selectedValue)">BACK</button>
     <ng-template #disabled_btn>

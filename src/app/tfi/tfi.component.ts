@@ -48,7 +48,7 @@ export class TfiComponent implements OnInit {
     }
     this.dataService.saveData(this.currentState, +choice);
     if (this.currentState === 24) {
-      this.router.navigateByUrl('/thank-you');
+      this.router.navigateByUrl('/summary');
       return;
     }
     ++this.currentState;

@@ -56,6 +56,19 @@ export class ThsComponent implements OnInit {
   public moveStateBackward(): void {
     let prevState: number = this.stateMachine.moveStateBackward(this.currentState);
 
+    // Link up the two surveys with the back button
+    if (!prevState) {
+        let tinscreenhistory = Utilities.getSessionStorage('ts-history');
+        let tinscreendata = Utilities.getSessionStorage('ts-dataRecord');
+        if (!tinscreendata || !tinscreenhistory) {
+            this.router.navigateByUrl('appointments');
+        }
+        else {
+            this.router.navigateByUrl('ts');
+        }
+    }
+
+
     if (prevState) {
       this.currentState = prevState;
     }
@@ -85,7 +98,7 @@ export class ThsComponent implements OnInit {
 
         if (nextComponent === 'true') { // if it is finished
             Utilities.removeItemFromSessionStorage('nextComponent'); // clears it right after use
-            this.router.navigateByUrl('/thank-you');
+            this.router.navigateByUrl('/summary');
         } else { // If it is not finished
             this.router.navigateByUrl('/tfi');
         }
