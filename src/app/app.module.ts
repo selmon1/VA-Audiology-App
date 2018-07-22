@@ -60,6 +60,7 @@ import { RouterGuards }     from './services/router-guards.service';
 import { OtoscopyComponent } from './otoscopy/otoscopy.component';
 import { TympanometryComponent } from './tympanometry/tympanometry.component';
 import { AudiogramComponent } from './audiogram/audiogram.component';
+import { AudiologistLoginComponent } from './audiologist-login/audiologist-login.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -96,7 +97,8 @@ type StoreType = {
     TsScreenerQuestionComponent,
     OtoscopyComponent,
     TympanometryComponent,
-    AudiogramComponent
+    AudiogramComponent,
+    AudiologistLoginComponent
   ],
   exports: [
     MatSliderModule,

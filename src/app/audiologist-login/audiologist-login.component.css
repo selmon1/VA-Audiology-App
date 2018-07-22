@@ -213,17 +213,17 @@ logo{
 
 
 @media all and (max-width:610px) {
-    button {
-      font-size: 0.9em;
-      height: 80%;
-    }
-    input {
-      font-size: 0.9em;
-    }
-    .failLogIn {
-      font-size: 0.5em;
-    }
+  button {
+    font-size: 0.9em;
+    height: 80%;
   }
+  input {
+    font-size: 0.9em;
+  }
+  .failLogIn {
+    font-size: 0.5em;
+  }
+}
 
 @media all and (orientation:landscape) and (max-width: 650px ){
   button {
@@ -286,3 +286,4 @@ button:hover {
   background-color: #005690;
   cursor: pointer;
 }
+

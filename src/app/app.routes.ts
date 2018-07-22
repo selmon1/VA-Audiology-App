@@ -14,6 +14,7 @@ import { TfiComponent } from './tfi/tfi.component';
 import { ThsComponent } from './ths/ths.component';
 
 import { RouterGuards } from './services/router-guards.service';
+import { AudiologistLoginComponent } from './audiologist-login/audiologist-login.component';
 
 // URL paths to redirect to and load components when appropriate
 export const ROUTES: Routes = [
@@ -27,5 +28,6 @@ export const ROUTES: Routes = [
   { path: 'ts', component: TsScreenerComponent, canActivate: [RouterGuards]},
   { path: 'tfi', component: TfiComponent, canActivate: [RouterGuards] },
   { path: 'ths', component: ThsComponent, canActivate: [RouterGuards]},
+  { path: 'aud-login', component: AudiologistLoginComponent, canActivate: [RouterGuards]},
   { path: '**',    component: NoContentComponent },
 ];
