@@ -30,14 +30,6 @@ export class AudiologistLoginComponent {
       Utilities.setSessionStorage('audiologist-pin', this.patientId);
       console.log('Audiologist log in ' + this.patientId);
       this.router.navigateByUrl('/audiologist');
-    } else if (this.patientId.length === 4) {
-      sessionStorage.clear();
-      this.tsDataService.clearHistory();
-      this.tfiDataService.clearHistory();
-      this.thsDataService.clearHistory();
-      Utilities.setSessionStorage('patient-id', this.patientId);
-      this.router.navigateByUrl('/appointments');
-      console.log('log in with ' + this.patientId);
     } else {
       this.authenticationFlag = false;
       this.patientId = '';
