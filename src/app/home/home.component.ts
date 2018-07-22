@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   * This fucntion is called when the wither of those two button on the screen is clicked.
+   * This function is called when the wither of those two button on the screen is clicked.
    * It routes the page to the "log in" page, and also creates a console log to inform the
    * develop that the button was pressed successfully.
    */
