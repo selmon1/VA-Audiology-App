@@ -1,4 +1,5 @@
 /*styles for home content only*/
+
 .container {
   width: 100%;
   height: 100%;
@@ -8,7 +9,7 @@
 .parent-container {
   /* padding-top: 20%; */
   width: 100%;
-  height: 25%;
+  height: 13%;
 }
 
 .child-container {
@@ -33,11 +34,12 @@ button {
   border-radius: 8px;
   margin-bottom: 10%;
   padding: 4%;
+  display: inline-block;
 }
 
 .row{
   margin-top: 0.05%;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 
 #aud-button{
@@ -54,12 +56,15 @@ a:hover{
 }
 
 img{
+  border: 2px solid  #ffffff;
   height: auto;
+  
 }
 
 logo{
   float: right;
 }
+
 
 @media all and (orientation:landscape) {
   button {
