@@ -9,7 +9,7 @@
 .parent-container {
   /* padding-top: 20%; */
   width: 100%;
-  height: 15%;
+  height: 13%;
 }
 
 .child-container {
@@ -56,6 +56,7 @@ a:hover{
 }
 
 img{
+  border: 2px solid  #ffffff;
   height: auto;
   
 }
