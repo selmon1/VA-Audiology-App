@@ -73,19 +73,22 @@ export class CheckInComponent {
     */
 
    public onClick() {
-            sessionStorage.clear();
-            this.tsDataService.clearHistory();
-            this.tfiDataService.clearHistory();
-            this.thsDataService.clearHistory();
-            Utilities.setSessionStorage('patient-id', this.idGenerator().toString());
-            console.log(this.idGenerator().toString());
-            this.router.navigateByUrl('/appointments');
-            console.log('log in with ' + this.patientId);
-        // else {
-        //  this.authenticationFlag = false;
-        //  this.patientId = '';
-        //  console.log('failed log in ' + this.patientId);
-      // }
+
+     if (this.firstName.length >= 2 && this.lastName.length >= 2 && this.lastFourSS.length === 4
+          && isNaN(this.firstName) && isNaN(this.lastName)) {
+       sessionStorage.clear();
+       this.tsDataService.clearHistory();
+       this.tfiDataService.clearHistory();
+       this.thsDataService.clearHistory();
+       Utilities.setSessionStorage('patient-id', this.idGenerator().toString());
+       console.log(this.idGenerator().toString());
+       this.router.navigateByUrl('/appointments');
+       console.log('log in with ' + this.patientId);
+     } else {
+        this.authenticationFlag = false;
+        this.patientId = '';
+        console.log('failed log in ' + this.patientId);
+       }
    }
 
    /**
