@@ -13,3 +13,9 @@ logo{
       font-size: .9em;
   }
 }
+
+@media all and (max-width: 820px) {
+  .titleFont {
+    margin-top: 25%;
+  }
+}

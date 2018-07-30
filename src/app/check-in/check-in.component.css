@@ -59,6 +59,14 @@ button {
   }
 }
 
+@media all and (max-width:820px) {
+  #home-button {
+    margin-left: 2%;
+    margin-top: 1.5%;
+    margin-bottom: 0%;
+  }
+  
+}
 
 @media all and (max-width:610px) {
   button {

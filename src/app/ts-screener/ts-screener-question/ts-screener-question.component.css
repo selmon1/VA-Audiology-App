@@ -106,6 +106,9 @@ button {
 }
 
 @media all and (max-width: 905px) {
+  .h3 {
+    margin-top: 10%;
+  }
   .radio-1 {
     padding-left: 12%;
   }
@@ -117,6 +120,8 @@ button {
     padding-left: 5%;
   }
 }
+
+
 
 @media all and (max-width: 767px) {
   .radio-1 {

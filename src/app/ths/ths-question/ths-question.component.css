@@ -84,6 +84,12 @@ button {
   .questionFont {
     padding-left: 6%;
   }
+  #home-button {
+    margin-left: 2%;
+    margin-top: 1.5%;
+    margin-bottom: 0%;
+  }
+  
 }
 
 @media all and (max-width: 767px) {

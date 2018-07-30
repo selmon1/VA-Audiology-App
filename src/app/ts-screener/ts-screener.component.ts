@@ -12,7 +12,7 @@ import { Utilities } from '../common/utlilities';
     <nav class="navbar navbar-fixed-top" id="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="#" class="btn btn-info btn-lg">
+          <a href="#" class="btn btn-info btn-lg" id="home-button">
             <span class="glyphicon glyphicon-home"></span> Home
           </a>
         </div>
