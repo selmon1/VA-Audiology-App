@@ -90,3 +90,11 @@ hr {
     border: 0;
     border-top: 1px solid #eeeeee;
 }
+
+@media all and (max-width:820px) {
+    #video {
+        width: 95%;
+        height: 95%;
+    }
+
+}
