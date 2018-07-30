@@ -21,12 +21,14 @@
 #navigation{
   padding-top: 1%;
   padding-bottom: 1%;
-  background-color: #005690;
+  text-align:left;
+  background-color: #005690;  
 }
 
 button {
   height: 60%;
-  background-color: #3a9202; /*Changed the original color #004273*/
+  background-color: #005690;
+  /* background-color: #3a9202; /*Changed the original color #004273*/
   font-family: 'Roboto';
   font-size: 2em;
   color: white;
@@ -42,8 +44,10 @@ button {
   margin-bottom: 1%;
 }
 
-#aud-button{
+#aud-login{
   margin-right: 2%;
+  margin-top: .5%;
+  float: right;
 }
 
 a{
@@ -57,6 +61,7 @@ a:hover{
 
 img{
   border: 2px solid  #ffffff;
+  border-radius: 5px;
   height: auto;
   
 }
@@ -71,12 +76,37 @@ logo{
     height: 85%;
   }
 }
+
 @media all and (max-width:450px) {
   button {
     font-size: 0.9em;
     height: 80%;
   }
 }
+
+@media all and (max-width:820px) {
+  button {
+    font-size: 0.9em;
+    height: 80%;
+  }
+  #home-button {
+    margin-left: 2%;
+    margin-top: 1.5%;
+    margin-bottom: 0%;
+  }
+  img {
+    height: 95%;
+    width: 95%;
+  }
+  #aud-login {
+    position: absolute;
+    font-size: .8em;
+    right:5px;
+    top: 16px;
+  }
+  
+}
+
 
 @media all and (orientation:landscape) and (max-width: 650px ){
   button {
