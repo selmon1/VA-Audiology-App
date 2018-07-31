@@ -61,6 +61,7 @@ import { OtoscopyComponent } from './otoscopy/otoscopy.component';
 import { TympanometryComponent } from './tympanometry/tympanometry.component';
 import { AudiogramComponent } from './audiogram/audiogram.component';
 import { AudiologistLoginComponent } from './audiologist-login/audiologist-login.component';
+import { LandingComponent } from './landing/landing.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -98,7 +99,8 @@ type StoreType = {
     OtoscopyComponent,
     TympanometryComponent,
     AudiogramComponent,
-    AudiologistLoginComponent
+    AudiologistLoginComponent,
+    LandingComponent
   ],
   exports: [
     MatSliderModule,
