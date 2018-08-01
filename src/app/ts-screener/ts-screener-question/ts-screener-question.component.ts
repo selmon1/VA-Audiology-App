@@ -8,12 +8,10 @@ import { TsScreenerDataService } from '../../services/ts-screener-data.service';
     <h2 style="color: white;" align="center">{{statement}}</h2>
     <h2 style="color: white;" align="center">{{question}}</h2>
     <div class="radio-{{questionType}} col-sm-4 col-sm-offset-4 col-xs-offset-4">
-      <div class="form-check">
-      <mat-radio-group [(ngModel)]="selectedValue" class = "options" >
-        <mat-radio-button value="{{radio1}}">{{radio1}}</mat-radio-button> <br>
-        <mat-radio-button value="{{radio2}}">{{radio2}}</mat-radio-button> <br>
-          <span *ngIf="radio3"><mat-radio-button value="{{radio3}}">{{radio3}}</mat-radio-button></span>
-      </mat-radio-group>
+      <div class="btn2">
+        <button class="btn1" (click) = "answer_yes()">{{radio1}}</button> <br>
+        <button class="btn1" (click)="answer_no()">{{radio2}}</button> <br>
+        <span *ngIf="radio3"><button class="bob" (click)="answer_sometimes()">{{radio3}}</button></span>
       </div>
     </div>
     <div class="row">
@@ -51,5 +49,18 @@ export class TsScreenerQuestionComponent implements OnInit {
 
   public ngOnInit() {
     this.selectedValue = this.dataService.populateAnswers(this.state);
+  }
+
+  public answer_yes(){
+   this.selectedValue = this.radio1;
+  }
+
+  public answer_no(){
+
+    this.selectedValue = this.radio2;
+  }
+
+  public answer_sometimes(){
+    this.selectedValue = this.radio3;
   }
 }
