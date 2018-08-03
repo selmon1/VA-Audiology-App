@@ -11,7 +11,7 @@ import { TsScreenerDataService } from '../../services/ts-screener-data.service';
       <div class="btn2">
         <button class="btn1" (click) = "answer_yes()">{{radio1}}</button> <br>
         <button class="btn1" (click)="answer_no()">{{radio2}}</button> <br>
-        <span *ngIf="radio3"><button class="bob" (click)="answer_sometimes()">{{radio3}}</button></span>
+        <span *ngIf="radio3"><button class="btn1" (click)="answer_sometimes()">{{radio3}}</button></span>
       </div>
     </div>
     <div class="row">
