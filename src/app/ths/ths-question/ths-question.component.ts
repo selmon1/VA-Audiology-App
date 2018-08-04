@@ -18,7 +18,7 @@ import { ThsDataService } from '../../services/ths-data.service';
     
     <h2 class="questionHeader">{{question}}</h2>
     <div *ngIf="question !== 'Please list two examples of sounds that are too loud or uncomfortable for you, but seem normal to others:'; else input_questions" class="row">
-      <div class="col-sm-4 col-sm-offset-3 col-xs-offset-2 questionFont">
+      <div class="col-sm-4 col-sm-offset-4 col-xs-offset-2 questionFont">
           <div class="btn2">
             <button class="btn1" (click)="answer_rad1()">{{radio1}}</button> <br>
             <button class="btn1" (click)="answer_rad2()">{{radio2}}</button> <br>

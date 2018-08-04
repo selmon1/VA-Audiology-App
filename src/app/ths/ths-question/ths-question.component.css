@@ -46,7 +46,7 @@ button {
 }
 
 .questionFont {
-  padding-left: 16%;
+  padding-left: 10%;
   padding-right: 0;
 }
 
@@ -179,7 +179,7 @@ button {
 .btn1:hover, .btn1:active, .btn1:focus {
 color: white !important;
 background-color: green !important;
-border-color: yellow !important;
-border: 5px solid yellow !important;
+/* border-color: yellow !important; */
+/* border: 5px solid yellow !important; */
 }
 
