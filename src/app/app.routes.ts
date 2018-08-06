@@ -16,6 +16,7 @@ import { ThsComponent } from './ths/ths.component';
 import { RouterGuards } from './services/router-guards.service';
 import { AudiologistLoginComponent } from './audiologist-login/audiologist-login.component';
 import { LandingComponent } from './landing/landing.component';
+import { CtComponent } from './ct/ct.component';
 
 // URL paths to redirect to and load components when appropriate
 export const ROUTES: Routes = [
@@ -31,5 +32,6 @@ export const ROUTES: Routes = [
   { path: 'ths', component: ThsComponent, canActivate: [RouterGuards]},
 	{ path: 'aud-login', component: AudiologistLoginComponent, canActivate: [RouterGuards]},
 	{ path: 'landing', component: LandingComponent, canActivate: [RouterGuards]},
+	{ path: 'changing-thoughts', component: CtComponent, canActivate: [RouterGuards]},
   { path: '**',    component: NoContentComponent },
 ];
