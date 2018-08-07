@@ -5,3 +5,11 @@
 logo{
   float: right;
 }
+
+.text-section {
+	position: fixed;
+	top: 80px;
+	bottom: 80px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
