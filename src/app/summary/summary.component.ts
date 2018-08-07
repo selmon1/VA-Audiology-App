@@ -10,6 +10,7 @@ import { SummaryResolver } from '@angular/compiler';
 import { HighlightDelayBarrier } from 'blocking-proxy/built/lib/highlight_delay_barrier';
 import { TfiDataService } from '../services/tfi-data.service';
 import { Utilities } from '../common/utlilities';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -24,6 +25,11 @@ export class SummaryComponent implements OnInit {
   public readonly patientID;
   public readonly appointmentType;
 
+  public patientOnClick() {
+    this.router.navigateByUrl('/landing');
+    console.log('landing page');
+  }
+
   /**
    * all the summary items that will be displayed in the summary report
    */
@@ -34,7 +40,7 @@ export class SummaryComponent implements OnInit {
    * @param tsDataService the data service for ts questionare
    * @param tfiDataService the date service for tfi questionare
    */
-  constructor(public thsDataService: ThsDataService, public tsDataService: TsScreenerDataService, public tfiDataService: TfiDataService) {
+  constructor(public thsDataService: ThsDataService, public tsDataService: TsScreenerDataService, public tfiDataService: TfiDataService, private router: Router) {
     this.tsDataService.onInit();
     this.constructTSReport();
     this.thsDataService.onInit();
@@ -264,3 +270,5 @@ export class SummaryComponent implements OnInit {
      }
    }
 }
+
+
