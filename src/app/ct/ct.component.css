@@ -1,7 +1,15 @@
-#navigation{
+#navigation {
   margin-top: 1%;
 }
 
-logo{
+logo {
   float: right;
+}
+
+.text-section {
+	position: fixed;
+	top: 80px;
+	bottom: 80px;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
