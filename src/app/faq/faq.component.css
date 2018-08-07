@@ -5,3 +5,17 @@
 logo{
   float: right;
 }
+
+p {
+  text-align: left;
+  color: white;
+}
+
+h1{
+  text-align: center;
+  color: white;
+}
+
+ul{
+  color: white;
+}
