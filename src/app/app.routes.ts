@@ -16,7 +16,14 @@ import { ThsComponent } from './ths/ths.component';
 import { RouterGuards } from './services/router-guards.service';
 import { AudiologistLoginComponent } from './audiologist-login/audiologist-login.component';
 import { LandingComponent } from './landing/landing.component';
+import { PaComponent } from './pa/pa.component';
+import { CtComponent } from './ct/ct.component';
+import { MindfulnessComponent } from './mindfulness/mindfulness.component';
+import { GmComponent } from './gm/gm.component';
+import { RelaxationComponent } from './relaxation/relaxation.component';
 import { SleepComponent } from './sleep/sleep.component';
+import { SoundComponent } from './sound/sound.component';
+import { FaqComponent } from './faq/faq.component';
 
 // URL paths to redirect to and load components when appropriate
 export const ROUTES: Routes = [
@@ -31,7 +38,14 @@ export const ROUTES: Routes = [
   { path: 'tfi', component: TfiComponent, canActivate: [RouterGuards] },
   { path: 'ths', component: ThsComponent, canActivate: [RouterGuards]},
 	{ path: 'aud-login', component: AudiologistLoginComponent, canActivate: [RouterGuards]},
-	{ path: 'landing', component: LandingComponent, canActivate: [RouterGuards]},
-  { path: 'sleep', component: SleepComponent, canActivate: [RouterGuards]},
-  { path: '**',    component: NoContentComponent },
+    { path: 'landing', component: LandingComponent, canActivate: [RouterGuards] },
+    { path: 'pa', component: PaComponent, canActivate: [RouterGuards] },
+    { path: 'ct', component: CtComponent, canActivate: [RouterGuards] },
+    { path: 'mindfulness', component: MindfulnessComponent, canActivate: [RouterGuards] },
+    { path: 'gm', component: GmComponent, canActivate: [RouterGuards] },
+    { path: 'relaxation', component: RelaxationComponent, canActivate: [RouterGuards] },
+    { path: 'sleep', component: SleepComponent, canActivate: [RouterGuards] },
+    { path: 'sound', component: SoundComponent, canActivate: [RouterGuards] },
+    { path: 'faq', component: FaqComponent, canActivate: [RouterGuards] },
+    { path: '**', component: NoContentComponent },
 ];
