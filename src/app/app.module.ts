@@ -108,7 +108,7 @@ type StoreType = {
     TympanometryComponent,
     AudiogramComponent,
     AudiologistLoginComponent,
-    LandingComponent
+    LandingComponent,
     PaComponent,
     CtComponent,
     MindfulnessComponent,

@@ -31,7 +31,7 @@ export class LandingComponent implements OnInit {
     console.log('button to mindfulness page');
   }
  
-  public guidedMeditationsOnClick() {
+  public guidedMeditationOnClick() {
     this.router.navigateByUrl('/gm');
     console.log('button to guided meditation page');
   }
