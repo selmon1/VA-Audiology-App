@@ -6,16 +6,12 @@ logo{
   float: right;
 }
 
-p {
-  text-align: left;
-  color: white;
-}
-
-h1{
-  text-align: center;
-  color: white;
-}
-
-ul{
-  color: white;
+.text-section {
+	position: fixed;
+	top: 80px;
+	bottom: 80px;
+	padding-left: 5%;
+	padding-right: 5%;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }

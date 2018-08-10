@@ -1,33 +1,17 @@
-.options {
-  color: white;
-  font-size: 1.2em;
-}
-
-.centerColumn {
-  float: none;
-  margin: 0 auto;
-}
-
-.sectionWrap {
-  text-align: center;
-}
-
-.right {
-  position: absolute;
-  right: 0px;
-  width: 300px;
-  border: 3px solid #73AD21;
-  padding: 10px;
-}
-
-#navigation {
+#navigation{
   margin-top: 1%;
 }
 
-logo {
+logo{
   float: right;
 }
 
-body{
-  color: white;
+.text-section {
+	position: fixed;
+	top: 80px;
+	bottom: 80px;
+	padding-left: 5%;
+	padding-right: 5%;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }

@@ -10,6 +10,8 @@ logo{
 	position: fixed;
 	top: 80px;
 	bottom: 80px;
+	padding-left: 5%;
+	padding-right: 5%;
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
