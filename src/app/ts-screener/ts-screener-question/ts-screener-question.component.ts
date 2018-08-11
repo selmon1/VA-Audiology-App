@@ -19,11 +19,19 @@ import { TsScreenerDataService } from '../../services/ts-screener-data.service';
         <button class="buttons1 btn btn-primary" (click)="onClickedBack.emit(selectedValue)">BACK</button>
         <button class="buttons2 btn btn-primary" (click)="onClickedNext.emit(selectedValue)">NEXT</button>
       </div>
+<<<<<<< HEAD
+        <ng-template #no_back_btn>
+	  <div class="col-sm-6 col-sm-offset-3" style="text-align: center; padding-top: 2%;">
+	    <button class="button-next-only btn btn-primary" (click)="onClickedNext.emit(selectedValue)">NEXT</button>
+	  </div>
+        </ng-template>
+=======
       <ng-template #no_back_btn>
         <div class="col-sm-6 col-sm-offset-3" style="text-align: center; padding-top: 2%;">
           <button class="button-next-only btn btn-primary" (click)="onClickedNext.emit(selectedValue)">NEXT</button>
         </div>
       </ng-template>
+>>>>>>> big_buttons
     </div>
   `
 })
