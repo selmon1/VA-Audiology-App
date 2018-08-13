@@ -116,9 +116,12 @@
 
 <!--Moves the logo to the bottom of the screen-->
 <div class="row">
-	<div class="hidden-xs col-sm-3 col-md-3 col-lg-3">
-		<footer class="navbar-fixed-bottom">
+	<footer class="navbar-fixed-bottom">
+		<div class="col-sm-6 col-sm-offset-3" style="text-align: center; padding-top: 2%;">
+      <button class="button-back btn btn-primary" (click)="onClickedBack.emit(selectedValue)">BACK</button>
+		</div>
+		<div class="hidden-xs col-sm-3 col-md-3 col-lg-3" style="text-align: center;">
 			<logo logoRouteOption="2"></logo> <!--Makes it so logo cannot click-->
-		</footer>
-	</div>
+		</div>
+	</footer>
 </div>
