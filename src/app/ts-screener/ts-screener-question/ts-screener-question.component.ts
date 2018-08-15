@@ -7,12 +7,10 @@ import { TsScreenerDataService } from '../../services/ts-screener-data.service';
   template: `
     <h2 style="color: white;" align="center">{{statement}}</h2>
     <h2 style="color: white;" align="center">{{question}}</h2>
-    <div class="radio-{{questionType}} col-sm-4 col-sm-offset-4 col-xs-offset-4">
-      <div class="btn2">
+    <div class="btn2 col-sm-4 col-sm-offset-4 col-xs-offset-4">
         <button class="btn1" (click) = "answer_yes()">{{radio1}}</button> <br>
         <button class="btn1" (click)="answer_no()">{{radio2}}</button> <br>
         <span *ngIf="radio3"><button class="btn1" (click)="answer_sometimes()">{{radio3}}</button></span>
-      </div>
     </div>
     <div class="row">
       <div *ngIf="state !== 1; else no_back_btn" class="col-sm-6 col-sm-offset-3" style="padding-top: 2%;">
