@@ -28,7 +28,7 @@ button {
 	width: 48%;
 	margin-right: -4px;
 }
-
+/*
 .radio-1 {
   padding-left: 10%;
 }
@@ -40,6 +40,7 @@ button {
 .radio-3 {
   padding-left: 10%;
 }
+
 
 @media all and (max-width: 1595px) {
   .radio-1 {
@@ -195,15 +196,24 @@ button {
   .buttons1, .buttons2 {
     font-size: .9em;
   }
-}
+}*/
 .btn2 button{
   background-color: white; /* Green background */
   border: 1px solid black; /* Green border */
   color: black; /* White text */
-  padding: 10px 4px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   width: 12em;
-  margin-bottom: 6px;
+  /*
+  display: table;
+  margin: 0 auto;
+  */
+}
+
+table{
+
+  border-collapse: separate;
+  border-spacing: 10px;
+
 }
 
 .btn1:hover, .btn1:active, .btn1:focus {
