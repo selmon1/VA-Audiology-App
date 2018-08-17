@@ -45,10 +45,12 @@ button {
   font-size: 1em;
 }
 
+/*
 .questionFont {
   padding-left: 10%;
   padding-right: 0;
 }
+
 
 @media all and (max-width: 1595px) {
   .questionFont {
@@ -164,16 +166,22 @@ button {
       font-size: .75em;
   }
 }
-
+*/
 
 .btn2 button{
   background-color: white; /* Green background */
   border: 1px solid black; /* Green border */
   color: black; /* White text */
-  padding: 10px 4px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   width: 12em;
-  margin-bottom: 6px;
+  /*margin-bottom: 6px;*/
+}
+
+table{
+
+  border-collapse: separate;
+  border-spacing: 10px;
+
 }
 
 .btn1:hover, .btn1:active, .btn1:focus {

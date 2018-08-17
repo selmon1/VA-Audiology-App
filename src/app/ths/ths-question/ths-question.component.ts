@@ -18,14 +18,14 @@ import { ThsDataService } from '../../services/ths-data.service';
     
     <h2 class="questionHeader">{{question}}</h2>
     <div *ngIf="question !== 'Please list two examples of sounds that are too loud or uncomfortable for you, but seem normal to others:'; else input_questions" class="row">
-      <div class="col-sm-4 col-sm-offset-4 col-xs-offset-2 questionFont">
-          <div class="btn2">
-            <button class="btn1" (click)="answer_rad1()">{{radio1}}</button> <br>
-            <button class="btn1" (click)="answer_rad2()">{{radio2}}</button> <br>
-            <button class="btn1" (click)="answer_rad3()">{{radio3}}</button> <br>
-            <button class="btn1" (click)="answer_rad4()">{{radio4}}</button> <br>
-            <button class="btn1" (click)="answer_rad5()">{{radio5}}</button> <br>
-          </div>
+      <div class="btn2" align="center" col-sm-4 col-sm-offset-4 col-xs-offset-2>
+           <table>
+             <tr><td><button class="btn1" (click)="answer_rad1()">{{radio1}}</button></td></tr>
+             <tr><td><button class="btn1" (click)="answer_rad2()">{{radio2}}</button></td></tr>
+             <tr><td><button class="btn1" (click)="answer_rad3()">{{radio3}}</button></td></tr>
+             <tr><td><button class="btn1" (click)="answer_rad4()">{{radio4}}</button></td></tr>
+             <tr><td><button class="btn1" (click)="answer_rad5()">{{radio5}}</button></td></tr>
+           </table>
       </div>
     </div>
     <ng-template #input_questions>
