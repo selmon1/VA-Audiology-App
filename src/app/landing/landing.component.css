@@ -54,3 +54,9 @@ logo{
 	margin-left: auto;
 	margin-right: auto;
 }
+
+
+/*added to resize to types of screens*/
+img{
+  width: 95%;
+}
