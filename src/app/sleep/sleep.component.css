@@ -19,3 +19,7 @@ table, th, td{
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
+
+.audio{
+  alignment: center;
+}
