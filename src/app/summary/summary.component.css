@@ -1,3 +1,7 @@
+html {
+    overflow-x: hidden;
+}
+
 nav{
   margin-top: 2%;
 }
@@ -38,7 +42,7 @@ outline: 1px solid slategrey;
   color: white /*rgb(36, 50, 97)*/;
   font-size: 1em;
   margin-top: 5%;
-  text-decoration: underline;
+  text-decoration: underline;   
 }
 
 .container .summary-container .patientID {
@@ -92,8 +96,6 @@ outline: 1px solid slategrey;
 
 .video{
     text-align: center;
-    border: 5px;
-    border-color: white;
 }
 
 .button-landing {
@@ -102,9 +104,29 @@ outline: 1px solid slategrey;
 	margin-bottom: 10%
 }
 
-hr {
+/*hr {
     margin-top: 2%;
     margin-bottom: 1%;
     border: 0;
     border-top: 1px solid #eeeeee;
+}*/
+
+hr {
+    visibility: hidden;
+}
+
+#sum_text{
+    color: white;
+    margin: 0 -9999rem;
+    padding: 0.25rem 9999rem;
+    border-bottom: 2px solid #fff;
+    font-size: .9em;
+}
+
+
+#sum_text_header{
+    margin: 0 -9999rem;
+    padding: 0.25rem 9999rem;
+    background: #0098DB;
+    color: white;
 }

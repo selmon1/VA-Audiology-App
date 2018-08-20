@@ -115,47 +115,47 @@ export class SummaryComponent implements OnInit {
 
     // Display the summary information
     if (sectionAScore > sectionBScore || sectionBScore === 0) {
-        let ans: String = "Your audiologist will talk to you about:" +
-            "Hearing aid/combination instrument consultation" +
-            "Counseling for both hearing and tinnitus management options" +
-            "Specific tinnitus management options, such as:" +
-            "    Progressive Tinnitus Management" +
-            "    Cognitive Behavioral Therapy" +
-            "    Stress Relief";
+        let ans: String = 
+            "&emsp; &emsp;- Hearing aid/combination instrument consultation <br/> " + 
+            "&emsp; &emsp;- Counseling for both hearing and tinnitus management options <br/> " +
+            "&emsp; &emsp;- Specific tinnitus management options, such as: <br/>" + 
+            "&emsp; &emsp; &emsp; &emsp;- Progressive Tinnitus Management <br/>" + 
+            "&emsp; &emsp; &emsp; &emsp;- Cognitive Behavioral Therapy <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Stress Relief";
         this.summaryItems.push(new SumString(ans));
     }
     if (sectionAScore < sectionBScore) {
-        let ans1: String = "Your audiologist will talk to you about:" +
-            "Hearing aid/combination instrument consultation" +
-            "Counseling for both hearing and tinnitus management options" +
-            "Specific hearing management options, such as:" +
-            "    Hearing aids" +
-            "    Hearing strategies in different environments " +
-            "    Hearing aid accessories ";
+        let ans1: String = 
+            "&emsp; &emsp;- Hearing aid/combination instrument consultation <br/> " +
+            "&emsp; &emsp;- counseling for both hearing and tinnitus management options <br/> " +
+            "&emsp; &emsp;- Specific hearing management options, such as: <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Hearing aids <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Hearing strategies in different environments <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Hearing aid accessories";
         this.summaryItems.push(new SumString(ans1));
     }
     if (sectionAScore === 0) {
-        let ans2: String = "Your audiologist will talk to you about:" +
-            "Hearing aids" +
-            "Hearing aid fitting" +
-            "Specific hearing management options, such as:" +
-            "   Hearing aid counseling" +
-            "   Hearing strategies in different environments" +
-            "   Hearing aid accessories";
+        let ans2: String = 
+            "&emsp; &emsp;- Hearing aids <br/>" +
+            "&emsp; &emsp;- Hearing aid fitting <br/>" +
+            "&emsp; &emsp;- Specific hearing management options, such as: <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Hearing aid counseling <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Hearing strategies in different environments <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Hearing aid accessories";
         this.summaryItems.push(new SumString(ans2));
     }
     if (sectionAScore === sectionBScore) {
-        let ans3: String = "Your audiologist will talk to you about:" +
-            "Hearing aid/combination instrument consultation" +
-            "Information about hearing and tinnitus management options" +
-            "Specific tinnitus management options, such as:" +
-            "   Progressive Tinnitus Management" +
-            "   Cognitive Behavioral Therapy" +
-            "   Stress Relief" +
-            "Specific hearing management options, such as:" +
-            "    Hearing aids" +
-            "    Hearing strategies in different environments " +
-            "    Hearing aid accessories ";
+        let ans3: String = 
+            "&emsp; &emsp;- Hearing aid/combination instrument consultation <br/>" +
+            "&emsp; &emsp;- Information about hearing and tinnitus management options <br/>" +
+            "&emsp; &emsp;- Specific tinnitus management options, such as: <br/>" +
+            "&emsp; &emsp;- Progressive Tinnitus Management <br/>" +
+            "&emsp; &emsp;- Cognitive Behavioral Therapy <br/>" +
+            "&emsp; &emsp;- Stress Relief <br/>" +
+            "&emsp; &emsp;- Specific hearing management options, such as: <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Hearing aids <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Hearing strategies in different environments <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Hearing aid accessories ";
         this.summaryItems.push(new SumString(ans3));
     }
   }
