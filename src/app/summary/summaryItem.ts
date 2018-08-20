@@ -9,6 +9,15 @@ class SummaryItem {
     }
 }
 
+export class SumString extends SummaryItem {
+    public readonly title;
+    constructor(title: String) {
+        super('SumString');
+        this.title = title;
+    }
+}
+
+
 /**
  * The survey title type
  */
