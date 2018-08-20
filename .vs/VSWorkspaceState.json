@@ -3,10 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\landing",
+    "\\src\\app\\ct",
+    "\\src\\app\\gm",
     "\\src\\app\\mindfulness",
-    "\\src\\app\\pa"
+    "\\src\\app\\pa",
+    "\\src\\app\\relaxation",
+    "\\src\\app\\sleep",
+    "\\src\\app\\sound"
   ],
-  "SelectedNode": "\\src\\app\\pa\\pa.component.css",
+  "SelectedNode": "\\src\\app\\sound\\sound.component.ts",
   "PreviewInSolutionExplorer": false
 }
