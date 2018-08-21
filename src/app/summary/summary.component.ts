@@ -24,6 +24,7 @@ export class SummaryComponent implements OnInit {
    */
   public readonly patientID;
   public readonly appointmentType;
+  public readonly first_name;
 
   public patientOnClick() {
     this.router.navigateByUrl('/landing');
@@ -49,6 +50,7 @@ export class SummaryComponent implements OnInit {
     this.constructTFIReport();
     this.patientID = Utilities.getSessionStorage('patient-id');
     this.appointmentType = Utilities.getSessionStorage('appt');
+    this.first_name = Utilities.getSessionStorage('firstName');
   };
 
   public ngOnInit() {
@@ -186,6 +188,16 @@ export class SummaryComponent implements OnInit {
    * This function is used to construct a TFI report in the summary component
    */
   public constructTFIReport() {
+    // Variables created by group 2 to record the score of each indivudual section
+    let sec1: number = 0;
+    let sec2: number = 0;
+    let sec3: number = 0;
+    let sec4: number = 0;
+    let sec5: number = 0;
+    let sec6: number = 0;
+    let sec7: number = 0;
+    let sec8: number = 0;
+
     let data = this.tfiDataService.dataRecord;
     let tfiSections = new TfiSectionStrings();
     if  (data.length < 1) {
@@ -196,26 +208,85 @@ export class SummaryComponent implements OnInit {
     for (let questionNum of data) {
 
       // Check the state for a new section
-      if (questionNum.state === 0) {
-          this.summaryItems.push(new SectionTitle(tfiSections.section1));
-      } else if (questionNum.state === 3) {
-          this.summaryItems.push(new SectionTitle(tfiSections.section2));
-      } else if (questionNum.state === 6) {
-          this.summaryItems.push(new SectionTitle(tfiSections.section3));
-      } else if (questionNum.state === 9) {
-          this.summaryItems.push(new SectionTitle(tfiSections.section4));
-      } else if (questionNum.state === 12) {
-          this.summaryItems.push(new SectionTitle(tfiSections.section5));
-      } else if (questionNum.state === 15) {
-          this.summaryItems.push(new SectionTitle(tfiSections.section6));
-      } else if (questionNum.state === 18) {
-          this.summaryItems.push(new SectionTitle(tfiSections.section7));
-      } else if (questionNum.state === 22) {
-          this.summaryItems.push(new SectionTitle(tfiSections.section8));
+      if (questionNum.state < 3) {
+          //this.summaryItems.push(new SectionTitle(tfiSections.section1));
+          sec1 = sec1 + questionNum.choice;
+      } else if (questionNum.state >= 3 && questionNum.state < 6) {
+          //this.summaryItems.push(new SectionTitle(tfiSections.section2));
+          sec2 = sec2 + questionNum.choice;
+      } else if (questionNum.state >= 6 && questionNum.state < 9) {
+          //this.summaryItems.push(new SectionTitle(tfiSections.section3));
+          sec3 = sec3 + questionNum.choice;
+      } else if (questionNum.state >= 9 && questionNum.state < 12) {
+          //this.summaryItems.push(new SectionTitle(tfiSections.section4));
+          sec4 = sec4 + questionNum.choice;
+      } else if (questionNum.state >= 12 && questionNum.state < 15) {
+          //this.summaryItems.push(new SectionTitle(tfiSections.section5));
+          sec5 = sec5 + questionNum.choice;
+      } else if (questionNum.state >= 15 && questionNum.state < 18) {
+          //this.summaryItems.push(new SectionTitle(tfiSections.section6));
+          sec6 = sec6 + questionNum.choice;
+      } else if (questionNum.state >= 18 && questionNum.state < 22) {
+          //this.summaryItems.push(new SectionTitle(tfiSections.section7));
+          sec7 = sec7 + questionNum.choice;
+      } else if (questionNum.state >= 22) {
+          //this.summaryItems.push(new SectionTitle(tfiSections.section8));
+          sec8 = sec8 + questionNum.choice;
       }
-      let question = this.getTFIQuestion(questionNum.state);
-      let answer = questionNum.choice;
-      this.summaryItems.push(new Question(question, answer, '-1'));
+      //let question = this.getTFIQuestion(questionNum.state);
+      //let answer = questionNum.choice;
+      //this.summaryItems.push(new Question(question, answer, '-1'));
+    }
+
+    // Now that I have each of the scores I have to find out which are the top 3 highest
+    var scores = [sec1, sec2, sec3, sec4, sec5, sec6, sec7, sec8];
+    var max = Math.max.apply(null, scores);
+    var maxi1 = scores.indexOf(max);
+    scores[maxi1] = -Infinity;
+    var max2 = Math.max.apply(null, scores);
+    var maxi2 = scores.indexOf(max2);
+    scores[maxi2] = -Infinity;
+    var max3 = Math.max.apply(null, scores);
+    var maxi3 = scores.indexOf(max3);
+    scores[maxi3] = -Infinity;
+
+    // The summary has two different responses for the TFI screen.
+    // We display them depending on which sections are in the highest scoring ones
+    // Both sections can be displayed, which is why both if statements can be reached
+    if (maxi1 <= 3 && maxi2 <= 3 && maxi3 <= 3) {
+        let TFIans1: String =
+            "&emsp; &emsp;-	You consider your tinnitus intrusive to your daily life and your audiologist may suggest these options for you: <br/>" +
+            "&emsp; &emsp;- A hearing aid consultation for hearing difficulties<br/>" +
+            "&emsp; &emsp;- Educational counseling about tinnitus including: <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Why do we think tinnitus occurs? <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Association with hearing loss <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Using sound as management<br/>" +
+            "&emsp; &emsp;- Specific sound options that may help to manage your tinnitus: <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Apps: Calm, ReSound Relief, Mindfulness, Pandora Radio, Spotify, YouTube, Audible  <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Soothing sounds: babbling brook, ocean waves, forest sounds, etc. <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Interesting sounds: audio books, TV, radio <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Background sounds: environmental sounds, TV, music<br/>" +
+            "&emsp; &emsp;- Progressive Tinnitus Management  ";
+           
+        this.summaryItems.push(new SumString(TFIans1));
+    }
+    else {
+        let TFIans2: String =
+            "&emsp; &emsp;-	You consider your tinnitus intrusive to your daily life and your audiologist may suggest these options for you: <br/>" +
+            "&emsp; &emsp;- A hearing aid consultation for hearing difficulties<br/>" +
+            "&emsp; &emsp;- Educational counseling about tinnitus including: <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Hearing aids/combination units <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Why do we think tinnitus occurs? <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Association with hearing loss <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Using sound as management<br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- What combination units offer<br/>" +
+            "&emsp; &emsp;- Specific sound options that may help to manage your tinnitus: <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Apps: Calm, ReSound Relief, Mindfulness, Pandora Radio, Spotify, YouTube, Audible  <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Soothing sounds: babbling brook, ocean waves, forest sounds, etc. <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Interesting sounds: audio books, TV, radio <br/>" +
+            "&emsp; &emsp;- &emsp; &emsp;- Background sounds: environmental sounds, TV, music<br/>" +
+            "&emsp; &emsp;- Progressive Tinnitus Management  "; 
+        this.summaryItems.push(new SumString(TFIans2));
     }
   }
 
