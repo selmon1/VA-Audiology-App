@@ -1,6 +1,6 @@
 import { TsScreenerAnswerStrings } from './../common/custom-resource-strings';
 import { Component, OnInit } from '@angular/core';
-import { SurveyTitle, SectionTitle, SectionFooter, Question } from './summaryItem';
+import { SurveyTitle, SectionTitle, SectionFooter, Question, SumString } from './summaryItem';
 import { ThsDataService } from '../services/ths-data.service';
 import { TsScreenerDataService } from '../services/ts-screener-data.service';
 import { constructDependencies } from '@angular/core/src/di/reflective_provider';
@@ -58,6 +58,11 @@ export class SummaryComponent implements OnInit {
    * the function used to construct a ths report from the ths data services.
    */
   public constructTHSReport() {
+    // Variables to record the sub score of each section
+    let sectionAScore: number = 0;
+    let sectionBScore: number = 0;
+    let sectionCScore: number = 0;
+
     let totalScore: number = 0;
     let subScore: number = 0;
     let sectionActive: boolean = false;
@@ -72,26 +77,87 @@ export class SummaryComponent implements OnInit {
       if ( data.length < questionNum) {
         break;
       }
+
+      // Save the sub score for each question
+      let sumAns = data[questionNum - 1].choice as String;
+      if (this.getTHSSectionTitle(questionNum) === 'A. Tinnitus') {
+          sectionAScore = sectionAScore + this.getTHSChoiceNumber(sumAns);
+      }
+      else if (this.getTHSSectionTitle(questionNum) === 'B. Hearing') {
+          sectionBScore = sectionBScore + this.getTHSChoiceNumber(sumAns);
+      }
+      else {
+          sectionCScore = sectionCScore + this.getTHSChoiceNumber(sumAns);
+      }
+
+
       if ( (questionNum - 1) % 4 === 0 && sectionActive === true) {
-        this.summaryItems.push(new SectionFooter('Sub Score', subScore));
+      //  this.summaryItems.push(new SectionFooter('Sub Score', subScore));
         subScore = 0;
       }
       if ( (questionNum - 1) % 4 === 0) {
         console.log(questionNum);
-        this.summaryItems.push(new SectionTitle(this.getTHSSectionTitle(questionNum)));
+     //   this.summaryItems.push(new SectionTitle(this.getTHSSectionTitle(questionNum)));
         sectionActive = true;
       }
       let answer = data[questionNum - 1].choice as String;
       if (this.getTHSChoiceNumber(answer) !== -1) {
         subScore = subScore + this.getTHSChoiceNumber(answer);
         totalScore = totalScore + this.getTHSChoiceNumber(answer);
-        this.summaryItems.push(new Question(question, Number(answer.charAt(0)), '-1'));
+     //   this.summaryItems.push(new Question(question, Number(answer.charAt(0)), '-1'));
       } else {
-        this.summaryItems.push(new Question(question, -1, answer));
+     //   this.summaryItems.push(new Question(question, -1, answer));
       }
     }
-    this.summaryItems.push(new SectionFooter('Sub Score', subScore));
-    this.summaryItems.push(new SectionFooter('Total Score', totalScore));
+//    this.summaryItems.push(new SectionFooter('Sub Score', subScore));
+//    this.summaryItems.push(new SectionFooter('Total Score', totalScore));
+
+
+    // Display the summary information
+    if (sectionAScore > sectionBScore || sectionBScore === 0) {
+        let ans: String = "Your audiologist will talk to you about:" +
+            "Hearing aid/combination instrument consultation" +
+            "Counseling for both hearing and tinnitus management options" +
+            "Specific tinnitus management options, such as:" +
+            "    Progressive Tinnitus Management" +
+            "    Cognitive Behavioral Therapy" +
+            "    Stress Relief";
+        this.summaryItems.push(new SumString(ans));
+    }
+    if (sectionAScore < sectionBScore) {
+        let ans1: String = "Your audiologist will talk to you about:" +
+            "Hearing aid/combination instrument consultation" +
+            "Counseling for both hearing and tinnitus management options" +
+            "Specific hearing management options, such as:" +
+            "    Hearing aids" +
+            "    Hearing strategies in different environments " +
+            "    Hearing aid accessories ";
+        this.summaryItems.push(new SumString(ans1));
+    }
+    if (sectionAScore === 0) {
+        let ans2: String = "Your audiologist will talk to you about:" +
+            "Hearing aids" +
+            "Hearing aid fitting" +
+            "Specific hearing management options, such as:" +
+            "   Hearing aid counseling" +
+            "   Hearing strategies in different environments" +
+            "   Hearing aid accessories";
+        this.summaryItems.push(new SumString(ans2));
+    }
+    if (sectionAScore === sectionBScore) {
+        let ans3: String = "Your audiologist will talk to you about:" +
+            "Hearing aid/combination instrument consultation" +
+            "Information about hearing and tinnitus management options" +
+            "Specific tinnitus management options, such as:" +
+            "   Progressive Tinnitus Management" +
+            "   Cognitive Behavioral Therapy" +
+            "   Stress Relief" +
+            "Specific hearing management options, such as:" +
+            "    Hearing aids" +
+            "    Hearing strategies in different environments " +
+            "    Hearing aid accessories ";
+        this.summaryItems.push(new SumString(ans3));
+    }
   }
 
   /**
@@ -110,7 +176,9 @@ export class SummaryComponent implements OnInit {
         break;
       }
       let answer = answers[questionNum - 1].choice as String;
-      this.summaryItems.push(new Question(question, -1, answer));
+      let sumUp = this.getTSSummaryString(questionNum, answer);
+      //this.summaryItems.push(new Question(question, -1, answer));
+      this.summaryItems.push(new SumString(sumUp));
     }
   }
 
@@ -221,6 +289,75 @@ export class SummaryComponent implements OnInit {
       case tsAnswers.MONTHLY_OR_YEARLY_BASIS: return 1;
       default: return -1;
     }
+  }
+
+    /**
+     *Grab the correct summary sentence based on the questions answer
+     * @param qNumber the question number
+     * @param answer the questions answer
+     */
+  public getTSSummaryString(qNumber: number, answer: String) {
+      let tsAnswers = new TsScreenerAnswerStrings();
+      switch (qNumber) {
+          case 1: {
+              if (tsAnswers.YES) {
+                  let ans: String = "It is normal to experience a burst of sound (typically a high-pitched tone) for a couple of seconds that eventually fades away." +
+                      "Sometimes hearing loss can cause difficulty hearing in certain situations, such as those with background noise.Tinnitus is a separate condition that is an internal head noise.It can sometimes cause annoyance and anxiety, but can be managed so that you daily life is not negatively impacted by it. " +
+                      "3.	Talk to your audiologist about specific types of management options. ";
+                  return ans;
+              }
+              else {
+                  return "";
+              }
+          }   
+          case 2: {
+              return "";
+          }
+          case 3: {
+              if (tsAnswers.ALWAYS) {
+                  let ans: String = "You have constant tinnitus, which means you experience tinnitus all the time.You will complete an audiology test today and your audiologist will explain it to you and why that relates to your tinnitus.";
+                  return ans;
+              }
+              else if (tsAnswers.USUALLY) {
+                  let ans: String = "You have constant tinnitus, which means you experience tinnitus all the time. You will complete an audiology test today and your audiologist will explain it to you and why that relates to your tinnitus.";
+                  return ans;
+              }
+              else {
+                  let ans: String = "";
+                  return ans;
+              }
+          }
+          case 4: {
+              if (tsAnswers.YES_ALWAYS) {
+                  let ans: String = "You have Temporary Tinnitus, which means that it is associated with a specific event. You are going to learn about hearing conservation and should monitor your tinnitus symptoms as appropriate. You’re going to have an audiologic exam and your audiologist will talk you through some tinnitus management options.";
+                  return ans;
+              }
+              else {
+                  return "";
+              }
+          } 
+          case 5: {
+              if (tsAnswers.NO) {
+                  let ans: String = "You have Temporary Tinnitus, which means that it is associated with a specific event. You are going to learn about hearing conservation and should monitor your tinnitus symptoms as appropriate. You’re going to have an audiologic exam and your audiologist will talk you through some tinnitus management options.";
+                  return ans;
+              }
+              else {
+                  return "";
+              }
+          } 
+          case 6: {
+              if (tsAnswers.DAILY_OR_WEEKLY_BASIS) {
+                  let ans: String = "You have Intermittent Tinnitus, which means that you experience tinnitus every day or week. You are going to have an audiology test and a brief tinnitus assessment. Your audiologist will give you more information about hearing and tinnitus and can talk to you about specific management options. ";
+                  return ans;
+              }
+              else {
+                  let ans: String = "You have Occasional Tinnitus, which means that you experience tinnitus every few weeks or months. Your audiologist will talk to you about hearing conservation and ask you to monitor your symptoms as appropriate. You will also have an audiology test and tinnitus management options will be discussed if you consider it bothersome. ";
+                  return ans;
+              }
+          } 
+          default: return 'missing';
+      }
+
   }
 
   public getTHSChoiceNumber(answer: String) {
