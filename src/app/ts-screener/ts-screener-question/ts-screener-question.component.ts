@@ -7,25 +7,23 @@ import { TsScreenerDataService } from '../../services/ts-screener-data.service';
   template: `
     <h2 style="color: white;" align="center">{{statement}}</h2>
     <h2 style="color: white;" align="center">{{question}}</h2>
-    <div class="radio-{{questionType}} col-sm-4 col-sm-offset-4 col-xs-offset-4">
-      <div class="form-check">
-      <mat-radio-group [(ngModel)]="selectedValue" class = "options" >
-        <mat-radio-button value="{{radio1}}">{{radio1}}</mat-radio-button> <br>
-        <mat-radio-button value="{{radio2}}">{{radio2}}</mat-radio-button> <br>
-          <span *ngIf="radio3"><mat-radio-button value="{{radio3}}">{{radio3}}</mat-radio-button></span>
-      </mat-radio-group>
-      </div>
+    <div class="btn2"  align="center" col-sm-4 col-sm-offset-4 col-xs-offset-4>
+      <table>
+        <tr><td><button class="btn1" (click) = "answer_yes()">{{radio1}}</button></td></tr>
+        <tr><td><button class="btn1" (click)="answer_no()">{{radio2}}</button></td></tr>
+        <tr><td><span *ngIf="radio3"><button class="btn1" (click)="answer_sometimes()">{{radio3}}</button></span></td></tr>
+      </table> 
     </div>
     <div class="row">
       <div *ngIf="state !== 1; else no_back_btn" class="col-sm-6 col-sm-offset-3" style="padding-top: 2%;">
         <button class="buttons1 btn btn-primary" (click)="onClickedBack.emit(selectedValue)">BACK</button>
         <button class="buttons2 btn btn-primary" (click)="onClickedNext.emit(selectedValue)">NEXT</button>
       </div>
-        <ng-template #no_back_btn>
-	  <div class="col-sm-6 col-sm-offset-3" style="text-align: center; padding-top: 2%;">
-	    <button class="button-next-only btn btn-primary" (click)="onClickedNext.emit(selectedValue)">NEXT</button>
-	  </div>
-        </ng-template>
+      <ng-template #no_back_btn>
+        <div class="col-sm-6 col-sm-offset-3" style="text-align: center; padding-top: 2%;">
+          <button class="button-next-only btn btn-primary" (click)="onClickedNext.emit(selectedValue)">NEXT</button>
+        </div>
+      </ng-template>
     </div>
   `
 })
@@ -51,5 +49,18 @@ export class TsScreenerQuestionComponent implements OnInit {
 
   public ngOnInit() {
     this.selectedValue = this.dataService.populateAnswers(this.state);
+  }
+
+  public answer_yes(){
+   this.selectedValue = this.radio1;
+  }
+
+  public answer_no(){
+
+    this.selectedValue = this.radio2;
+  }
+
+  public answer_sometimes(){
+    this.selectedValue = this.radio3;
   }
 }

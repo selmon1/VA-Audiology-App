@@ -75,7 +75,7 @@ export class CheckInComponent {
    public onClick() {
 
      if (this.firstName.length >= 2 && this.lastName.length >= 2 && this.lastFourSS.length === 4
-          && isNaN(this.firstName) && isNaN(this.lastName)) {
+          && isNaN(Number(this.firstName)) && isNaN(Number(this.lastName))) {
        sessionStorage.clear();
        this.tsDataService.clearHistory();
        this.tfiDataService.clearHistory();

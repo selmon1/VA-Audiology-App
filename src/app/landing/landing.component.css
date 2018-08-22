@@ -48,3 +48,15 @@ button {
 logo{
   float: right;
 }
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/*added to resize to types of screens*/
+img{
+  width: 95%;
+}

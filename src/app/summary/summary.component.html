@@ -50,6 +50,12 @@
       </div>
     </div>
 
+    <div class="row" *ngIf="item.type == 'SumString'">
+      <div class="col-sm-8 col-md-8 col-lg-8" style="color: white;">
+        {{item.title}}:
+      </div>
+    </div>
+
     <div class="row" *ngIf="item.type == 'Question'">
       <div class = "col-sm-8 col-md-8 col-lg-8">
         <div class="question-content">
@@ -77,9 +83,16 @@
 
   </ul>
   <div class="video">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZZ5LpwO-An4"
-      style="border: 5px solid #FFF" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ImULl9oS9SE"
+      style="border: 5px solid #FFF; border-radius: 8px;" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
     </iframe>
   </div>
 
+	<div class="row">
+	  <div class="col-sm-6 col-sm-offset-3" style="text-align: center; padding-top: 2%;">
+	    <button class="button-landing btn btn-primary" (click)="patientOnClick()">TINNITUS EXERCISES</button>
+	  </div>
+	</div>
+
 </div>
+
