@@ -50,6 +50,12 @@
       </div>
     </div>
 
+    <div class="row" *ngIf="item.type == 'SumString'">
+      <div class="col-sm-8 col-md-8 col-lg-8" style="color: white;">
+        {{item.title}}:
+      </div>
+    </div>
+
     <div class="row" *ngIf="item.type == 'Question'">
       <div class = "col-sm-8 col-md-8 col-lg-8">
         <div class="question-content">

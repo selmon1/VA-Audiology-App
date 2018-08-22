@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppState } from '../app.service';
 
 @Component({
   selector: 'app-sound',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SoundComponent implements OnInit {
 
-  constructor() { }
+    public localState = { value: '' };
+    constructor(public appState: AppState, private router: Router) { }
+
 
   ngOnInit() {
   }
 
+  public patientOnClick() {
+      this.router.navigateByUrl('/landing');
+      console.log('go to landing page');
+  }
 }
