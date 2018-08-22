@@ -117,9 +117,9 @@ hr {
 
 #sum_text{
     color: white;
-    margin: 0 -9999rem;
-    padding: 0.25rem 9999rem;
-    border-bottom: 2px solid #fff;
+    padding-left: 10px;
+    border-left: 4px solid white;
+    border-spacing: 5px;
     font-size: .9em;
 }
 
@@ -128,5 +128,14 @@ hr {
     margin: 0 -9999rem;
     padding: 0.25rem 9999rem;
     background: #0098DB;
+    color: white;
+    margin-bottom: 5;
+}
+
+a {
+    color: #0098DB;
+}
+
+a:hover {
     color: white;
 }

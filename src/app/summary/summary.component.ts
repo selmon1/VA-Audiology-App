@@ -155,9 +155,9 @@ export class SummaryComponent implements OnInit {
             "&emsp; &emsp;- Cognitive Behavioral Therapy <br/>" +
             "&emsp; &emsp;- Stress Relief <br/>" +
             "&emsp; &emsp;- Specific hearing management options, such as: <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Hearing aids <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Hearing strategies in different environments <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Hearing aid accessories ";
+            "&emsp; &emsp; &emsp; &emsp;- Hearing aids <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Hearing strategies in different environments <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Hearing aid accessories ";
         this.summaryItems.push(new SumString(ans3));
     }
   }
@@ -258,14 +258,14 @@ export class SummaryComponent implements OnInit {
             "&emsp; &emsp;-	You consider your tinnitus intrusive to your daily life and your audiologist may suggest these options for you: <br/>" +
             "&emsp; &emsp;- A hearing aid consultation for hearing difficulties<br/>" +
             "&emsp; &emsp;- Educational counseling about tinnitus including: <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Why do we think tinnitus occurs? <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Association with hearing loss <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Using sound as management<br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Why do we think tinnitus occurs? <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Association with hearing loss <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Using sound as management<br/>" +
             "&emsp; &emsp;- Specific sound options that may help to manage your tinnitus: <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Apps: Calm, ReSound Relief, Mindfulness, Pandora Radio, Spotify, YouTube, Audible  <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Soothing sounds: babbling brook, ocean waves, forest sounds, etc. <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Interesting sounds: audio books, TV, radio <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Background sounds: environmental sounds, TV, music<br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Apps: Calm, ReSound Relief, Mindfulness, Pandora Radio, Spotify, YouTube, Audible  <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Soothing sounds: babbling brook, ocean waves, forest sounds, etc. <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Interesting sounds: audio books, TV, radio <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Background sounds: environmental sounds, TV, music<br/>" +
             "&emsp; &emsp;- Progressive Tinnitus Management  ";
            
         this.summaryItems.push(new SumString(TFIans1));
@@ -275,16 +275,16 @@ export class SummaryComponent implements OnInit {
             "&emsp; &emsp;-	You consider your tinnitus intrusive to your daily life and your audiologist may suggest these options for you: <br/>" +
             "&emsp; &emsp;- A hearing aid consultation for hearing difficulties<br/>" +
             "&emsp; &emsp;- Educational counseling about tinnitus including: <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Hearing aids/combination units <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Why do we think tinnitus occurs? <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Association with hearing loss <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Using sound as management<br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- What combination units offer<br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Hearing aids/combination units <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Why do we think tinnitus occurs? <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Association with hearing loss <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Using sound as management<br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- What combination units offer<br/>" +
             "&emsp; &emsp;- Specific sound options that may help to manage your tinnitus: <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Apps: Calm, ReSound Relief, Mindfulness, Pandora Radio, Spotify, YouTube, Audible  <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Soothing sounds: babbling brook, ocean waves, forest sounds, etc. <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Interesting sounds: audio books, TV, radio <br/>" +
-            "&emsp; &emsp;- &emsp; &emsp;- Background sounds: environmental sounds, TV, music<br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Apps: Calm, ReSound Relief, Mindfulness, Pandora Radio, Spotify, YouTube, Audible  <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Soothing sounds: babbling brook, ocean waves, forest sounds, etc. <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Interesting sounds: audio books, TV, radio <br/>" +
+            "&emsp; &emsp; &emsp; &emsp;- Background sounds: environmental sounds, TV, music<br/>" +
             "&emsp; &emsp;- Progressive Tinnitus Management  "; 
         this.summaryItems.push(new SumString(TFIans2));
     }
@@ -373,7 +373,7 @@ export class SummaryComponent implements OnInit {
           case 1: {
               if (tsAnswers.YES) {
                   let ans: String = "It is normal to experience a burst of sound (typically a high-pitched tone) for a couple of seconds that eventually fades away." +
-                      "Sometimes hearing loss can cause difficulty hearing in certain situations, such as those with background noise.Tinnitus is a separate condition that is an internal head noise.It can sometimes cause annoyance and anxiety, but can be managed so that you daily life is not negatively impacted by it. " +
+                      "  Sometimes hearing loss can cause difficulty hearing in certain situations, such as those with background noise. Tinnitus is a separate condition that is an internal head noise.It can sometimes cause annoyance and anxiety, but can be managed so that you daily life is not negatively impacted by it. " +
                       "3.	Talk to your audiologist about specific types of management options. ";
                   return ans;
               }
@@ -386,7 +386,7 @@ export class SummaryComponent implements OnInit {
           }
           case 3: {
               if (tsAnswers.ALWAYS) {
-                  let ans: String = "You have constant tinnitus, which means you experience tinnitus all the time.You will complete an audiology test today and your audiologist will explain it to you and why that relates to your tinnitus.";
+                  let ans: String = "You have constant tinnitus, which means you experience tinnitus all the time. You will complete an audiology test today and your audiologist will explain it to you and why that relates to your tinnitus.";
                   return ans;
               }
               else if (tsAnswers.USUALLY) {

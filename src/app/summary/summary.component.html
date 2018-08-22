@@ -43,9 +43,13 @@
 
         </div>
       </div>
+      
+          
+   
   </div>
   <hr>
 
+  <div id="sum_text_header">Your audiologist will talk to you about the following: </div>
   <ul *ngFor="let item of summaryItems">
     <!-- <div class="row" *ngIf="item.type == 'SurveyTitle'">
       <div class="col-sm-8 col-md-6 col-lg-4"  style="text-align: left;">
@@ -54,7 +58,6 @@
         </label>
       </div>
     </div> -->
-
     <div class="row" *ngIf="item.type == 'SectionTitle'">
       <div class = "col-sm-8 col-md-8 col-lg-8" style="color: white;">
           {{item.title}}:
@@ -63,7 +66,7 @@
 
     <div class="row" *ngIf="item.type == 'SumString'">
       <!-- <div class="col-sm-12 col-md-12 col-lg-11" style="color: white;">-->
-        <div id="sum_text_header">Your audiologist will talk to you about the following: </div>
+        <!-- <div id="sum_text_header">Your audiologist will talk to you about the following: </div> -->
         <div [innerHTML]="item.title" id="sum_text"></div>
       <!--</div>-->
     </div>
