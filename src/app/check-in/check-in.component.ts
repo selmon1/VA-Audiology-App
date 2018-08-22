@@ -81,6 +81,7 @@ export class CheckInComponent {
        this.tfiDataService.clearHistory();
        this.thsDataService.clearHistory();
        Utilities.setSessionStorage('patient-id', this.idGenerator().toString());
+       Utilities.setSessionStorage('firstName', this.firstName.toString());
        console.log(this.idGenerator().toString());
        this.router.navigateByUrl('/appointments');
        console.log('log in with ' + this.patientId);
