@@ -9,9 +9,9 @@ import { TsScreenerDataService } from '../../services/ts-screener-data.service';
     <h2 style="color: white;" align="center">{{question}}</h2>
     <div class="btn2"  align="center" col-sm-4 col-sm-offset-4 col-xs-offset-4>
       <table>
-        <tr><td><button class="btn1" ng-click = "this.focus(); answer_yes()">{{radio1}}</button></td></tr>
-        <tr><td><button class="btn1" ng-click="this.focus(); answer_no()">{{radio2}}</button></td></tr>
-        <tr><td><span *ngIf="radio3"><button class="btn1" ng-click="this.focus(); answer_sometimes()">{{radio3}}</button></span></td></tr>
+        <tr><td><button class="btn1" (click) = "answer_yes()">{{radio1}}</button></td></tr>
+        <tr><td><button class="btn1" (click)="answer_no()">{{radio2}}</button></td></tr>
+        <tr><td><span *ngIf="radio3"><button class="btn1" (click)="answer_sometimes()">{{radio3}}</button></span></td></tr>
       </table> 
     </div>
     <div class="row">
