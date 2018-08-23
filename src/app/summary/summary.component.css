@@ -1,3 +1,22 @@
+html {
+    overflow-x: hidden;
+}
+
+nav{
+  margin-top: 2%;
+}
+
+button {
+  background-color: #004273;
+  font-family: 'Roboto';
+  color: white;
+  border: 2px solid #93b9dd;
+  border-radius: 8px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-size: 1em;
+}
+
 .container {
     width: 100%;
     height: 100%;
@@ -16,52 +35,107 @@ outline: 1px solid slategrey;
 
 .container .summary-container .title {
     /* text-align: left; */
-    color: rgb(36, 50, 97);
+    color: white/*rgb(36, 50, 97)*/;
     font-size: 1.2em;
 }
 .title {
-  color: rgb(36, 50, 97);
+  color: white /*rgb(36, 50, 97)*/;
   font-size: 1em;
   margin-top: 5%;
+  text-decoration: underline;   
 }
 
 .container .summary-container .patientID {
     text-align: center;
     font-size: 0.7em;
-    color: grey;
+    color: white;
     /* padding-left: 20%; */
 }
 
 .container .surveyTitle{
     text-align: left;
-    color: rgb(36, 50, 97);
-
+    color: white /*rgb(36, 50, 97)*/;
 }
 
 .container .question {
     text-align: left;
     font-size: 0.7em;
     margin-bottom: 5%;
+    color: white;
 
 }
 
 .container .totalScore {
     text-align: right;
+    color: white;
 }
 
 .container .questionScore {
   font-size: 0.9em;
-  color: gray;
+  color: white;
   text-align: right;
   margin-bottom: 5%;
 }
 
+.THSscore {
+  color: white;
+  margin-bottom: 5%;
+  font-size: 0.9em;
+}
+
+
 .question-content {
   font-size: 0.9em;
-  color: gray;
+  color: white;
 }
 
 .answer {
   font-size: 0.9em;
-  color: gray;
+  color: white;
+}
+
+.video{
+    text-align: center;
+}
+
+.button-landing {
+	width: 48%;
+	margin-right: -4px;
+	margin-bottom: 10%
+}
+
+/*hr {
+    margin-top: 2%;
+    margin-bottom: 1%;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+}*/
+
+hr {
+    visibility: hidden;
+}
+
+#sum_text{
+    color: white;
+    padding-left: 10px;
+    border-left: 4px solid white;
+    border-spacing: 5px;
+    font-size: .9em;
+}
+
+
+#sum_text_header{
+    margin: 0 -9999rem;
+    padding: 0.25rem 9999rem;
+    background: #0098DB;
+    color: white;
+    margin-bottom: 5;
+}
+
+a {
+    color: #0098DB;
+}
+
+a:hover {
+    color: white;
 }

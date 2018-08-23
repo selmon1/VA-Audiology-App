@@ -123,15 +123,15 @@ Bart Massey
 
 ## Authors
 Team Lead:
-* Marissa Hagglund
+* Marcus Brambora
 
 Team Members:
-* Jason Yu
-* Joseph Remington
-* Kaleb Striplin
-* Sean Paterson
-* Tutu Wei
-* Zeyong Shan
+* Dan Corcoran
+* Suleman Tarik
+* Selmon Afzal
+* Sam Cha
+* Joe Sands
+* Ryan Moore
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

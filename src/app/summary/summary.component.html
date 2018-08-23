@@ -1,3 +1,28 @@
+<!--<nav class="navbar navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-home"></span> Home
+      </a>
+    </div>
+
+    <!--<div class="aud-login" id="aud-button" style="float: right">
+          <button (click)="patientOnClick()" type="button" class="btn btn-primary btn-sm">Audiologist Log In</button>
+    </div>
+  </div>
+</nav>-->
+<html>
+
+<nav class="navbar navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+
+    <div class="aud-login" style="float: right" id="aud-login">
+      <a href="aud-login">Audiologist Login</a>
+    </div>
+
+  </div>
+</nav>
+
 <div class="container">
   <div class="summary-container">
     <div class="row">
@@ -10,30 +35,40 @@
     <div class="row">
         <div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2" style="text-align: center;">
           <label class="patientID">
-            Patient ID: {{patientID}}
+            <u>Patient</u>: {{first_name}}
           </label>
           <label class="patientID">
-            Appointment Type: {{appointmentType}}
+            <u>Appointment Type</u>: {{appointmentType}}
           </label>
 
         </div>
       </div>
+      
+          
+   
   </div>
   <hr>
 
+  <div id="sum_text_header">Your audiologist will talk to you about the following: </div>
   <ul *ngFor="let item of summaryItems">
-    <div class="row" *ngIf="item.type == 'SurveyTitle'">
+    <!-- <div class="row" *ngIf="item.type == 'SurveyTitle'">
       <div class="col-sm-8 col-md-6 col-lg-4"  style="text-align: left;">
         <label class="title">
           {{item.title}}
         </label>
       </div>
-    </div>
-
+    </div> -->
     <div class="row" *ngIf="item.type == 'SectionTitle'">
-      <div class = "col-sm-8 col-md-8 col-lg-8">
-          {{item.title}}
+      <div class = "col-sm-8 col-md-8 col-lg-8" style="color: white;">
+          {{item.title}}:
       </div>
+    </div> 
+
+    <div class="row" *ngIf="item.type == 'SumString'">
+      <!-- <div class="col-sm-12 col-md-12 col-lg-11" style="color: white;">-->
+        <!-- <div id="sum_text_header">Your audiologist will talk to you about the following: </div> -->
+        <div [innerHTML]="item.title" id="sum_text"></div>
+      <!--</div>-->
     </div>
 
     <div class="row" *ngIf="item.type == 'Question'">
@@ -62,5 +97,17 @@
     </div>
 
   </ul>
+  <div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ImULl9oS9SE"
+      style="border: 2px solid #FFF; border-radius: 2px; margin-top: 2%;" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+    </iframe>
+  </div>
+
+	<div class="row">
+	  <div class="col-sm-6 col-sm-offset-3" style="text-align: center; padding-top: 2%;">
+	    <button class="button-landing btn btn-primary" (click)="patientOnClick()">TINNITUS EXERCISES</button>
+	  </div>
+	</div>
 
 </div>
+</html>

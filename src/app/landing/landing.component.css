@@ -1,0 +1,62 @@
+.options {
+  color: white;
+	font-size: 1.2em;
+}
+
+button {
+  background-color: #004273;
+  font-family: 'Roboto';
+  color: white;
+  border: 2px solid #93b9dd;
+  border-radius: 8px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-size: 1em;
+}
+
+.buttons2 {
+  width: 48%;
+  float: right;
+}
+
+.buttons1 {
+  width: 48%;
+  float: left;
+}
+
+.centerColumn {
+  float: none;
+  margin: 0 auto;
+}
+
+.sectionWrap {
+  text-align: center;
+}
+
+.right {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+#navigation{
+  margin-top: 1%;
+}
+
+logo{
+  float: right;
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/*added to resize to types of screens*/
+/*img{
+  width: 95%;
+}*/

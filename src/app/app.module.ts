@@ -60,6 +60,16 @@ import { RouterGuards }     from './services/router-guards.service';
 import { OtoscopyComponent } from './otoscopy/otoscopy.component';
 import { TympanometryComponent } from './tympanometry/tympanometry.component';
 import { AudiogramComponent } from './audiogram/audiogram.component';
+import { AudiologistLoginComponent } from './audiologist-login/audiologist-login.component';
+import { LandingComponent } from './landing/landing.component';
+import { PaComponent } from './pa/pa.component';
+import { CtComponent } from './ct/ct.component';
+import { MindfulnessComponent } from './mindfulness/mindfulness.component';
+import { GmComponent } from './gm/gm.component';
+import { RelaxationComponent } from './relaxation/relaxation.component';
+import { SleepComponent } from './sleep/sleep.component';
+import { SoundComponent } from './sound/sound.component';
+import { FaqComponent } from './faq/faq.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -96,7 +106,17 @@ type StoreType = {
     TsScreenerQuestionComponent,
     OtoscopyComponent,
     TympanometryComponent,
-    AudiogramComponent
+    AudiogramComponent,
+    AudiologistLoginComponent,
+    LandingComponent,
+    PaComponent,
+    CtComponent,
+    MindfulnessComponent,
+    GmComponent,
+    RelaxationComponent,
+    SleepComponent,
+    SoundComponent,
+    FaqComponent
   ],
   exports: [
     MatSliderModule,

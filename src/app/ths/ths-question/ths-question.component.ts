@@ -6,18 +6,26 @@ import { ThsDataService } from '../../services/ths-data.service';
   selector: 'ths-question',
   styleUrls: ['./ths-question.component.css'],
   template: `
+    <nav class="navbar navbar-fixed-top" id="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-home"></span> Home
+          </a>
+        </div>
+      </div>
+  </nav>
+    
     <h2 class="questionHeader">{{question}}</h2>
     <div *ngIf="question !== 'Please list two examples of sounds that are too loud or uncomfortable for you, but seem normal to others:'; else input_questions" class="row">
-      <div class="col-sm-4 col-sm-offset-3 col-xs-offset-2 questionFont">
-        <div class="form-check">
-          <mat-radio-group [(ngModel)]="selectedValue" class = "options" >
-            <mat-radio-button value="{{radio1}}">{{radio1}}</mat-radio-button>
-            <mat-radio-button value="{{radio2}}">{{radio2}}</mat-radio-button>
-            <mat-radio-button value="{{radio3}}">{{radio3}}</mat-radio-button>
-            <mat-radio-button value="{{radio4}}">{{radio4}}</mat-radio-button>
-            <mat-radio-button value="{{radio5}}">{{radio5}}</mat-radio-button>
-          </mat-radio-group>
-        </div>
+      <div class="btn2" align="center" col-sm-4 col-sm-offset-4 col-xs-offset-2>
+           <table>
+             <tr><td><button class="btn1" (click)="answer_rad1()">{{radio1}}</button></td></tr>
+             <tr><td><button class="btn1" (click)="answer_rad2()">{{radio2}}</button></td></tr>
+             <tr><td><button class="btn1" (click)="answer_rad3()">{{radio3}}</button></td></tr>
+             <tr><td><button class="btn1" (click)="answer_rad4()">{{radio4}}</button></td></tr>
+             <tr><td><button class="btn1" (click)="answer_rad5()">{{radio5}}</button></td></tr>
+           </table>
       </div>
     </div>
     <ng-template #input_questions>
@@ -37,7 +45,7 @@ import { ThsDataService } from '../../services/ths-data.service';
     </div>
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3 sectionWrap" style="padding-top: 2%;">
-        <button *ngIf="state !== 1; else disabled_btn" class="buttons1 btn btn-primary" (click)="onClickedBack.emit(selectedValue)">BACK</button>
+        <button class="buttons1 btn btn-primary" (click)="onClickedBack.emit(selectedValue)">BACK</button>
         <ng-template #disabled_btn>
           <button class="buttons1 btn" (click)="onClickedBack.emit(selectedValue)" disabled>BACK</button>
         </ng-template>
@@ -71,4 +79,30 @@ export class ThsQuestionComponent implements OnInit {
   public ngOnInit() {
     this.selectedValue = this.dataService.populateAnswers(this.state);
   }
+
+  public answer_rad1(){
+
+    this.selectedValue = this.radio1;
+  }
+
+  public answer_rad2(){
+
+    this.selectedValue = this.radio2;
+  }
+
+  public answer_rad3(){
+
+    this.selectedValue = this.radio3;
+  }
+
+  public answer_rad4(){
+
+    this.selectedValue = this.radio4;
+  }
+
+  public answer_rad5(){
+
+    this.selectedValue = this.radio5;
+  }
+
 }

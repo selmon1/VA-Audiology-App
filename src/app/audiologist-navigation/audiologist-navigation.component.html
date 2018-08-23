@@ -1,8 +1,30 @@
+<!--<nav class="navbar navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-home"></span> Home
+      </a>
+    </div>
+
+    <!--<div class="aud-login" id="aud-button" style="float: right">
+          <button (click)="patientOnClick()" type="button" class="btn btn-primary btn-sm">Audiologist Log In</button>
+    </div>
+  </div>
+</nav>-->
+
+
 <div class="audio">
   <div class="container">
       <div class="{{active ? 'left-container' : 'left-container-hide'}}">
         <div class="row">
-            <logo logoRouteOption="1" view="audio-view"></logo>
+            <!-- <logo logoRouteOption="1" view="audio-view"></logo> -->
+        </div>
+
+        <!-- ADDED THE HOME BUTTON HERE!!! -->
+        <div class="navbar-header">
+          <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-home"></span> Home
+          </a>
         </div>
 
         <div class="search-container">
@@ -21,13 +43,14 @@
           <div class="col-sm-2 col-md-2 col-lg-2" style="text-align: left;">
             <span class="icon-button"><i class="fa fa-reorder" (click)="onToggle()"></i></span>
           </div>
+
           <div class="row">
             <div class="col-sm-3 col-md-3 col-lg-3 col-lg-offset-9 col-md-offset-9 col-sm-offset-9" style="text-align: right;">
               <button class="pdf-btn" kendo-button (click)="pdf.saveAs('download.pdf')">Save As PDF</button>
             </div>
          </div>
           <kendo-pdf-export #pdf paperSize="A4" margin="2cm" [scale]="scale">
-            <app-summary class="{{summary ? 'main-right-container' : 'main-right-container-hidden'}}"></app-summary>
+            <!-- <app-summary class="{{summary ? 'main-right-container' : 'main-right-container-hidden'}}"></app-summary> -->
             <audiogram class="{{recommendedTests ? 'main-right-container': 'main-right-container-hidden'}}"></audiogram>
             <otoscopy class="{{recommendedTests ? 'main-right-container': 'main-right-container-hidden'}}"></otoscopy>
             <tympanometry class="{{recommendedTests ? 'main-right-container' : 'main-right-container-hidden'}}"></tympanometry>

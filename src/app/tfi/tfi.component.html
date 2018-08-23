@@ -1,4 +1,3 @@
-<logo logoRouteOption="2"></logo>
 <h3 style="color: white" align="center">Tinnitus Functional Index</h3>
 <app-tfi-question *ngIf= "currentState === 0" [state] = "1" [min]="minmax.min1" [max]="minmax.max1" [section]="sections.section1" [question]="questions.question1" [percent]="true" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></app-tfi-question>
 <app-tfi-question *ngIf= "currentState === 1" [state] = "2" [min]="minmax.min2" [max]="minmax.max2" [section]="sections.section1" [question]="questions.question2" [percent]="false" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></app-tfi-question>

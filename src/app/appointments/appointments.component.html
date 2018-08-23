@@ -1,10 +1,24 @@
 <html>
+<nav class="navbar navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-home"></span> Home
+      </a>
+    </div>
+
+    <!--<div class="aud-login" id="aud-button" style="float: right">
+          <button (click)="patientOnClick()" type="button" class="btn btn-primary btn-sm">Audiologist Log In</button>
+    </div>-->
+  </div>
+</nav>
+
   <div class="container">
       <div class="parent-container">
         <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-4" style="text-align: left;">
+          <!--<div class="col-sm-6 col-md-6 col-lg-4" style="text-align: left;">
               <logo logoRouteOption="1"></logo>
-          </div>
+          </div>-->
         </div>
       </div>
 
@@ -28,5 +42,10 @@
         </div>
 
       </div>
-    </div>
+
+    <footer class="navbar-fixed-bottom">
+      <logo></logo> <!--It will sometimes overlap with the patient button-->
+    </footer>
+  </div>
+
 </html>

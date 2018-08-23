@@ -1,23 +1,32 @@
 /*styles for home content only*/
+
 .container {
   width: 100%;
   height: 100%;
+  overflow: hidden; /*This fixes the scrolling*/
 }
 
 .parent-container {
   /* padding-top: 20%; */
   width: 100%;
-  height: 25%;
+  height: 13%;
 }
 
 .child-container {
   width: 100%;
   /* transform: translate(20%, 10%); */
+  overflow: hidden;
+}
+
+#navigation{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background-color: #005690;
 }
 
 button {
   height: 60%;
-  background-color: #004273;
+  background-color: #3a9202; /*Changed the original color #004273*/
   font-family: 'Roboto';
   font-size: 2em;
   color: white;
@@ -25,7 +34,38 @@ button {
   border-radius: 8px;
   margin-bottom: 10%;
   padding: 4%;
+  display: inline-block;
 }
+
+.row{
+  margin-top: 0.05%;
+  margin-bottom: 1%;
+}
+
+#aud-button{
+  margin-right: 2%;
+}
+
+a{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+a:hover{
+  color: green;
+}
+
+img{
+  /* border: 2px solid  #ffffff; */
+  height: 200px;
+  max-width: 100%;
+  
+}
+
+logo{
+  float: right;
+}
+
 
 @media all and (orientation:landscape) {
   button {
@@ -65,7 +105,7 @@ button {
 }
 
 
-button:hover {
+/*button:hover {
   background-color: #005690;
   cursor: pointer;
-}
+}*/

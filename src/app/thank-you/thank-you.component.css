@@ -23,6 +23,10 @@ h2 {
   text-align: center;
 }
 
+h3 {
+  text-align: center;
+}
+
 button {
   color: white;
   font-family: 'Roboto';
@@ -50,6 +54,9 @@ button:hover {
   cursor: pointer;
 }
 
+logo{
+  float: right;
+}
 
 @media all and (max-width: 550px) {
 
@@ -62,6 +69,10 @@ button:hover {
     font-size: 1em;
     margin-bottom: 5%;
   }
+}
+
+#navigation{
+  margin-top: 1%;
 }
 
 

@@ -1,3 +1,13 @@
+<nav class="navbar navbar-fixed-top" id="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-home"></span> Home
+          </a>
+        </div>
+      </div>
+</nav>
+
 <h2 style="color: white;" align="center">{{section}}:</h2>
 <h2 style="color: white;" align="center">{{question}}</h2>
   <div class="col-sm-6 col-sm-offset-3 sectionWrap">
@@ -6,12 +16,20 @@
       <mat-slider min="0" max="10" step="1" value="{{selectedValue}}" thumbLabel="true" tickInterval="1" [(ngModel)]="selectedValue"></mat-slider>
     </div>
     <div *ngIf="percent === true">
-      <div id="space2"> <span>0 {{min}}</span> <span>{{max}} 100</span> </div>
-      <mat-slider min="0" max="100" step="5" value="{{selectedValue}}" thumbLabel="true" tickInterval="5" [(ngModel)]="selectedValue"></mat-slider>
+      <div id="space2"> <span>0 {{min}}</span> <span>{{max}} 10</span> </div>
+      <mat-slider min="0" max="10" step="1" value="{{selectedValue}}" thumbLabel="true" tickInterval="1" [(ngModel)]="selectedValue"></mat-slider>
     </div>
     <button *ngIf="state !== 1; else disabled_btn" class="buttons1 btn btn-primary" (click)="onClickedBack.emit(selectedValue)">BACK</button>
     <ng-template #disabled_btn>
       <button class="buttons1 btn" (click)="onClickedBack.emit(selectedValue)" disabled>BACK</button>
     </ng-template>
     <button class="buttons2 btn btn-primary" (click)="onClickedNext.emit(selectedValue)">NEXT</button>
+  </div>
+
+  <div class="row">
+    <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">
+      <footer class="navbar-fixed-bottom">
+        <logo logoRouteOption="2"></logo> <!--Makes it so logo cannot click-->
+      </footer>
+    </div>
   </div>

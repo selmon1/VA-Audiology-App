@@ -60,6 +60,10 @@ button {
   font-size: 1em;
 }
 
+logo{
+  float: right;
+}
+
 #space1{
   color: white;
   display: flex;
@@ -78,4 +82,8 @@ button {
   .buttons1, .buttons2 {
     font-size: .9em;
   }
+}
+
+#navigation{
+  margin-top: 1%;
 }

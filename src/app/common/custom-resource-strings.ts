@@ -33,9 +33,9 @@ export class TsScreenerAnswerStrings {
 }
 
 export class TfiQuestionStrings {
-  public question1: string = 'What percentage of your time awake were you consciously AWARE OF your tinnitus?';
+  public question1: string = 'How often during your time awake were you consciously AWARE OF your tinnitus?';
   public question2: string = 'How STRONG or LOUD was your tinnitus?';
-  public question3: string = 'What percentage of your time awake were you ANNOYED by your tinnitus?';
+  public question3: string = 'How often during your time awake were you ANNOYED by your tinnitus?';
   public question4: string = 'Did you feel IN CONTROL in regard to your tinnitus?';
   public question5: string = 'How easy was it for you to COPE with your tinnitus?';
   public question6: string = 'How easy was it for you to IGNORE your tinnitus?';
@@ -54,21 +54,21 @@ export class TfiQuestionStrings {
   public question19: string = 'Your enjoyment of SOCIAL ACTIVITIES?';
   public question20: string = 'Your ENJOYMENT OF LIFE?';
   public question21: string = 'Your RELATIONSHIPS with family, friends and other people?';
-  public question22: string = 'How often did your tinnitus cause you to have difficulty performing your WORK OR OTHER TASKS, such as home maintenance, school work, or caring for children or others?';
+  public question22: string = 'Your ability to perform your WORK OR OTHER TASKS, such as home maintenance, school work, or caring for children or others?';
   public question23: string = 'How ANXIOUS or WORRIED has your tinnitus made you feel?';
   public question24: string = 'How BOTHERED or UPSET have you been because of your tinnitus?';
   public question25: string = 'How DEPRESSED were you because of your tinnitus?';
 }
 
 export class TfiSectionStrings {
-  public section1: string = 'I. Over the PAST WEEK';
-  public section2: string = 'SC. Over the PAST WEEK';
-  public section3: string = 'C. Over the PAST WEEK how much did your tinnitus interfere with';
-  public section4: string = 'SL. Over the PAST WEEK';
-  public section5: string = 'A. Over the PAST WEEK how much did your tinnitus interfere with';
-  public section6: string = 'R. Over the PAST WEEK how much did your tinnitus interfere with';
-  public section7: string = 'Q. Over the PAST WEEK how much did your tinnitus interfere with';
-  public section8: string = 'E. Over the PAST WEEK';
+  public section1: string = 'Over the PAST WEEK';
+  public section2: string = 'Over the PAST WEEK';
+  public section3: string = 'Over the PAST WEEK how much did your tinnitus interfere with';
+  public section4: string = 'Over the PAST WEEK';
+  public section5: string = 'Over the PAST WEEK how much did your tinnitus interfere with';
+  public section6: string = 'Over the PAST WEEK how much did your tinnitus interfere with';
+  public section7: string = 'Over the PAST WEEK how much did your tinnitus interfere with';
+  public section8: string = 'Over the PAST WEEK';
 }
 
 export class TfiMinMax {
@@ -119,7 +119,7 @@ export class ThsQuestionStrings {
 
   public question6: string = 'Over the last week, I couldn\'t understand what people were saying on TV or in movies:';
 
-  public question7: string = 'Over the last week, I couldn\'t understandpeople with soft voices:';
+  public question7: string = 'Over the last week, I couldn\'t understand people with soft voices:';
 
   public question8: string = 'Over the last week, I couldn\'t understand what was being said in group conversations:';
 
@@ -131,15 +131,15 @@ export class ThsQuestionStrings {
 }
 
 export class ThsAnswerStrings {
-  public NO: string = '0 - No, not a problem';
+  public NO: string = 'No, not a problem';
 
-  public SMALL_YES: string = '1 - Yes, a small problem';
+  public SMALL_YES: string = 'Yes, a small problem';
 
-  public MODERATE_YES: string = '2 - Yes, a moderate problem';
+  public MODERATE_YES: string = 'Yes, a moderate problem';
 
-  public BIG_YES: string = '3 - Yes, a big problem';
+  public BIG_YES: string = 'Yes, a big problem';
 
-  public VERY_BIG_YES: string = '4 - Yes, a very big problem';
+  public VERY_BIG_YES: string = 'Yes, a very big problem';
 
   public note: string = '*If sounds are too loud for you when wearing hearing aids, please tell your audiologist.';
 

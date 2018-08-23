@@ -45,7 +45,7 @@ export class TsScreenerDataService {
     // If a record entry for the current state exists then remove.
     let index: number = this.dataRecord.findIndex((x) => x.state === currentState);
     if (index !== -1) {
-      this.dataRecord.splice(index, 1);
+      //this.dataRecord.splice(index, 1);
     }
 
     this.history.pop();

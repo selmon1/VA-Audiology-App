@@ -8,12 +8,17 @@ import { Utilities } from '../common/utlilities';
 @Component({
   selector: 'screener',
   styleUrls: ['./ts-screener.component.css'],
-  template: `
-  <div class="row">
-    <div class="col-sm-6 col-md-6 col-lg-4" style="text-align: left;">
-        <logo logoRouteOption="2"></logo>
-    </div>
-  </div>
+  template: `    
+    <nav class="navbar navbar-fixed-top" id="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-home"></span> Home
+          </a>
+        </div>
+      </div>
+  </nav>
+    
     <h3 style="color: white" align="center">Tinnitus Screener</h3>
     <screener-question *ngIf="currentState === 1" [questionType]="1" [question]="questionStrings.question1" [state]="currentState" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></screener-question>
     <screener-question *ngIf="currentState === 2" [questionType]="1" [question]="questionStrings.question2" [state]="currentState" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></screener-question>
@@ -24,6 +29,15 @@ import { Utilities } from '../common/utlilities';
     <screener-question *ngIf="currentState === 5" [questionType]="1" [question]="questionStrings.question5" [state]="currentState" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></screener-question>
     <screener-question *ngIf="currentState === 6" [questionType]="2" [question]="questionStrings.question6" [radio1]="answerStrings.DAILY_OR_WEEKLY_BASIS" [radio2]="answerStrings.MONTHLY_OR_YEARLY_BASIS"
                        [state]="currentState" (onClickedBack)="moveStateBackward()" (onClickedNext)="moveStateForward($event)"></screener-question>
+
+    <!--Moves the logo to the bottom of the screen-->
+    <div class="row">
+      <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">
+        <footer class="navbar-fixed-bottom">
+          <logo logoRouteOption="2"></logo> <!--Makes it so logo cannot click-->
+        </footer>
+      </div>
+    </div>
   `
 })
 
@@ -69,6 +83,10 @@ export class TsScreenerComponent implements OnInit {
     this.updateSessionStorage();
 
     if (this.currentState === 7) {
+        let nextS: number = this.stateMachine.moveStateForward(this.currentState, choice);
+        this.currentState = nextS;
+        this.updateSessionStorage();
+
       this.router.navigateByUrl('/ths');
     }
   }
