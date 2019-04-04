@@ -39,15 +39,16 @@ Open up Git Bash or Console and enter the following commands with administrator 
 1. Clone the repo
 ```bash
 # Make note of the directory location
-git clone https://github.com/marissa-hagglund/VA-Audiology-Website.git
+git clone https://github.com/movshov/VA-Audiology-App.git
 ```
 2. Go into the git repo directory
 ```bash
-cd YOUR_REPO_LOCATION/VA-Audiology-Website
+cd YOUR_REPO_LOCATION/VA-Audiology-App
 ```
-3. Install all the necessary packages with Npm
+3. Install all the necessary packages with npm (If you are not root, see https://topaxi.codes/use-npm-without-root-or-sudo-rights/)
 ```bash
 npm install -g node-pre-gyp
+npm install -g rimraf
 ```
 ```bash
 # This step may take longer
@@ -122,16 +123,32 @@ Candice Manning
 Bart Massey
 
 ## Authors
-Team Lead:
-* Marcus Brambora
+Early 2019 Capstone:
+* Elijah Rich-Wimmer
+* Mishal Alajmi
+* Bar Movshovich
+* Dominic Okapal
+* Dante Ruth
+* Griffin Stone
+* Liam Wynn
 
-Team Members:
+Late 2018 Capstone:
+* Marcus Brambora
 * Dan Corcoran
 * Suleman Tarik
 * Selmon Afzal
 * Sam Cha
 * Joe Sands
 * Ryan Moore
+
+Early 2018 Capstone:
+* Marissa Hagglund
+* Jason Yu
+* Joseph Remington
+* Kaleb Striplin
+* Sean Paterson
+* Tutu Wei
+* Zeyong Shan
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
