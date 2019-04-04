@@ -66,3 +66,7 @@ documentation/
 *.css.shim.ts
 *.ngsummary.json
 *.shim.ngstyle.ts
+src/API/build/app.js
+src/API/package-lock.json
+src/API/tsconfig.json
+src/API/package.json
