@@ -49,6 +49,7 @@ create table Patient (
 	PatientID int NOT NULL,
 	FirstName text,
 	LastName text,
+        Deceased bool NOT NULL,
 	Notes text,
 	PRIMARY KEY (PatientID)
 );
@@ -57,6 +58,7 @@ create table Authority (
 	AuthorityId int NOT NULL, 
 	UserName text,
 	Password text,
+        Name text, 
 	Email text, 
 	Type text,
 	PRIMARY KEY (AuthorityID)
