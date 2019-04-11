@@ -4,12 +4,12 @@
 //
 
 // Imports
-import express = require('express');
-import bodyParser = require('body-parser');
+const express = require('express')
+const bodyParser = require('body-parser')
 
 // Globals
 const app = express() //Creates express app object
-const port = 3000
+const port = 3333
 
 
 app.use(bodyParser.json())
@@ -20,9 +20,7 @@ app.use(
 )
 
 // GET endpoint for the root
-app.get('/', (request, response) => {
-    response.json({ info: 'Postgress, Express, Angular, Node server reached. Greetings from Team E'})
-})
+app.get('/', require('./index.ts'))
 
 // Set app to listen on a given port
 app.listen(port, () => {
