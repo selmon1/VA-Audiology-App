@@ -66,5 +66,5 @@ documentation/
 *.css.shim.ts
 *.ngsummary.json
 *.shim.ngstyle.ts
-src/API/build/app.js
-src/API/build
+api/build/*
+api/build
