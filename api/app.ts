@@ -20,6 +20,8 @@ app.use(
 )
 
 // GET endpoint for the root
+app.get('/appointments', require('./appointments.ts'));
+
 app.get('/', require('./index.ts'))
 
 // Set app to listen on a given port
