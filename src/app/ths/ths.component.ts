@@ -85,7 +85,7 @@ export class ThsComponent implements OnInit {
     if (!choice) {
       return;
     }
-
+    
     let nextState: number = this.stateMachine.moveStateForward(this.currentState, choice);
 
     this.currentState = nextState;

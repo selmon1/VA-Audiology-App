@@ -20,8 +20,10 @@ export class ThsDataService {
   // Another array will be kept for the subtotals of points for each section
   public saveData(state: number, selection: string): void {
     let initialState = this.history[this.history.length - 1];
+    console.log("initialState: " + initialState);
 
     let index: number = this.dataRecord.findIndex((x) => x.state === initialState);
+    console.log("index: " + index);
     if (index !== -1) {
       this.dataRecord.splice(index, 1);
     }

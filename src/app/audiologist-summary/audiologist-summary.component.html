@@ -1,0 +1,123 @@
+<div style="text-align: center;">
+  <label class="title">
+    Summary for patient ID: {{patientID}}
+  </label>
+</div>
+
+<div class="margins">
+  <div class="left fifty">
+    <div>
+      <h2>Tinnitus Screener</h2>
+      <p>Type: {{ts}}</p>
+    </div>
+
+    <div>
+      <h2>Tinnitus and Hearing Survey</h2>
+      <p>Section A. Tinnitus: {{thsScoreVars.get('thsA')}}</p>
+      <p>Section B. Hearing: {{thsScoreVars.get('thsB')}}</p>
+      <p>Sounds are too loud or uncomfortable: {{thsTxtVars.get('thsCtxt')}}</p>
+      <p *ngIf="thsScoreVars.get('thsC') > 0">Examples: {{thsTxtVars.get('thsCex')}}</p>
+    </div>
+  </div>
+
+  <div class="left fifty">
+    <div>
+      <h2>Tinnitus Functional Index</h2>
+      <p>Overall TFI score: {{tfiVars.get('overallTFI')}}</p>
+    </div>
+
+    <div>
+      <table>
+        <tr>
+          <td>I (INTRUSIVE)</td>
+          <td>{{tfiVars.get('intrusive')}}</td>
+        </tr>
+        <tr>
+          <td>Sc (SENSE OF CONTROL)</td>
+          <td>{{tfiVars.get('sense')}}</td>
+        </tr>
+        <tr>
+          <td>C (COGNITIVE)</td>
+          <td>{{tfiVars.get('cognitive')}}</td>
+        </tr>
+        <tr>
+          <td>Sl (SLEEP)</td>
+          <td>{{tfiVars.get('sleep')}}</td>
+        </tr>
+        <tr>
+          <td>A (AUDITORY)</td>
+          <td>{{tfiVars.get('auditory')}}</td>
+        </tr>
+        <tr>
+          <td>R (RELAXATION)</td>
+          <td>{{tfiVars.get('relaxation')}}</td>
+        </tr>
+        <tr>
+          <td>Q (QUALITY OF LIFE)</td>
+          <td>{{tfiVars.get('quality')}}</td>
+        </tr>
+        <tr>
+          <td>E (EMOTIONAL)</td>
+          <td>{{tfiVars.get('emotional')}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center;">
+  <label class="title">
+    Test Results
+  </label>
+</div>
+
+<div class="margins row">
+  <div>
+    <h2>Audiogram</h2>
+    <p>Type: {{testRadioVars.get('audiogramType')}}</p>
+  </div>
+
+  <div class="leftEar left fifty">
+    <h3 class="title leftTitle">Left Ear</h3>
+    <div>
+      <div class="left fifty">
+        <h4 class="title leftTitle">High Frequency</h4>
+        <p>Severity: {{testRadioVars.get('leftHighSev')}}</p>
+        <p>Configuration: {{testCheckBoxVars.get('leftHighConfig')}}</p>
+      </div>
+      <div class="left fifty">
+        <h4 class="title leftTitle">Low Frequency</h4>
+        <p>Severity: {{testRadioVars.get('leftLowSev')}}</p>
+        <p>Configuration: {{testCheckBoxVars.get('leftLowConfig')}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rightEar left fifty">
+    <h3 class="title rightTitle">Right Ear</h3>
+    <div>
+      <div class="left fifty">
+        <h4 class="title rightTitle">High Frequency</h4>
+        <p>Severity: {{testRadioVars.get('rightHighSev')}}</p>
+        <p>Configuration: {{testCheckBoxVars.get('rightHighConfig')}}</p>
+      </div>
+      <div class="left fifty">
+        <h4 class="title rightTitle">Low Frequency</h4>
+        <p>Severity: {{testRadioVars.get('rightLowSev')}}</p>
+        <p>Configuration: {{testCheckBoxVars.get('rightLowConfig')}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="margins row">
+  <div class="left fifty">
+    <h2>Otoscopy</h2>
+    <p>Type: {{testRadioVars.get('otoscopyType')}}</p>
+  </div>
+
+  <div class="left fifty">
+      <h2>Tympanometry</h2>
+      <p>Type: {{testRadioVars.get('tympanometryType')}}</p>
+    </div>
+</div>
