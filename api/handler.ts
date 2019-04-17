@@ -33,7 +33,8 @@ export default function handler(perform, handleErrors = defaultErrorHandler, aut
       ).catch(ex => handleErrors(request, response, ex));
     } catch (ex) {
       //currently this doesn't handle errors differently for authenticated users than unauthenticated ones; we may want to ultimately hide some information from unauthenticated users
-      return handleErrors(request, response, ex);
+      handleErrors(request, response, ex);
     }
+    return undefined;
   }
 }
