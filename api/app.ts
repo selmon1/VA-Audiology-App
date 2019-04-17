@@ -20,7 +20,8 @@ app.use(
 )
 
 // GET endpoint for the root
-app.get('/', require('./index.ts'))
+import indexEndpoint from './index'
+app.get('/', indexEndpoint)
 
 // Set app to listen on a given port
 app.listen(port, () => {
