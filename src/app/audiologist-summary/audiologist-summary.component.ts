@@ -158,7 +158,7 @@ export class AudiologistSummaryComponent implements OnInit {
     }
     for (let dat in data) {
       if (data.hasOwnProperty(dat)) {
-        if(testRadioNames.includes(data[dat].name)) {
+        if(testRadioNames.indexOf(data[dat].name) > -1) {
           this.testRadioVars.set(data[dat].name, data[dat].value);
         }
       }
