@@ -75,7 +75,7 @@ import { TestsDataService } from './services/tests-data.service';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { CustomerSearchComponent } from './customer-search/customer-search.component';
 
-import { SurveySubmitHandler } from './services/submit-survey/api-survey.submit.service';
+import { SurveySubmitHandler } from './services/api-survey.submit.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
