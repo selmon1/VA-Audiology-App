@@ -20,7 +20,8 @@ app.use(
 )
 
 // GET endpoint for the root
-app.get('/appointments', require('./appointments.ts'));
+import appointmentsEndpoint from './appointments'
+app.get('/appointments', appointmentsEndpoint);
 
 import indexEndpoint from './index'
 app.get('/', indexEndpoint)
