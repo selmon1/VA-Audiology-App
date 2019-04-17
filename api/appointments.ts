@@ -1,6 +1,5 @@
 import handler from './handler';
-let pgp = require('pg-promise')(/*options*/)
-let db = pgp('postgres://postgres:postgres@localhost:5432/va_trial')
+import db from './db';
 
 export default handler((request) => {
     // Placeholder for SQL code (Currently blocked)

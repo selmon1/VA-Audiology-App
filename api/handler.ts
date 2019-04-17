@@ -2,13 +2,13 @@
 function alwaysPermitted(request) {
   return true;
 }
-//todo move this to authenticate.js
+//todo move this to authenticate.ts
 class AuthenticationFailureError extends Error {
   constructor(...params) {
     super(...params);
   }
 }
-//todo move this to errors.js
+//todo move this to errors.ts
 //todo handle a lot more errors, with unique messages and statuses
 function defaultErrorHandler(request, response, ex) {
   response.status(500).json({
