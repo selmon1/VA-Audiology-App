@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Utilities } from '../common/utlilities';
 
 @Injectable()
 export class SurveySubmitHandler {
-  constructor() {
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH');
-  }
+  public submitSurvey() : boolean {
+    alert('Did submission!');
+    let testData = Utilities.getSessionStorage('tests-data');
 
-  public print() : string {
-    return 'Test';
+    if(testData == null) {
+      console.log('No test data!');
+      return false;
+    }
+
+    console.log(testData);
+    return false;
   }
 }

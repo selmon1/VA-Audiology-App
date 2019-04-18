@@ -52,10 +52,7 @@ export class AudiologistNavigationComponent {
     }
 
     public submitSurvey() {
-      alert('Survey Submitted!');
       let surveySubmitHandler = new SurveySubmitHandler();
-      let squanto = Utilities.getSessionStorage('tests-data');
-      console.log(squanto);
-      console.log(surveySubmitHandler.print());
+      surveySubmitHandler.submitSurvey();
     }
 }
