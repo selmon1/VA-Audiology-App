@@ -47,8 +47,6 @@ create table tsSurvey (
 
 create table Patient (
 	PatientID int NOT NULL,
-	FirstName text,
-	LastName text,
         Deceased bool NOT NULL,
 	Notes text,
 	PRIMARY KEY (PatientID)
@@ -98,19 +96,4 @@ create table Appointments (
 	NotesId int,
 	PRIMARY KEY (AppointmentID)
 );
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
 
