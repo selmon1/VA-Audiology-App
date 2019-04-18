@@ -20,6 +20,9 @@ app.use(
 )
 
 // GET endpoint for the root
+import appointmentsEndpoint from './appointments'
+app.get('/appointments', appointmentsEndpoint);
+
 import indexEndpoint from './index'
 app.get('/', indexEndpoint)
 

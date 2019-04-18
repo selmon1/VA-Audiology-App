@@ -2,13 +2,13 @@
 function alwaysPermitted(request) {
   return true;
 }
-//todo move this to authenticate.js
+//todo move this to authenticate.ts
 class AuthenticationFailureError extends Error {
   constructor(...params) {
     super(...params);
   }
 }
-//todo move this to errors.js
+//todo move this to errors.ts
 //todo handle a lot more errors, with unique messages and statuses
 function defaultErrorHandler(request, response, ex) {
   response.status(500).json({
@@ -25,14 +25,16 @@ export default function handler(perform, handleErrors = defaultErrorHandler, aut
   return function(request, response, next) {
     try {
       authenticate(request);
-      const data = perform(request);
-      response.status(200).json({
-        "status": "success",
-        "data": data
-      });
+      Promise.resolve(perform(request)).then(data => 
+        response.status(200).json({
+          "status": "success",
+          "data": data
+        })
+      ).catch(ex => handleErrors(request, response, ex));
     } catch (ex) {
       //currently this doesn't handle errors differently for authenticated users than unauthenticated ones; we may want to ultimately hide some information from unauthenticated users
-      return handleErrors(request, response, ex);
+      handleErrors(request, response, ex);
     }
+    return undefined;
   }
 }
