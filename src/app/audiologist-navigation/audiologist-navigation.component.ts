@@ -2,6 +2,8 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { aggregateBy } from '@progress/kendo-data-query';
 import { NgForm } from '@angular/forms';
+import { SurveySubmitHandler } from '../services/api-survey.submit.service';
+import { Utilities } from '../common/utlilities';
 
 @Component({
   selector: 'audio-navigation',
@@ -20,6 +22,7 @@ export class AudiologistNavigationComponent {
     public recommendedTests: boolean = false;
     public suggestedTests: boolean = false;
     public summary: boolean = true;
+
     public onToggle() {
       if (!this.active) {
           this.active = true;
@@ -46,5 +49,13 @@ export class AudiologistNavigationComponent {
       this.recommendedTests = false;
       this.suggestedTests = false;
       this.summary = true;
+    }
+
+    public submitSurvey() {
+      alert('Survey Submitted!');
+      let surveySubmitHandler = new SurveySubmitHandler();
+      let squanto = Utilities.getSessionStorage('tests-data');
+      console.log(squanto);
+      console.log(surveySubmitHandler.print());
     }
 }
