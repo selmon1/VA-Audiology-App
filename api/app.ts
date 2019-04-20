@@ -4,8 +4,8 @@
 //
 
 // Imports
-const express = require('express')
-const bodyParser = require('body-parser')
+import express from 'express';
+import bodyParser from 'body-parser';
 
 // Globals
 const app = express() //Creates express app object
