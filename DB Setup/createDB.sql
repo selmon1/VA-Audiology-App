@@ -97,3 +97,46 @@ create table Appointments (
 	PRIMARY KEY (AppointmentID)
 );
 
+CREATE OR REPLACE VIEW appointmentaummary AS 
+ SELECT a.appointmentid,
+    au.audiologistexamsid,
+    au.tympanometrytype,
+    au.otoscopytype,
+    au.rightear_lowf_severity,
+    au.rightear_highf_severity,
+    au.leftear_lowf_severity,
+    au.leftear_highf_severity,
+    au.rightear_lowf_configuration,
+    au.rightear_highf_configuration,
+    au.leftear_lowf_configuration,
+    au.leftear_highf_configuration,
+    au.audiogramtype,
+    tfi.tfisurveyid,
+    tfi.patientid,
+    tfi.completiondate,
+    tfi.completiontime,
+    tfi.tfi_i,
+    tfi.tfi_sc,
+    tfi.tfi_c,
+    tfi.tfi_si,
+    tfi.tfi_a,
+    tfi.tfi_r,
+    tfi.tfi_q,
+    tfi.tfi_e,
+    tfi.tfi_overallscore,
+    ts.ts_type,
+    ths.ths_sectiona,
+    ths.ths_sectionb,
+    ths.ths_sectionc
+   FROM appointments a
+     FULL JOIN audiologistexams au ON a.audiologistexamsid = au.audiologistexamsid
+     FULL JOIN tfisurvey tfi ON a.tfisurveyid = tfi.tfisurveyid
+     FULL JOIN thssurvey ths ON a.thssurveyid = ths.thssurveyid
+     FULL JOIN tssurvey ts ON a.tssurveyid = ts.tssurveyid;
+
+ALTER TABLE public."AppointmentSummary"
+  OWNER TO postgres;
+COMMENT ON VIEW public."AppointmentSummary"
+  IS 'Simple Summary';
+
+

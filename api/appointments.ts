@@ -6,9 +6,9 @@ export default handler(async (request: any) => {
     let connection = db();
     let results: QueryResult;
     if (request.query.id === undefined) {
-      return [];
+      results = await connection.query('SELECT * FROM appointmentsummary'); 
     } else {
-      results = await connection.query(
-        'SELECT * FROM AppointmentSummary WHERE appointments.appointmentid = $1', [request.query.id]); }
+      results = await connection.query('SELECT * FROM appointmentsummary app WHERE app.appointmentid = $1', [request.query.id]); 
+    }
     return results.rows;
 });
