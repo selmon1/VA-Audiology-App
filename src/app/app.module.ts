@@ -75,11 +75,12 @@ import { TestsDataService } from './services/tests-data.service';
 import { NotesComponent } from './notes/notes.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { CustomerSearchComponent } from './customer-search/customer-search.component';
-import { SurveySubmitHandler } from './services/api-survey.submit.service';
+import { CustomerSearchService } from './customer-search/customer-search.service';
+
+import { ServerApiService } from './services/server-api.service';
 import { HttpClientModule } from '@angular/common/http';
 
-//API Services
-import { AppointmentsService } from './services/appointments.service';
+import { SurveySubmitHandler } from './services/api-survey.submit.service';
 
 
 // Application wide providers
@@ -146,8 +147,9 @@ type StoreType = {
    */
   imports: [
     BrowserModule,
-    HttpClientModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    HttpModule,
     FormsModule,
     HttpModule,
     MatSliderModule,
@@ -175,7 +177,8 @@ type StoreType = {
     RouterGuards,
     TestsDataService,
     SurveySubmitHandler,
-    AppointmentsService
+    CustomerSearchService,
+    ServerApiService
   ]
 })
 export class AppModule {
