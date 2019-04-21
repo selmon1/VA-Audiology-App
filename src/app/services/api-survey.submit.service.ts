@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Utilities } from '../common/utlilities';
 
-// TODO: Better name for this!
 class PatientJSON {
   patienID : number = 0;
   isDeceased : boolean = false;
@@ -54,16 +53,52 @@ class SurveyInstanceJSON {
 export class SurveySubmitHandler {
   public submitSurvey() : boolean {
     alert('Did submission!');
-    let testData = Utilities.getSessionStorage('tests-data');
+    let testDataString = Utilities.getSessionStorage('tests-data');
 
-    if(testData == null) {
+    if(testDataString == null) {
       console.log('No test data!');
       return false;
     }
 
-    console.log(testData);
+    let testData = JSON.parse(testDataString);
+
     let result = new SurveyInstanceJSON;
+    result.patientSurvey = new PatientSurveyJSON;
+    result.patient = new PatientJSON;
+
+    if(this.getPropertyValue(testData, 'audiogramType') !== '') {
+      console.log('Got the value!');
+    } else {
+      console.log('Did not get the value!');
+    }
+
+    console.log(testData);
     console.log(JSON.stringify(result));
     return false;
+  }
+
+  getPropertyValue(testData, property : string) : string {
+    if(testData == null || testData.length < 1) {
+      return '';
+    }
+
+    let result : string = '';
+
+    let i : number;
+    for(i = 0; i < testData.length; i++) {
+      if(testData[i]['name'] === property) {
+        result = testData[i]['value'];
+        break;
+      }
+    }
+
+    return result;
+  }
+
+  printTestDataNames(testData) {
+    let i : number;
+    for(i = 0; i < testData.length; i++) {
+      console.log(testData[i]['name']);
+    }
   }
 }
