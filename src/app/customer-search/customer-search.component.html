@@ -1,0 +1,35 @@
+<div class="center">
+  <div class="search-container">
+    <form novalidate (ngSubmit)="patientSearch()">
+      <input [(ngModel)]="idSearch" class="group-start" name="searchid" type="text" placeholder="Patient ID"><!--
+  --><button [disabled]="!searchBtn" class="group-end" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <div *ngIf="invalidID" class="warning">Invalid ID</div>
+  </div>
+</div>
+
+<div class="center">
+  <table *ngIf="resultsTable.length !== 0 else notFound" class="resultsTable" border="1">
+    <thead>
+      <tr>
+        <th>Patient ID</th>
+        <th>Appointment Date</th>
+        <th>Load Appointment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of resultsTable | slice:(currentPage * 10):(currentPage + 1) * 10">
+        <td>{{row.id}}</td>
+        <td>{{row.date}}</td>
+        <td><button (click)="loadAppt(row)" class="loadBtn">Load</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="center">
+    <button [disabled]="currentPage === 0" (click)="prevPage(1)" class="pagination"><</button>
+    <button [disabled]="resultsTable.length <= (currentPage + 1) * 10" (click)="nextPage(1)" class="pagination">></button>
+  </div>
+  <ng-template #notFound>
+    <p>Patient ID not found.</p>
+  </ng-template>
+</div>
