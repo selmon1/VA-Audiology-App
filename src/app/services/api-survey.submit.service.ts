@@ -62,8 +62,12 @@ export class SurveySubmitHandler {
 
     let testData = JSON.parse(testDataString);
 
+    if(testData == null) {
+      return false;
+    }
+
     let result = new SurveyInstanceJSON;
-    result.patientSurvey = new PatientSurveyJSON;
+    result.patientSurvey = this.buildPatientSurveyJSON(testData);
     result.patient = new PatientJSON;
 
     if(this.getPropertyValue(testData, 'audiogramType') !== '') {
@@ -73,8 +77,42 @@ export class SurveySubmitHandler {
     }
 
     console.log(testData);
-    console.log(JSON.stringify(result));
-    return false;
+    //console.log(JSON.stringify(result));
+    return true;
+  }
+
+  buildPatientSurveyJSON(testData) : PatientSurveyJSON {
+    if(testData == null)
+      return null;
+
+    let result : PatientSurveyJSON = new PatientSurveyJSON;
+
+    result.audiogram = this.getPropertyValue(testData, 'audiogramType');
+
+    result.otoscopy = this.getPropertyValue(testData, 'otoscopyType');
+    result.typanometry = this.getPropertyValue(testData, 'tympanometryType');
+
+    result.rightEarHighFreqSeverity = this.getPropertyValue(testData, 'rightHighSev');
+    result.rightEarLowFreqSeverity = this.getPropertyValue(testData, 'rightLowSev');
+
+    result.leftEarHighFreqSeverity = this.getPropertyValue(testData, 'leftHighSev');
+    result.leftEarLowFreqSeverity = this.getPropertyValue(testData, 'leftLowSev');
+    result.leftEarHighFreqConfiguration = this.buildLeftHighFreqConfig(testData);
+
+    console.log(result);
+
+    return result;
+  }
+
+  buildLeftHighFreqConfig(testData) : string {
+    let result : string = '';
+
+    let symmetric = this.getPropertyValue(testData, 'leftHighConfigSymmetric');
+    if(symmetric !== '' && symmetric != 'false') {
+      result = (result.concat('Symmetric')).concat(';');
+    }
+
+    return result;
   }
 
   getPropertyValue(testData, property : string) : string {
@@ -93,12 +131,5 @@ export class SurveySubmitHandler {
     }
 
     return result;
-  }
-
-  printTestDataNames(testData) {
-    let i : number;
-    for(i = 0; i < testData.length; i++) {
-      console.log(testData[i]['name']);
-    }
   }
 }
