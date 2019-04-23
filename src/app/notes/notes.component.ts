@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Utilities } from '../common/utlilities';
-import { BrowserModule } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'notes',
@@ -15,18 +13,18 @@ export class NotesComponent implements OnInit {
 	* for the corrosponding patient. 
 	*/
 
-	public title: string;
+	// public title: string;
 	public content: string;
 	public id: string;
 	
 
   constructor() { 
-  	this.title=''; 
+  	// this.title=''; 
   	this.content=''; 
   	this.id='';
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
   // Loads a note from database based on patient ID
@@ -35,7 +33,7 @@ export class NotesComponent implements OnInit {
 	public loadNotes() {
 		let loadedNote: Object[] = this.getNotesQuery();
 
-		this.title = loadedNote['title'];
+		// this.title = loadedNote['title'];
 		this.content = loadedNote['content'];
 		this.id = loadedNote['id'];
 	}
@@ -46,8 +44,8 @@ export class NotesComponent implements OnInit {
 		let tmpData: Object = JSON.parse(JSON.stringify(this.constructTestData()));
 
 		// Add validation check for JSON object before copying
-		
-		note['title'] = tmpData['title'];
+
+		// note['title'] = tmpData['title'];
 		note['content'] = tmpData['content'];
 		note['id'] = tmpData['id']; 
 
@@ -58,7 +56,7 @@ export class NotesComponent implements OnInit {
 
 	// Load notes with dummy data
 	public constructTestData(){
-		return { 'title': 'This is a test', 'content': 'This is just a placeholder', 'id': '1234'} 
+		return {  'content': 'Dummy text, just a placeholder for actual notes', 'id': '1234'} 
 	}
 
 }
