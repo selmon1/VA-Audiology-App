@@ -2,7 +2,8 @@
 	<div class="id">
 		<div class="row">
 			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-md-offset-2">
-				<p><strong>ID#{{ id }}</strong></p>
+                <p><strong>ID</strong></p>
+				<input type="text" name="id" bind-value="id">
 			</div>
 		</div>
 	</div>
@@ -11,7 +12,7 @@
 		<div class="content">
 			<div class="row">
 				<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
-					<textarea [(ngModel)]="content" rows="5" cols="50" readonly></textarea>
+					<textarea [(ngModel)]="content" rows="5" cols="50"></textarea>
 				</div>
 			</div>
 		</div>
