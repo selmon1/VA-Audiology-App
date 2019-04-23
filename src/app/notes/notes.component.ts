@@ -19,7 +19,6 @@ export class NotesComponent implements OnInit {
 	
 
   constructor() { 
-  	// this.title=''; 
   	this.content=''; 
   	this.id='';
   }
@@ -33,7 +32,6 @@ export class NotesComponent implements OnInit {
 	public loadNotes() {
 		let loadedNote: Object[] = this.getNotesQuery();
 
-		// this.title = loadedNote['title'];
 		this.content = loadedNote['content'];
 		this.id = loadedNote['id'];
 	}
@@ -45,18 +43,16 @@ export class NotesComponent implements OnInit {
 
 		// Add validation check for JSON object before copying
 
-		// note['title'] = tmpData['title'];
 		note['content'] = tmpData['content'];
-		note['id'] = tmpData['id']; 
+		note['id'] = tmpData['id'];
 
 		return note;
-		
 	}
 
 
 	// Load notes with dummy data
 	public constructTestData(){
-		return {  'content': 'Dummy text, just a placeholder for actual notes', 'id': '1234'} 
+		return { 'content': 'Dummy text, just a placeholder for actual notes', 'id': '1234'} 
 	}
 
 }
