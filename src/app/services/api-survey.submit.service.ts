@@ -94,22 +94,71 @@ export class SurveySubmitHandler {
 
     result.rightEarHighFreqSeverity = this.getPropertyValue(testData, 'rightHighSev');
     result.rightEarLowFreqSeverity = this.getPropertyValue(testData, 'rightLowSev');
+    result.rightEarHighFreqConfiguration = this.buildFreqConfig(testData, 'rightHigh');
+    result.rightEarLowFreqConfiguration = this.buildFreqConfig(testData, 'rightLow');
 
     result.leftEarHighFreqSeverity = this.getPropertyValue(testData, 'leftHighSev');
     result.leftEarLowFreqSeverity = this.getPropertyValue(testData, 'leftLowSev');
-    result.leftEarHighFreqConfiguration = this.buildLeftHighFreqConfig(testData);
+    result.leftEarHighFreqConfiguration = this.buildFreqConfig(testData, 'leftHigh');
+    result.leftEarLowFreqConfiguration = this.buildFreqConfig(testData, 'leftLow');
 
     console.log(result);
 
     return result;
   }
 
-  buildLeftHighFreqConfig(testData) : string {
+  buildFreqConfig(testData, configType : string) : string {
     let result : string = '';
 
-    let symmetric = this.getPropertyValue(testData, 'leftHighConfigSymmetric');
-    if(symmetric !== '' && symmetric != 'false') {
+    let symmetric = this.getPropertyValue(testData, configType + 'ConfigSymmetric');
+    let asymmetric = this.getPropertyValue(testData, configType + 'ConfigAsymmetric');
+    let progressive = this.getPropertyValue(testData, configType + 'ConfigProgressive');
+    let sudden = this.getPropertyValue(testData, configType + 'ConfigSudden');
+    let flat = this.getPropertyValue(testData, configType + 'ConfigFlat');
+    let rising  = this.getPropertyValue(testData, configType + 'ConfigRising');
+    let cookieBite = this.getPropertyValue(testData, configType + 'ConfigCookie Bite');
+    let precipitous = this.getPropertyValue(testData, configType + 'ConfigPrecipitous');
+    let noiseNotch = this.getPropertyValue(testData, configType + 'ConfigNoise-Notch');
+    let corner = this.getPropertyValue(testData, configType + 'ConfigCorner');
+
+    if(symmetric !== '' && symmetric !== 'false') {
       result = (result.concat('Symmetric')).concat(';');
+    }
+
+    if(asymmetric !== '' && asymmetric !== 'false') {
+      result = (result.concat('Asymmetric')).concat(';');
+    }
+
+    if(progressive !== '' && progressive !== 'false') {
+      result = (result.concat('Progressive')).concat(';');
+    }
+
+    if(sudden != '' && sudden !== 'false') {
+      result = (result.concat('Sudden')).concat(';');
+    }
+
+    if(flat != '' && flat !== 'false') {
+      result = (result.concat('Flat')).concat(';');
+    }
+
+    if(rising != '' && rising !== 'false') {
+      result = (result.concat('Rising')).concat(';');
+    }
+
+    if(cookieBite != '' && cookieBite !== 'false') {
+      result = (result.concat('CookieBite')).concat(';');
+    }
+
+    if(precipitous != '' && precipitous !== 'false') {
+      result = (result.concat('Precipitous')).concat(';');
+    }
+
+    if(noiseNotch != '' && noiseNotch !== 'false') {
+      result = (result.concat('NoiseNotch')).concat(';');
+    }
+
+    if(corner != '' && corner !== 'false') {
+      result = (result.concat('Corner')).concat(';');
     }
 
     return result;
