@@ -1,4 +1,16 @@
-//perhaps we want just regular postgres library, but pg-promise will be fine
-const pgp = require('pg-promise')(/*options*/)
-//TODO: get credentials from a file not included in git
-export default pgp('postgres://postgres:postgres@localhost:5432/va_trial')
+import { Pool } from 'pg';
+// TODO: get credentials from a file not included in git
+
+let connection = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'va_trial',
+  password: 'postgres',
+  port: 5432,
+});
+
+export default function makeConnection()
+{
+  connection.connect();
+  return connection;
+}
