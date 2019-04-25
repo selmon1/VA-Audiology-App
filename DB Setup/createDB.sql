@@ -10,6 +10,7 @@ create table SessionKeys (
 
 create table tfiSurvey ( 
 	tfiSurveyID int NOT NULL, 
+        Test_Taken bool, 
 	PatientID int, 
 	CompletionDate Date,
 	CompletionTime Time,
@@ -32,7 +33,8 @@ create table thsSurvey (
 	CompletionTime Time,
 	THS_SectionA int,
 	THS_SectionB int, 
-	THS_SectionC text,
+	THS_SectionC int,
+        THS_SectionC_Exmaple text, 
 	PRIMARY KEY (thsSurveyID)
 );
 
@@ -54,17 +56,18 @@ create table Patient (
 
 create table Authority ( 
 	AuthorityId int NOT NULL, 
-	UserName text,
+	Username text,
 	Password text,
         Name text, 
-	Email text, 
-	Type text,
+	Authority_Type text,
 	PRIMARY KEY (AuthorityID)
 );
 
 create table Notes (
+        NotesID int, 
 	AuthorityID int, 
-	Notes text
+	Notes text,
+        PRIMARY KEY (NotesID)
 );
 
 create table AudiologistExams (
@@ -93,7 +96,7 @@ create table Appointments (
 	AudiologistExamsID int REFERENCES AudiologistExams(AudiologistExamsID),
 	AppointmentDate Date, 
 	AppointmentTime Time,
-	NotesId int,
+	NotesId int REFERENCES Notes(NotesID),
 	PRIMARY KEY (AppointmentID)
 );
 
