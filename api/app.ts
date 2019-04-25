@@ -6,12 +6,13 @@
 // Imports
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 // Globals
-const app = express() //Creates express app object
-const port = 3333
+const app = express(); //Creates express app object
+const port = 3333;
 
-
+app.use(cors());
 app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({
