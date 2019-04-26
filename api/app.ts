@@ -21,7 +21,7 @@ app.use(
 )
 
 import loginEndpoint from './login'
-app.get('/login', loginEndpoint)
+app.post('/login', loginEndpoint)
 
 import appointmentsEndpoint from './appointments'
 app.get('/appointments', appointmentsEndpoint);

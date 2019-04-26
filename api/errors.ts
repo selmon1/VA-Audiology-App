@@ -1,26 +1,35 @@
 abstract class APIError extends Error {
     constructor(...params) {
         super(...params);
+        //See https://stackoverflow.com/questions/41102060/typescript-extending-error-class
+        //required for instanceof, .constructor.name
+        Object.setPrototypeOf(this, new.target.prototype);
     }
     abstract httpStatus(): number;
 }
-export class AuthenticationFailure extends Error {
+export class AuthenticationFailure extends APIError {
     constructor(...params) {
         super(...params);
     }
     httpStatus(): number { return 403; }
 }
-export class AuthenticationExpired extends Error {
+export class AuthenticationExpired extends APIError {
     constructor(...params) {
         super(...params);
     }
     httpStatus(): number { return 401; }
 }
-export class PermissionFailure extends Error {
+export class PermissionFailure extends APIError {
     constructor(...params) {
         super(...params);
     }
     httpStatus(): number { return 403; }
+}
+export class MissingParameter extends APIError {
+    constructor(...params) {
+        super(...params);
+    }
+    httpStatus(): number { return 400; }
 }
 
 export function defaultErrorHandler(request, response, ex) {
@@ -35,6 +44,17 @@ export function defaultErrorHandler(request, response, ex) {
     }
     response.status(httpStatus).json({
         "status": "error",
+        "type": ex.constructor.name,
         "message": message,
+    });
+}
+
+//Throw an error if any of the listed parameters are not present in the object
+//perhaps this should be redesigned to call when you retrieve the parameter instead
+export function requireParams(obj: any, paramNames: Array<string>): void {
+    paramNames.forEach((name) => {
+        if ([null, undefined].includes(obj[name])) {
+            throw new MissingParameter("Missing parameter " + name);
+        }
     });
 }
