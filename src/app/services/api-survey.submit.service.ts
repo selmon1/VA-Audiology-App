@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Utilities } from '../common/utlilities';
 
 class PatientJSON {
-  patienID : number = 0;
+  patienID : string = '';
   isDeceased : boolean = false;
 }
 
@@ -72,14 +72,9 @@ export class SurveySubmitHandler {
     result.patientSurvey = this.buildPatientSurveyJSON(testData, thsScoreVars, tfiVars);
     result.patient = new PatientJSON;
 
-    if(this.getPropertyValue(testData, 'audiogramType') !== '') {
-      console.log('Got the value!');
-    } else {
-      console.log('Did not get the value!');
-    }
+    result.patient.patienID = Utilities.getSessionStorage('patient-id');
 
-    console.log(testData);
-    //console.log(JSON.stringify(result));
+    console.log(JSON.stringify(result));
     return true;
   }
 
