@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Utilities } from '../common/utlilities';
 import { ThsDataService } from '../services/ths-data.service';
 import { TsScreenerDataService } from '../services/ts-screener-data.service';
@@ -48,6 +48,10 @@ export class AudiologistSummaryComponent implements OnInit {
 
   public ngOnInit() {
     this.subscription = this.testsDataService.observableData.subscribe(data => this.updateTestResults(data));
+  }
+
+  public submitSurvey() {
+    console.log('Survey submitted!');
   }
 
   //////////////

@@ -1,8 +1,9 @@
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { ViewChild, Component, ViewEncapsulation } from '@angular/core';
 import { aggregateBy } from '@progress/kendo-data-query';
 import { NgForm } from '@angular/forms';
 import { SurveySubmitHandler } from '../services/api-survey.submit.service';
+import { AudiologistSummaryComponent } from '../audiologist-summary/audiologist-summary.component';
 import { Utilities } from '../common/utlilities';
 
 @Component({
@@ -17,6 +18,8 @@ import { Utilities } from '../common/utlilities';
  * active: boolean is a local variable will be switch between true and false to trigger the function.
  */
 export class AudiologistNavigationComponent {
+    @ViewChild(AudiologistSummaryComponent) summaryComponent : AudiologistSummaryComponent;
+
     public active: boolean = true;
     public scale: number = 0.55;
     public recommendedTests: boolean = false;
@@ -52,7 +55,11 @@ export class AudiologistNavigationComponent {
     }
 
     public submitSurvey() {
-      let surveySubmitHandler = new SurveySubmitHandler();
-      surveySubmitHandler.submitSurvey();
+      if(this.summaryComponent != null) {
+        this.summaryComponent.submitSurvey();
+      }
+
+      //let surveySubmitHandler = new SurveySubmitHandler();
+      //surveySubmitHandler.submitSurvey();
     }
 }
