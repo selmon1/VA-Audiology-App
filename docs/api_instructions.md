@@ -9,6 +9,7 @@
 ## Install
 * Open terminal in api folder.
 * Run script: `npm install`
+* Copy `creds.example` to `creds.ts`, then edit `creds.ts` to have valid database credentials.
 
 ## Running
 * To compile and run the API server, execute `npm run dev` in the terminal. The api handler should automatically spin up.
