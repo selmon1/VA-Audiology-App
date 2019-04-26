@@ -15,9 +15,14 @@ export function randomSessionID():number {
     return 4000;
 }
 
-function isSessionExpired(times) {
-    //TODO
-    return false;
+//session keys expire after 1 hour unused
+const keyMaxIdle = 60 * 60 * 1000
+//session keys can't be renewed after 14 hours
+const keyMaxAge = 14 * 60 * 60 * 1000
+
+function isSessionExpired(times:{createdtime: number, lastusedtime: number}):boolean {
+    const currentTime = Date.now();
+    return currentTime - times.createdtime > keyMaxAge || currentTime - times.lastusedtime > keyMaxIdle;
 }
 
 //Delete all expired session keys for the user
@@ -42,7 +47,7 @@ export async function authenticate(request) {
     if (timesFound.rows.length !== 1 || isSessionExpired(timesFound.rows[0])) {
         throw new errors.AuthenticationExpired('Your login session has expired.');
     }
-    const currentTime = null; //TODO
+    const currentTime = Date.now();
     db.query('UPDATE SessionKeys SET LastUsedTime = $1 WHERE SessionKeyId = $2 AND UserId = $3', [currentTime, sessionId, userId]);
     return userId;
 }
