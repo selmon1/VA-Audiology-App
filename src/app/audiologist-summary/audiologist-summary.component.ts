@@ -6,6 +6,7 @@ import { TfiDataService } from '../services/tfi-data.service';
 import { TsScreenerAnswerStrings, ThsAnswerStrings } from '../common/custom-resource-strings';
 import { TestsDataService } from '../services/tests-data.service';
 import { Subscription } from 'rxjs/Subscription';
+import { SurveySubmitHandler } from '../services/api-survey.submit.service';
 
 const tfiNames: string[] = ['overallTFI', 'intrusive', 'sense', 'cognitive', 'sleep', 'auditory', 'relaxation', 'quality', 'emotional'];
 const testRadioNames: string[] = ['audiogramType', 'leftHighSev', 'leftLowSev', 'rightHighSev', 'rightLowSev', 'otoscopyType', 'tympanometryType'];
@@ -52,6 +53,9 @@ export class AudiologistSummaryComponent implements OnInit {
 
   public submitSurvey() {
     console.log('Survey submitted!');
+
+      let surveySubmitHandler = new SurveySubmitHandler();
+      surveySubmitHandler.submitSurvey(this.thsScoreVars, this.tfiVars);
   }
 
   //////////////

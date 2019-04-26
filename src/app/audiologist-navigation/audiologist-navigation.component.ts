@@ -2,7 +2,6 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 import { ViewChild, Component, ViewEncapsulation } from '@angular/core';
 import { aggregateBy } from '@progress/kendo-data-query';
 import { NgForm } from '@angular/forms';
-import { SurveySubmitHandler } from '../services/api-survey.submit.service';
 import { AudiologistSummaryComponent } from '../audiologist-summary/audiologist-summary.component';
 import { Utilities } from '../common/utlilities';
 
@@ -59,7 +58,5 @@ export class AudiologistNavigationComponent {
         this.summaryComponent.submitSurvey();
       }
 
-      //let surveySubmitHandler = new SurveySubmitHandler();
-      //surveySubmitHandler.submitSurvey();
     }
 }

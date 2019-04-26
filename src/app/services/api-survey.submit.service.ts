@@ -26,7 +26,7 @@ class PatientSurveyJSON {
 
     thsSectionATotal : number = 0;
     thsSectionBTotal : number = 0;
-    thsSectionCSeverity : string = '';
+    thsSectionCSeverity : number = 0;
 
 
     tfiI : number = 0;
@@ -51,7 +51,9 @@ class SurveyInstanceJSON {
 
 @Injectable()
 export class SurveySubmitHandler {
-  public submitSurvey() : boolean {
+  // Note that anything passed in here is data that is not
+  // accessible via session storage.
+  public submitSurvey(thsScoreVars : Map<string, number>, tfiVars : Map<string, number>) : boolean {
     alert('Did submission!');
     let testDataString = Utilities.getSessionStorage('tests-data');
 
@@ -67,7 +69,7 @@ export class SurveySubmitHandler {
     }
 
     let result = new SurveyInstanceJSON;
-    result.patientSurvey = this.buildPatientSurveyJSON(testData);
+    result.patientSurvey = this.buildPatientSurveyJSON(testData, thsScoreVars, tfiVars);
     result.patient = new PatientJSON;
 
     if(this.getPropertyValue(testData, 'audiogramType') !== '') {
@@ -81,7 +83,7 @@ export class SurveySubmitHandler {
     return true;
   }
 
-  buildPatientSurveyJSON(testData) : PatientSurveyJSON {
+  buildPatientSurveyJSON(testData, thsScoreVars : Map<string, number>, tfiVars : Map<string, number>) : PatientSurveyJSON {
     if(testData == null)
       return null;
 
@@ -102,7 +104,19 @@ export class SurveySubmitHandler {
     result.leftEarHighFreqConfiguration = this.buildFreqConfig(testData, 'leftHigh');
     result.leftEarLowFreqConfiguration = this.buildFreqConfig(testData, 'leftLow');
 
-    console.log(result);
+    result.thsSectionATotal = thsScoreVars.get("thsA");
+    result.thsSectionBTotal = thsScoreVars.get("thsB");
+    result.thsSectionCSeverity = thsScoreVars.get("thsC");
+
+    result.tfiI = tfiVars.get("intrusive");
+    result.tfiSc = tfiVars.get("sense");
+    result.tfiC = tfiVars.get("cognitive");
+    result.tfiSi = tfiVars.get("sleep");
+    result.tfiA = tfiVars.get("auditory");
+    result.tfiR = tfiVars.get("relaxation");
+    result.tfiQ = tfiVars.get("quality");
+    result.tfiE = tfiVars.get("emotional");
+    result.tfiOverallScore = tfiVars.get("overallTFI");
 
     return result;
   }
