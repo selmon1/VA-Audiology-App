@@ -1,5 +1,16 @@
 import connect from './db';
 import * as errors from './errors';
+const crypto = require('crypto');
+
+//bytes in a session key
+const keySize = 8;
+//should be extremely unlikely to generate two keys with the same id; retry when you do, up to this many times
+const maxKeygenRetries = 20;
+//session keys expire after 1 hour unused
+const keyMaxIdle = 60 * 60 * 1000
+//session keys can't be renewed after 14 hours
+const keyMaxAge = 14 * 60 * 60 * 1000
+
 // Authentication function: return user id if authorized; otherwise throw an exception
 export function alwaysPermitted(request) {
   return null;
@@ -10,15 +21,20 @@ export function hash(password: string):string {
     return password + "Hashed";
 }
 
-export function randomSessionID():number {
-    //TODO get a cryptographically secure RNG
-    return 4000;
+export async function randomSessionId(db):Promise<string> {
+    for (let i = 0; i < maxKeygenRetries; i++) {
+        //need a cryptographically secure random number, not Math.random()
+        const key = crypto.randomBytes(keySize).toString('hex');
+        //could minimize the number of db calls by first retrieving all keys
+        //but the liklihood of collision is so low that we expect to only make one db call
+        //instead ensure the call performance is at worst O(log(n)) rather than O(n) with this design
+        const matches = await db.query('SELECT SessionKeyId FROM SessionKeys WHERE SessionKeyId = $1', [key]);
+        if (matches.rows.length === 0) {
+            return key;
+        }
+    }
+    throw new errors.APIError("Failed to generate a unique session ID after " + maxKeygenRetries + " tries.");
 }
-
-//session keys expire after 1 hour unused
-const keyMaxIdle = 60 * 60 * 1000
-//session keys can't be renewed after 14 hours
-const keyMaxAge = 14 * 60 * 60 * 1000
 
 function isSessionExpired(times:{createdtime: number, lastusedtime: number}):boolean {
     const currentTime = Date.now();
@@ -26,7 +42,7 @@ function isSessionExpired(times:{createdtime: number, lastusedtime: number}):boo
 }
 
 //Delete all expired session keys for the user
-export async function clearStaleKeys(userId: number) {
+export async function clearStaleKeys(db, userId: number) {
     //TODO
 }
 

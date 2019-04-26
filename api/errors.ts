@@ -1,11 +1,11 @@
-abstract class APIError extends Error {
+export class APIError extends Error {
     constructor(...params) {
         super(...params);
         //See https://stackoverflow.com/questions/41102060/typescript-extending-error-class
         //required for instanceof, .constructor.name
         Object.setPrototypeOf(this, new.target.prototype);
     }
-    abstract httpStatus(): number;
+    httpStatus(): number { return 500; }
 }
 export class AuthenticationFailure extends APIError {
     constructor(...params) {

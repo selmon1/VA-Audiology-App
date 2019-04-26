@@ -2,13 +2,13 @@
 \c va_trial
 
 insert into SessionKeys values
-(0, 00001, 1556100000, 1556200000),
-(1, 00002, 1556000000, 1557000000), 
-(2, 00003, 1558000000, 1559000000),
-(3, 00004, 1559000000, 1560000000),
-(4, 00005, 1560000000, 1561000000),
-(5, 00006, 1562000000, 1563000000),
-(6, 00007, 1564000000, 1565000000);
+('0', 00001, 1556100000, 1556200000),
+('1', 00002, 1556000000, 1557000000),
+('2', 00003, 1558000000, 1559000000),
+('3', 00004, 1559000000, 1560000000),
+('4f', 00005, 1560000000, 1561000000),
+('cafebabe', 00006, 1562000000, 1563000000),
+('1122334455667788', 00007, 1564000000, 1565000000);
 
 insert into tfiSurvey values
 (10000, 00001, 0, 2, 3, 5, 3, 5, 1, 4, 7),
@@ -46,7 +46,7 @@ insert into Patient values
 (00007, TRUE, 'Dante. Oh, Momma, Im in fear for my life from the long arm of the law. Lawman has put an end to my runnin, and Im so far from my home. Oh, Momma, I can hear you a cryin; youre so scared and all alone. Hangman is comin down from the gallows, and I dont have very long.');
 
 insert into Authority values
-(111, 'Audio1', 'password1', 'John', 0),
+(111, 'Audio1', 'password1Hashed', 'John', 0),
 (222, 'Audio2', 'password2', 'Jim', 0),
 (333, 'Audio3', 'password3', 'Jimmy', 0),
 (444, 'Stat', 'qwertyuiop', 'Emily', 1),

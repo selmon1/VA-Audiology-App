@@ -14,9 +14,9 @@ export default handler(async (req) => {
         throw new errors.AuthenticationExpired('Username and Password do not match');
     }
     const userId = idFound.rows[0].authorityid;
-    auth.clearStaleKeys(userId);
+    auth.clearStaleKeys(db, userId);
     const time = Date.now();
-    const sessionId = auth.randomSessionID();
+    const sessionId = await auth.randomSessionId(db);
     //could have multiple simultaneous session IDs with the same user if they're using multiple browsers
     await db.query('INSERT INTO SessionKeys VALUES ($1, $2, $3, $4)', [sessionId, userId, time, time]);
     return {
