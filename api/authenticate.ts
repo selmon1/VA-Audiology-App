@@ -51,8 +51,12 @@ function isSessionExpired(times:{createdtime: number, lastusedtime: number}):boo
 }
 
 //Delete all expired session keys for the user
+//Perhaps this should be redesigned as a periodically-run function that affects all users
 export async function clearStaleKeys(db, userId: number) {
-    //TODO
+    const currentTime = Date.now();
+    const oldestCreation = currentTime - keyMaxAge;
+    const oldestUsage = currentTime - keyMaxIdle;
+    return db.query('DELETE FROM SessionKeys WHERE UserId = $1 AND (CreatedTime < $2 OR LastUsedTime < $3)', [userId, oldestCreation, oldestUsage]);
 }
 
 //Can be passed as the `authenticate` parameter of `handler`. Ensured that the user is logged in as who they say they are.
@@ -68,7 +72,7 @@ export async function authenticate(request) {
         throw new errors.AuthenticationFailure('You must provide a user ID with the X-USER-ID header');
     }
     const db = connect();
-    const timesFound = await db.query('SELECT (CreatedTime, LastUsedTime) FROM SessionKeys WHERE SessionKeyId = $1 AND UserId = $2', [sessionId, userId]);
+    const timesFound = await db.query('SELECT CreatedTime, LastUsedTime FROM SessionKeys WHERE SessionKeyId = $1 AND UserId = $2', [sessionId, userId]);
     if (timesFound.rows.length !== 1 || isSessionExpired(timesFound.rows[0])) {
         throw new errors.AuthenticationExpired('Your login session has expired.');
     }
