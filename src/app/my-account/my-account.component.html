@@ -1,0 +1,64 @@
+<div class="center">
+  <h1>My Account</h1>
+  <form style="width: 75%; display: inline-block">
+    <div [ngClass]="{
+      blue: passColors.oldPass === this.colors.blue,
+      green: passColors.oldPass === this.colors.green,
+      red: passColors.oldPass === this.colors.red,
+      group: true
+    }">
+      <label for="oldPassword" class="group-start">Old Password:</label>
+      <input [(ngModel)]="passFields.oldPassField" (input)="oldPassChange()" type="password" id="oldPassword"
+        class="group-end" name="oldPassword" placeholder="Old Password...">
+    </div>
+
+    <div>
+      <h2>Password Requirements</h2>
+      <h3 class="left-align">A password must be at least 8 characters long, six of the characters cannot occur more than
+        once, and it must include characters from <strong><em>at least 3</em></strong> of the following categories:</h3>
+      <ul class="left-align">
+        <li>Lowercase English characters: <strong>a-z</strong></li>
+        <li>Uppercase English characters: <strong>A-Z</strong></li>
+        <li>Special characters: <strong>!@#$%^&amp;*()-+</strong></li>
+        <li>Digits: <strong>0-9</strong></li>
+      </ul>
+      <div class="left-align">
+        <h4>Consider using a passphrase as your password, they are much easier to remember, but much harder for a
+          computer to guess.</h4>
+        <h4>A passphrase is a series of unrelated words or a sentence (not a popular quote or song), such as:</h4>
+      </div>
+      <h4><strong>Battery-sunset ate 3</strong> <em style="margin: 0 10px">OR</em> <strong>I bought 12 donuts!</strong>
+      </h4>
+    </div>
+    <div [ngClass]="{
+      blue: passColors.newPass === this.colors.blue,
+      yellow: passColors.newPass === this.colors.yellow,
+      green: passColors.newPass === this.colors.green,
+      red: passColors.newPass === this.colors.red,
+      group: true
+    }">
+      <label for="newPassword1" class="group-start">New Password:</label>
+      <input [(ngModel)]="passFields.newPassField" (input)="newPassChange()" type="password" id="newPassword1"
+        class="group-end" name="newPassword1" placeholder="New Password...">
+    </div>
+    <h4><em>Maximum Password length is 72 characters.</em></h4>
+    <div [ngClass]="{
+      blue: passColors.verifyPass === this.colors.blue,
+      green: passColors.verifyPass === this.colors.green,
+      red: passColors.verifyPass === this.colors.red,
+      group: true
+    }">
+      <label for="newPassword2" class="group-start">Re-enter Password:</label>
+      <input [(ngModel)]="passFields.verifyPassField" (input)="verifyPassChange()" type="password" id="newPassword2"
+        class="group-end" name="newPassword2" placeholder="Re-enter Password..">
+    </div>
+
+    <h3 *ngIf="messages.display" [ngClass]="{
+      toWarn: messages.color === this.colors.red,
+      warnToWarn: messages.color === this.colors.red2,
+      toSuccess: messages.color === this.colors.green,
+      successToSuccess: messages.color === this.colors.green2
+    }">{{ messages.message }}</h3>
+    <button (click)="onSubmit()" [disabled]="submitDisabled" type="submit">Submit</button>
+  </form>
+</div>
