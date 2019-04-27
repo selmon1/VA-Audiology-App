@@ -1,3 +1,4 @@
+#!/bin/bash
 set -x
 curl localhost:3333
 :

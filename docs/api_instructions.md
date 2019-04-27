@@ -19,6 +19,11 @@
    * To run the compiler, execute `npm run tsc` in the terminal.
    * To run a build without any fresh compilation, Execute `npm run server` in the terminal
 
+## Testing
+* For now we have basic bash scripts to test the API
+    * Run with eg. `bash tests/login.sh`
+* For now you must manually verify that the output is correct
+
 # Creating a new API Endpoint
 1. Add app.*httpVerb*() near the app.get('/', ...) to the file app.ts (to be rearranged logically later).
     * It will follow the syntax: `import *path*Endpoint from *yourFile*; app.*httpVerb*('*path*', *path*Endpoint).`
