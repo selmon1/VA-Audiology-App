@@ -54,7 +54,6 @@ export class SurveySubmitHandler {
   // Note that anything passed in here is data that is not
   // accessible via session storage.
   public submitSurvey(thsScoreVars : Map<string, number>, tfiVars : Map<string, number>) : boolean {
-    alert('Did submission!');
     let testDataString = Utilities.getSessionStorage('tests-data');
 
     if(testDataString == null) {
