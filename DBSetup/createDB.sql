@@ -49,7 +49,7 @@ PRIMARY KEY (PatientID)
 
 create table Authority ( 
 AuthorityId int NOT NULL, 
-Username text,
+Username text UNIQUE,
 Password text,
 AuthorityName text, 
 AuthorityType int,
@@ -74,7 +74,7 @@ PRIMARY KEY (AudiologistExamsID)
 
 create table Appointments (
 AppointmentID int NOT NULL, 
-AuthorityID int, 
+AuthorityID int REFERENCES Authority(AuthorityID), 
 PatientID int, 
 tfiSurveyID int REFERENCES tfiSurvey(tfiSurveyID), 
 thsSurveyID int REFERENCES thsSurvey(thsSurveyID), 
@@ -102,8 +102,6 @@ audiologistexams.rightear_highf_configuration,
 audiologistexams.leftear_lowf_configuration,
 audiologistexams.leftear_highf_configuration,
 audiologistexams.audiogramtype,
-authority.username,
-authority.password,
 authority.AuthorityName,
 authority.authorityType,
 tfisurvey.tfi_i,
@@ -120,7 +118,6 @@ thssurvey.ths_sectionb,
 thssurvey.ths_sectionc,
 thssurvey.ths_sectionc_example,
 tssurvey.ts_type
-
 FROM appointments
 INNER JOIN patient ON appointments.patientid=patient.patientid
 INNER JOIN audiologistexams ON appointments.audiologistexamsid=audiologistexams.audiologistexamsid
@@ -144,8 +141,13 @@ tfisurvey.tfi_r,
 tfisurvey.tfi_q,
 tfisurvey.tfi_e,
 tfisurvey.tfi_overallscore
-
 FROM tfisurvey
 INNER JOIN appointments on appointments.patientid=tfisurvey.patientid
 INNER JOIN patient on patient.patientid=appointments.patientid;
+
+CREATE VIEW selectallauthority AS
+SELECT authority.username,
+authority.authorityname,
+authority.authoritytype
+FROM authority;
 
