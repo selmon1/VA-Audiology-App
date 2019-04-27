@@ -15,5 +15,13 @@ export default {
         //We want the time to be about 0.5 seconds; as computers get more powerful over time, this number should be increased to keep the time needed constant
         rounds: 12,
     },
-};
+    //Session keys protect user logins. When a key expires, they must login again. Key expiration reduces the risk of hackers obtaining a working session key.
+    sessionKeys: {
+        //Bytes per session key, 8 should be fine
+        size: 8,
+        //session keys expire after 1 hour unused
+        maxIdle: 60 * 60 * 1000,
+        //session keys expire after 14 hours even if in use
+        maxAge: 14 * 60 * 60 * 1000,
+    },
 };

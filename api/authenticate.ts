@@ -4,14 +4,8 @@ import config from './config';
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 
-//bytes in a session key
-const keySize = 8;
 //should be extremely unlikely to generate two keys with the same id; retry when you do, up to this many times
 const maxKeygenRetries = 20;
-//session keys expire after 1 hour unused
-const keyMaxIdle = 60 * 60 * 1000
-//session keys can't be renewed after 14 hours
-const keyMaxAge = 14 * 60 * 60 * 1000
 
 // Authentication function: return user id if authorized; otherwise throw an exception
 export function alwaysPermitted(request) {
@@ -33,7 +27,7 @@ export async function matchesHash(password: string, hash: string):Promise<boolea
 export async function randomSessionId(db):Promise<string> {
     for (let i = 0; i < maxKeygenRetries; i++) {
         //need a cryptographically secure random number, not Math.random()
-        const key = crypto.randomBytes(keySize).toString('hex');
+        const key = crypto.randomBytes(config.sessionKeys.size).toString('hex');
         //could minimize the number of db calls by first retrieving all keys
         //but the liklihood of collision is so low that we expect to only make one db call
         //instead ensure the call performance is at worst O(log(n)) rather than O(n) with this design
@@ -47,15 +41,17 @@ export async function randomSessionId(db):Promise<string> {
 
 function isSessionExpired(times:{createdtime: number, lastusedtime: number}):boolean {
     const currentTime = Date.now();
-    return currentTime - times.createdtime > keyMaxAge || currentTime - times.lastusedtime > keyMaxIdle;
+    const inactive = currentTime - times.lastusedtime > config.sessionKeys.maxIdle;
+    const tooOld = currentTime - times.createdtime > config.sessionKeys.maxAge;
+    return inactive || tooOld;
 }
 
 //Delete all expired session keys for the user
 //Perhaps this should be redesigned as a periodically-run function that affects all users
 export async function clearStaleKeys(db, userId: number) {
     const currentTime = Date.now();
-    const oldestCreation = currentTime - keyMaxAge;
-    const oldestUsage = currentTime - keyMaxIdle;
+    const oldestCreation = currentTime - config.sessionKeys.maxAge;
+    const oldestUsage = currentTime - config.sessionKeys.maxIdle;
     return db.query('DELETE FROM SessionKeys WHERE UserId = $1 AND (CreatedTime < $2 OR LastUsedTime < $3)', [userId, oldestCreation, oldestUsage]);
 }
 
