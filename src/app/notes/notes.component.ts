@@ -1,58 +1,66 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from '@rxjs'
 
+// Define a type alias for a note
+// This will be used to typecheck incoming objects
+// and return a notes object of this form
+type NoteObj = {
+    content: string;
+    id: number;
+}
 
 @Component({
   selector: 'notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css']
 })
+
+
+
 export class NotesComponent implements OnInit {
 
 	/*
-	* Data members for the notes component, title and content of the notes and patient ID
+	* Data members for the notes component, content of the notes and patient ID
 	* for the corrosponding patient. 
 	*/
 
-	// public title: string;
-	public content: string;
-	public id: string;
+	
+  public content: string;
+  public id: number;
 	
 
   constructor() { 
-  	this.content=''; 
-  	this.id='';
+
   }
 
   public ngOnInit() {
   }
 
-  // Loads a note from database based on patient ID
-	// for now loads in dummy text.
-	// TODO:Connect client side api
-	public loadNotes() {
-		let loadedNote: Object[] = this.getNotesQuery();
+// Placeholder for CLIENT/API getNotes request
+// Checks for correct types, copys and returns a note object
+// if match. Otherwise throws an error
+  public getNotesQuery(): void{
+		let tmpData: NoteObj = JSON.parse(JSON.stringify(this.constructTestData()));
 
-		this.content = loadedNote['content'];
-		this.id = loadedNote['id'];
-	}
+		if(typeof(tmpData.content) === 'string' && typeof(tmpData.id) === 'number') {
 
-	// Placeholder for CLIENT/API getNotes request
-	public getNotesQuery() {
-		let note: Object[] = [];
-		let tmpData: Object = JSON.parse(JSON.stringify(this.constructTestData()));
+            this.content = tmpData.content;
+            this.id = tmpData.id;
 
-		// Add validation check for JSON object before copying
-
-		note['content'] = tmpData['content'];
-		note['id'] = tmpData['id'];
-
-		return note;
+        } else {
+            console.error('Incorrect Types!');
+        }
 	}
 
 
-	// Load notes with dummy data
-	public constructTestData(){
-		return { 'content': 'Dummy text, just a placeholder for actual notes', 'id': '1234'} 
-	}
+// Load notes with dummy data
+  public constructTestData() {
+      return { 
+               'status': 200,
+               'confirmation': 'Success',
+               'content': 'Dummy text, just a placeholder for actual notes',
+               'id': 1234
+             }; 
+    }
 
 }

@@ -1,6 +1,6 @@
 button {
 	background-color: #004273;
-	text-align: right;
+	
 	font-family: 'Roboto';
 	color: white;
 	border: 2px solid #93b9dd;
@@ -26,7 +26,7 @@ button {
 
 .content-container {
 	
-	text-align: left;
+	text-align: center;
 	font-size: 1em;
 	margin-top: 2%;
 	width: 100%;
