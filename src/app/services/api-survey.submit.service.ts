@@ -53,7 +53,7 @@ class SurveyInstanceJSON {
 export class SurveySubmitHandler {
   // Note that anything passed in here is data that is not
   // accessible via session storage.
-  public submitSurvey(thsScoreVars : Map<string, number>, tfiVars : Map<string, number>) : boolean {
+  public submitSurvey(thsScoreVars : Map<string, number>, tfiVars : Map<string, number>, tsType : string) : boolean {
     if(thsScoreVars == null) {
       console.log('SUBMISSION FAILED: NO THS SCORE DATA');
       return false;
@@ -63,7 +63,7 @@ export class SurveySubmitHandler {
     let testData = JSON.parse(testDataString);
 
     let result = new SurveyInstanceJSON;
-    result.patientSurvey = this.buildPatientSurveyJSON(testData, thsScoreVars, tfiVars);
+    result.patientSurvey = this.buildPatientSurveyJSON(testData, thsScoreVars, tfiVars, tsType);
 
     // TODO: Refactor patient creation into its own method!
     result.patient = this.buildPatientJSON();
@@ -77,12 +77,14 @@ export class SurveySubmitHandler {
     return true;
   }
 
-  buildPatientSurveyJSON(testData, thsScoreVars : Map<string, number>, tfiVars : Map<string, number>) : PatientSurveyJSON {
-    if(thsScoreVars == null) {
+  buildPatientSurveyJSON(testData, thsScoreVars : Map<string, number>, tfiVars : Map<string, number>, tsType : string) : PatientSurveyJSON {
+    if(thsScoreVars == null || tsType == null) {
       return null;
     }
 
     let result : PatientSurveyJSON = new PatientSurveyJSON;
+
+    result.tsTinnitusType = tsType;
 
     // Although we recieve a boolean value, we do not care about its
     // result since the recommended test data does not need to exist for
