@@ -1,8 +1,8 @@
 import { Pool } from 'pg';
-// creds.ts is not included in git and you must write it yourself; see creds.example
-import dbLogin from './creds';
+// config.ts is not included in git and you must write it yourself; see config.example
+import config from './config';
 
-let connection = new Pool(dbLogin);
+const connection = new Pool(config.database);
 
 export default function makeConnection()
 {

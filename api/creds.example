@@ -1,8 +1,0 @@
-//Make a copy of this file called creds.ts with the correct information
-export default {
-  user: 'postgres',
-  host: 'localhost',
-  database: 'va_trial',
-  password: 'postgres',
-  port: 5432,
-};

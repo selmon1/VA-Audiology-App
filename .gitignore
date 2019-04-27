@@ -70,4 +70,4 @@ documentation/
 # API
 api/build/*
 api/build
-api/creds.ts
+api/config.ts

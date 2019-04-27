@@ -1,6 +1,8 @@
 import connect from './db';
 import * as errors from './errors';
+import config from './config';
 const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 
 //bytes in a session key
 const keySize = 8;
@@ -16,9 +18,16 @@ export function alwaysPermitted(request) {
   return null;
 }
 
-export function hash(password: string):string {
-    //TODO choose a hash function
-    return password + "Hashed";
+export async function hash(password: string):Promise<string> {
+    const rounds = config.passwordHashing.rounds;
+    const salt = await bcrypt.genSalt(rounds);
+    //hash output includes the salt and rounds
+    const hash = await bcrypt.hash(password, salt);
+    return hash;
+}
+
+export async function matchesHash(password: string, hash: string):Promise<boolean> {
+    return bcrypt.compare(password, hash);
 }
 
 export async function randomSessionId(db):Promise<string> {

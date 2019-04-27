@@ -39,6 +39,7 @@ export function defaultErrorHandler(request, response, ex) {
         httpStatus = ex.httpStatus();
         message = ex.toString();
     } else {
+        console.error(ex);
         httpStatus = 500;
         message = "Unknown error: " + ex.toString();
     }
