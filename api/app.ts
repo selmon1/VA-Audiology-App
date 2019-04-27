@@ -20,6 +20,8 @@ app.use(
     })
 )
 
+import heartbeatEndpoint from './heartbeat'
+app.get('/heartbeat', heartbeatEndpoint)
 import loginEndpoint from './login'
 app.post('/login', loginEndpoint)
 

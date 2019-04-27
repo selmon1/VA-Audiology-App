@@ -3,9 +3,10 @@ import { Pool } from 'pg';
 import config from './config';
 
 const connection = new Pool(config.database);
+//temporary way of preventing lockup until we have withConnection
+connection.connect();
 
 export default function makeConnection()
 {
-  connection.connect();
   return connection;
 }
