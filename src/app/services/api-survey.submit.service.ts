@@ -54,65 +54,105 @@ export class SurveySubmitHandler {
   // Note that anything passed in here is data that is not
   // accessible via session storage.
   public submitSurvey(thsScoreVars : Map<string, number>, tfiVars : Map<string, number>) : boolean {
+    if(thsScoreVars == null) {
+      console.log('SUBMISSION FAILED: NO THS SCORE DATA');
+      return false;
+    }
+
     let testDataString = Utilities.getSessionStorage('tests-data');
-
-    if(testDataString == null) {
-      console.log('No test data!');
-      return false;
-    }
-
     let testData = JSON.parse(testDataString);
-
-    if(testData == null) {
-      return false;
-    }
 
     let result = new SurveyInstanceJSON;
     result.patientSurvey = this.buildPatientSurveyJSON(testData, thsScoreVars, tfiVars);
-    result.patient = new PatientJSON;
 
-    result.patient.patienID = Utilities.getSessionStorage('patient-id');
+    // TODO: Refactor patient creation into its own method!
+    result.patient = this.buildPatientJSON();
+
+    if(result.patient == null) {
+      console.log('SUBMISSION FAILED: Could not get patient information!');
+      return false;
+    }
 
     console.log(JSON.stringify(result));
     return true;
   }
 
   buildPatientSurveyJSON(testData, thsScoreVars : Map<string, number>, tfiVars : Map<string, number>) : PatientSurveyJSON {
-    if(testData == null)
+    if(thsScoreVars == null) {
       return null;
+    }
 
     let result : PatientSurveyJSON = new PatientSurveyJSON;
 
-    result.audiogram = this.getPropertyValue(testData, 'audiogramType');
+    // Although we recieve a boolean value, we do not care about its
+    // result since the recommended test data does not need to exist for
+    // us to submit a patient survey.
+    this.buildRecommendedTestJsonPropertiesFromTestsData(result, testData);
 
-    result.otoscopy = this.getPropertyValue(testData, 'otoscopyType');
-    result.typanometry = this.getPropertyValue(testData, 'tympanometryType');
-
-    result.rightEarHighFreqSeverity = this.getPropertyValue(testData, 'rightHighSev');
-    result.rightEarLowFreqSeverity = this.getPropertyValue(testData, 'rightLowSev');
-    result.rightEarHighFreqConfiguration = this.buildFreqConfig(testData, 'rightHigh');
-    result.rightEarLowFreqConfiguration = this.buildFreqConfig(testData, 'rightLow');
-
-    result.leftEarHighFreqSeverity = this.getPropertyValue(testData, 'leftHighSev');
-    result.leftEarLowFreqSeverity = this.getPropertyValue(testData, 'leftLowSev');
-    result.leftEarHighFreqConfiguration = this.buildFreqConfig(testData, 'leftHigh');
-    result.leftEarLowFreqConfiguration = this.buildFreqConfig(testData, 'leftLow');
+    // Once more, this returns a boolean, but we do not care about its
+    // result. That is because the user may not take the tfi portion of
+    // the survey.
+    this.buildTfiJsonValues(result, tfiVars);
 
     result.thsSectionATotal = thsScoreVars.get("thsA");
     result.thsSectionBTotal = thsScoreVars.get("thsB");
     result.thsSectionCSeverity = thsScoreVars.get("thsC");
 
-    result.tfiI = tfiVars.get("intrusive");
-    result.tfiSc = tfiVars.get("sense");
-    result.tfiC = tfiVars.get("cognitive");
-    result.tfiSi = tfiVars.get("sleep");
-    result.tfiA = tfiVars.get("auditory");
-    result.tfiR = tfiVars.get("relaxation");
-    result.tfiQ = tfiVars.get("quality");
-    result.tfiE = tfiVars.get("emotional");
-    result.tfiOverallScore = tfiVars.get("overallTFI");
+    return result;
+  }
+
+  buildRecommendedTestJsonPropertiesFromTestsData(storeIn : PatientSurveyJSON, testData) : boolean {
+    if(testData == null) {
+      return false;
+    }
+
+    storeIn.audiogram = this.getPropertyValue(testData, 'audiogramType');
+
+    storeIn.otoscopy = this.getPropertyValue(testData, 'otoscopyType');
+    storeIn.typanometry = this.getPropertyValue(testData, 'tympanometryType');
+
+    storeIn.rightEarHighFreqSeverity = this.getPropertyValue(testData, 'rightHighSev');
+    storeIn.rightEarLowFreqSeverity = this.getPropertyValue(testData, 'rightLowSev');
+    storeIn.rightEarHighFreqConfiguration = this.buildFreqConfig(testData, 'rightHigh');
+    storeIn.rightEarLowFreqConfiguration = this.buildFreqConfig(testData, 'rightLow');
+
+    storeIn.leftEarHighFreqSeverity = this.getPropertyValue(testData, 'leftHighSev');
+    storeIn.leftEarLowFreqSeverity = this.getPropertyValue(testData, 'leftLowSev');
+    storeIn.leftEarHighFreqConfiguration = this.buildFreqConfig(testData, 'leftHigh');
+    storeIn.leftEarLowFreqConfiguration = this.buildFreqConfig(testData, 'leftLow');
+
+    return true;
+  }
+
+  buildPatientJSON() : PatientJSON {
+    let patientID = Utilities.getSessionStorage('patient-id');
+
+    if(patientID == null) {
+      return null;
+    }
+
+    let result = new PatientJSON;
+    result.patienID = patientID;
 
     return result;
+  }
+
+  buildTfiJsonValues(storeIn : PatientSurveyJSON, tfiVars : Map<string, number>) : boolean {
+    if(tfiVars == null) {
+      return false;
+    }
+
+    storeIn.tfiI = tfiVars.get("intrusive");
+    storeIn.tfiSc = tfiVars.get("sense");
+    storeIn.tfiC = tfiVars.get("cognitive");
+    storeIn.tfiSi = tfiVars.get("sleep");
+    storeIn.tfiA = tfiVars.get("auditory");
+    storeIn.tfiR = tfiVars.get("relaxation");
+    storeIn.tfiQ = tfiVars.get("quality");
+    storeIn.tfiE = tfiVars.get("emotional");
+    storeIn.tfiOverallScore = tfiVars.get("overallTFI");
+
+    return true;
   }
 
   buildFreqConfig(testData, configType : string) : string {
