@@ -1,6 +1,5 @@
 button {
 	background-color: #004273;
-	
 	font-family: 'Roboto';
 	color: white;
 	border: 2px solid #93b9dd;
@@ -10,25 +9,39 @@ button {
 	font-size: 1em;
 }
 
+
+
+textarea{
+	width: 200%;
+	height: 550px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	resize: none;
+}
+
 .container {
 	width: 100%;
 	height: 100%;
+
 }
 
 .id{
+	 
 	text-align: left;
 	padding-bottom: 5%;
-	padding-top: 5%;
 	width: 100%;
 	height: 100%;
 }
 
 
 .content-container {
-	
-	text-align: center;
-	font-size: 1em;
+
 	margin-top: 2%;
 	width: 100%;
 	height: 100%;
+	right: 480px;
 }
+
+

@@ -32,11 +32,12 @@
               <button type="submit"><i class="fa fa-search"></i></button>
         </div>
 
-        <div class="row"><label class="sec-label">TESTS</label></div>
-        <div class="row"><button class="main-btn" (click)="showRecommendedTests()">Recommended</button></div>
+        <!-- <div class="row"><label class="sec-label">TESTS</label></div> -->
+        <div class="row"><button class="main-btn" (click)="showRecommendedTests()">Tests</button></div>
         <!-- <div class="row"><button class="main-btn" (click)="showSuggestedTests()">Suggested</button></div> -->
-        <div class="row"><label class="sec-label">SUMMARY SECTION</label></div>
+        <!-- <div class="row"><label class="sec-label">SUMMARY SECTION</label></div> -->
         <div class="row"><button class="main-btn" (click)="showSummary()">Summary</button></div>
+        <div class="row"><button class="main-btn" (click)="showNotes()">Notes</button></div>
 
       </div>
       <div class="{{active ? 'right-container' : 'right-container-full'}}">
@@ -54,6 +55,7 @@
             <audiogram class="{{recommendedTests ? 'main-right-container': 'main-right-container-hidden'}}"></audiogram>
             <otoscopy class="{{recommendedTests ? 'main-right-container': 'main-right-container-hidden'}}"></otoscopy>
             <tympanometry class="{{recommendedTests ? 'main-right-container' : 'main-right-container-hidden'}}"></tympanometry>
+            <notes class="{{notes ? 'main-right-container' : 'main-right-container-hidden'}}"></notes>
           </kendo-pdf-export>
 
           <!-- <div class="{{suggestedTests ? 'main-right-container' : 'main-right-container-hidden'}}">Suggested Tests</div> -->

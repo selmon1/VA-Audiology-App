@@ -20,6 +20,7 @@ export class AudiologistNavigationComponent {
     public recommendedTests: boolean = false;
     public suggestedTests: boolean = false;
     public summary: boolean = true;
+    public notes: boolean = false;
     public onToggle() {
       if (!this.active) {
           this.active = true;
@@ -34,17 +35,27 @@ export class AudiologistNavigationComponent {
       this.recommendedTests = true;
       this.suggestedTests = false;
       this.summary = false;
+      this.notes = false;
     }
 
     public showSuggestedTests() {
       this.recommendedTests = false;
       this.suggestedTests = true;
       this.summary = false;
+      this.notes = false;
     }
 
     public showSummary() {
       this.recommendedTests = false;
       this.suggestedTests = false;
       this.summary = true;
+      this.notes = false;
+    }
+
+    public showNotes() {
+      this.recommendedTests = false;
+      this.suggestedTests = false;
+      this.summary = false;
+      this.notes = true;
     }
 }

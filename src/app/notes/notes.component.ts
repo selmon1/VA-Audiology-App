@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from '@rxjs'
 
-// Define a type alias for a note
+// Define an interface for a note
 // This will be used to typecheck incoming objects
 // and return a notes object of this form
-type NoteObj = {
-    content: string;
-    id: number;
+interface noteType {
+    message: string ,
+    patientID: string
 }
 
 @Component({
@@ -19,18 +19,17 @@ type NoteObj = {
 
 export class NotesComponent implements OnInit {
 
-	/*
-	* Data members for the notes component, content of the notes and patient ID
-	* for the corrosponding patient. 
-	*/
-
-	
+/*
+ * Data members for the notes component, content of the notes and patient ID
+ * for the corrosponding patient. 
+*/
   public content: string;
-  public id: number;
+  public id: string;
 	
 
   constructor() { 
-
+      this.content = '';
+      this.id = '';
   }
 
   public ngOnInit() {
@@ -40,21 +39,42 @@ export class NotesComponent implements OnInit {
 // Checks for correct types, copys and returns a note object
 // if match. Otherwise throws an error
   public getNotesQuery(): void{
-		let tmpData: NoteObj = JSON.parse(JSON.stringify(this.constructTestData()));
+		let tmpData: noteType = JSON.parse(JSON.stringify(this.constructTestData()));
 
-		if(typeof(tmpData.content) === 'string' && typeof(tmpData.id) === 'number') {
+		if(typeof(tmpData.message) === 'string' && typeof(tmpData.patientID) === 'string') {
 
-            this.content = tmpData.content;
-            this.id = tmpData.id;
-
+            this.content = tmpData.message;
+            this.id = tmpData.patientID;
         } else {
             console.error('Incorrect Types!');
         }
 	}
+// returns the input from the user
+// TODO: make function return ClientNotes obj
+// from api-objects 
+  public submitNote(): noteType {
+
+      if(!this.content) {
+          
+          alert('Please enter a note!');
+
+      } else if(typeof(this.content) === 'string'  && 
+          typeof(this.id) === 'string' ) {
+          
+          return {
+              message : this.content ,
+              patientID : this.id
+          };
+
+      } else {
+          console.error('Doesnt work');
+          return null;
+      }
+  }
 
 
-// Load notes with dummy data
-  public constructTestData() {
+//TESTING: Load notes with dummy data
+  public constructTestData():object {
       return { 
                'status': 200,
                'confirmation': 'Success',
