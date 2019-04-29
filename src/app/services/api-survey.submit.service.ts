@@ -53,10 +53,13 @@ class SurveyInstanceJSON {
 export class SurveySubmitHandler {
   // Note that anything passed in here is data that is not
   // accessible via session storage.
-  public submitSurvey(thsScoreVars : Map<string, number>, tfiVars : Map<string, number>, tsType : string) : boolean {
+  public submitSurvey(thsScoreVars : Map<string, number>, tfiVars : Map<string, number>, tsType : string) {
     if(thsScoreVars == null) {
-      console.log('SUBMISSION FAILED: NO THS SCORE DATA');
-      return false;
+      throw new Error('No THS Score Data');
+    }
+
+    if(tsType == null || tsType === '') {
+      throw new Error('Unknown TS Type');
     }
 
     let testDataString = Utilities.getSessionStorage('tests-data');
@@ -64,21 +67,21 @@ export class SurveySubmitHandler {
 
     let result = new SurveyInstanceJSON;
     result.patientSurvey = this.buildPatientSurveyJSON(testData, thsScoreVars, tfiVars, tsType);
-
-    // TODO: Refactor patient creation into its own method!
     result.patient = this.buildPatientJSON();
 
+    if(result.patientSurvey == null) {
+      throw new Error('Failed to build patient survey. Either no survey data, or ts type is unknown');
+    }
+
     if(result.patient == null) {
-      console.log('SUBMISSION FAILED: Could not get patient information!');
-      return false;
+      throw new Error('No patient data');
     }
 
     console.log(JSON.stringify(result));
-    return true;
   }
 
   buildPatientSurveyJSON(testData, thsScoreVars : Map<string, number>, tfiVars : Map<string, number>, tsType : string) : PatientSurveyJSON {
-    if(thsScoreVars == null || tsType == null) {
+    if(thsScoreVars == null || tsType == null || tsType == '') {
       return null;
     }
 

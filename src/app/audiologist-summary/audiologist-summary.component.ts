@@ -53,7 +53,13 @@ export class AudiologistSummaryComponent implements OnInit {
 
   public submitSurvey() {
     let surveySubmitHandler = new SurveySubmitHandler();
-    surveySubmitHandler.submitSurvey(this.thsScoreVars, this.tfiVars, this.ts);
+
+    try {
+      surveySubmitHandler.submitSurvey(this.thsScoreVars, this.tfiVars, this.ts);
+      alert('Survey submitted!');
+    }  catch(e) {
+      alert(e);
+    }
   }
 
   //////////////
