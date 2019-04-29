@@ -1,7 +1,7 @@
 create database VA_Trial;
 \c va_trial
 create table SessionKeys (
-SessionKeyID int, 
+SessionKeyID text,
 UserID int, 
 CreatedTime bigint,
 LastUsedTime bigint,

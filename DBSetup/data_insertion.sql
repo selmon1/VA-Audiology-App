@@ -2,13 +2,13 @@
 \c va_trial
 
 insert into SessionKeys values
-(0, 00001, 1556100000, 1556200000),
-(1, 00002, 1556000000, 1557000000), 
-(2, 00003, 1558000000, 1559000000),
-(3, 00004, 1559000000, 1560000000),
-(4, 00005, 1560000000, 1561000000),
-(5, 00006, 1562000000, 1563000000),
-(6, 00007, 1564000000, 1565000000);
+('0', 00001, 1556100000, 1556200000),
+('1', 00002, 1556000000, 1557000000),
+('2', 00003, 1558000000, 1559000000),
+('3', 00004, 1559000000, 1560000000),
+('4f', 00005, 1560000000, 1561000000),
+('cafebabe', 00006, 1562000000, 1563000000),
+('1122334455667788', 00007, 1564000000, 1565000000);
 
 insert into tfiSurvey values
 (10000, 00001, 0, 2, 3, 5, 3, 5, 1, 4, 7),
@@ -46,13 +46,13 @@ insert into Patient values
 (00007, TRUE, 'Dante. Oh, Momma, Im in fear for my life from the long arm of the law. Lawman has put an end to my runnin, and Im so far from my home. Oh, Momma, I can hear you a cryin; youre so scared and all alone. Hangman is comin down from the gallows, and I dont have very long.');
 
 insert into Authority values
-(111, 'Audio1', 'password1', 'John', 0),
-(222, 'Audio2', 'password2', 'Jim', 0),
-(333, 'Audio3', 'password3', 'Jimmy', 0),
-(444, 'Stat', 'qwertyuiop', 'Emily', 1),
-(555, 'Audio4', 'password4', 'Jill', 0),
-(666, 'Admin', 'Master', 'Satan', 2),
-(777, 'Audio5', 'password5', 'Janet', 0);
+(111, 'Audio1', '$2b$12$DYhr7TOVcajggMkNIj59YOCQflxKRWpVDeNXJKusNEJk9FN2G6Dl6', 'John (password1)', 0),
+(222, 'Audio2', '$2b$12$y8NXh.6bdGYzoH0R4QSqPupWed29lxxJ4etdas8Ecl2eoYRgy1pRy', 'Jim (password2)', 0),
+(333, 'Audio3', '$2b$12$1i4LYl4aKBXCnrV1mtZ2Suw1Xnk6gId0TfFOapCO.5yMsGxQ1s3Au', 'Jimmy (password3)', 0),
+(444, 'Stat', '$2b$12$iAq0Y1m7sxjn52wVm45omeAyselFqK7KHpQ52HBi3l2ZV7JurDbDW', 'Emily (qwertyuiop)', 1),
+(555, 'Audio4', '$2b$12$CnUTwCaYtQFkNboPDHb4d.fIwVZeAICqoca8lxIKYcwwPd4/gQAFq', 'Jill (password4)', 0),
+(666, 'Admin', '$2b$12$g/slSWxU4kvytubcT3ZEWuo5uIrdKyEnhB6HI6n7atCc/Yz8yq8GO', 'Satan (Master)', 2),
+(777, 'Audio5', '$2b$12$MTADOtwldX8YedHCMi4qpOY.KWibqgZMW2VcAG9eaiWCdkqz9x7g2', 'Janet (password5)', 0);
 
 insert into AudiologistExams values
 (1, 'Conductive Hearing Loss, Bilateral', 'Normal', 'Moderate', 'Normal', 'Normal', 'Moderate', 'Symmetric', 'Symmetric', 'Rising', 'Symmetric', 'Sensorineural'),

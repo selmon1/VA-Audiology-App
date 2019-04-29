@@ -1,0 +1,27 @@
+//Make a copy of this file called config.ts with the correct information
+export default {
+    database: {
+        user: 'postgres',
+        host: 'localhost',
+        database: 'va_trial',
+        password: 'postgres',
+        port: 5432,
+    },
+    //Password hashing settings set the difficulty for a hacker to guess people's passwords if the database is exposed
+    //Changes to these settings only take effect for a user when they change their password
+    passwordHashing: {
+        //Determines the amount of computing power needed to check whether a password is correct
+        //Increasing this by one doubles the amount of time needed to authenticate a user
+        //We want the time to be about 0.5 seconds; as computers get more powerful over time, this number should be increased to keep the time needed constant
+        rounds: 12,
+    },
+    //Session keys protect user logins. When a key expires, they must login again. Key expiration reduces the risk of hackers obtaining a working session key.
+    sessionKeys: {
+        //Bytes per session key, 8 should be fine
+        size: 8,
+        //session keys expire after 1 hour unused
+        maxIdle: 60 * 60 * 1000,
+        //session keys expire after 14 hours even if in use
+        maxAge: 14 * 60 * 60 * 1000,
+    },
+};

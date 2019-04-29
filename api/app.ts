@@ -4,27 +4,32 @@
 //
 
 // Imports
-const express = require('express')
-const bodyParser = require('body-parser')
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
 // Globals
-const app = express() //Creates express app object
-const port = 3333
+const app = express(); // Creates express app object
+const port = 3333;
 
-
+app.use(cors());
 app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({
         extended: true,
     })
-)
+);
 
-// GET endpoint for the root
-import appointmentsEndpoint from './appointments'
+import heartbeatEndpoint from './heartbeat';
+app.get('/heartbeat', heartbeatEndpoint);
+import loginEndpoint from './login';
+app.post('/login', loginEndpoint);
+
+import appointmentsEndpoint from './appointments';
 app.get('/appointments', appointmentsEndpoint);
 
-import indexEndpoint from './index'
-app.get('/', indexEndpoint)
+import indexEndpoint from './index';
+app.get('/', indexEndpoint);
 
 // Set app to listen on a given port
 app.listen(port, () => {
