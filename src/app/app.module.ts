@@ -75,6 +75,8 @@ import { TestsDataService } from './services/tests-data.service';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { CustomerSearchComponent } from './customer-search/customer-search.component';
 
+import { SurveySubmitHandler } from './services/api-survey.submit.service';
+
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -163,7 +165,8 @@ type StoreType = {
     ThsStateflowService,
     ThsDataService,
     RouterGuards,
-    TestsDataService
+    TestsDataService,
+    SurveySubmitHandler
   ]
 })
 export class AppModule {
