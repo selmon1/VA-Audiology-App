@@ -9,7 +9,7 @@ PRIMARY KEY (SessionKeyID)
 );
 
 create table tfiSurvey ( 
-tfiSurveyID int, 
+tfiSurveyID SERIAL, 
 PatientID int, 
 TFI_I int,
 TFI_Sc int, 
@@ -24,7 +24,7 @@ PRIMARY KEY (tfiSurveyID)
 );
 
 create table thsSurvey ( 
-thsSurveyID int NOT NULL, 
+thsSurveyID SERIAL, 
 PatientID int, 
 THS_SectionA int,
 THS_SectionB int, 
@@ -34,7 +34,7 @@ PRIMARY KEY (thsSurveyID)
 );
 
 create table tsSurvey ( 
-tsSurveyID int NOT NULL, 
+tsSurveyID SERIAL, 
 PatientID int, 
 TS_Type text,
 PRIMARY KEY (tsSurveyID)
@@ -57,7 +57,7 @@ PRIMARY KEY (AuthorityID)
 );
 
 create table AudiologistExams (
-AudiologistExamsID int NOT NULL, 
+AudiologistExamsID SERIAL, 
 TympanometryType text,
 OtoscopyType text,  
 RightEar_LowF_Severity text, 
@@ -73,7 +73,7 @@ PRIMARY KEY (AudiologistExamsID)
 );
 
 create table Appointments (
-AppointmentID int NOT NULL, 
+AppointmentID SERIAL, 
 AuthorityID int REFERENCES Authority(AuthorityID), 
 PatientID int, 
 tfiSurveyID int REFERENCES tfiSurvey(tfiSurveyID), 
