@@ -3,6 +3,7 @@ import * as errors from './errors';
 import config from './config';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
+import { Client } from 'pg';
 
 // should be extremely unlikely to generate two keys with the same id; retry when you do, up to this many times
 const maxKeygenRetries = 20;
@@ -20,11 +21,17 @@ export async function hash(password: string): Promise<string> {
     return hash;
 }
 
-export async function matchesHash(password: string, hash: string): Promise<boolean> {
-    return bcrypt.compare(password, hash);
+//set password for user
+export async function setPassword(db: Client, userId: number, password: string) {
+    const hashed = await hash(password);
+    await db.query('UPDATE Authority SET Password = $1 WHERE AuthorityId = $2', [hashed, userId]);
 }
 
-export async function randomSessionId(db): Promise<string> {
+export async function matchesHash(password: string, hash: string): Promise<boolean> {
+    return await bcrypt.compare(password, hash);
+}
+
+async function randomSessionId(db): Promise<string> {
     for (let i = 0; i < maxKeygenRetries; i++) {
         // need a cryptographically secure random number, not Math.random()
         const key = crypto.randomBytes(config.sessionKeys.size).toString('hex');
@@ -55,16 +62,29 @@ export async function clearStaleKeys(db, userId: number) {
     return db.query('DELETE FROM SessionKeys WHERE UserId = $1 AND (CreatedTime < $2 OR LastUsedTime < $3)', [userId, oldestCreation, oldestUsage]);
 }
 
+// Clear all keys for a user except this one
+export async function clearAllKeys(db: Client, userId: number) {
+    return db.query('DELETE FROM SessionKeys WHERE UserId = $1', [userId]);
+}
+
+// Creates a new login session for the user; returns session id
+export async function beginSession(db: Client, userId: number) {
+    const time = Date.now();
+    const sessionId = await randomSessionId(db);
+    // could have multiple simultaneous session IDs with the same user if they're using multiple browsers
+    await db.query('INSERT INTO SessionKeys VALUES ($1, $2, $3, $4)', [sessionId, userId, time, time]);
+    return sessionId;
+}
+
 // Can be passed as the `authenticate` parameter of `handler`. Ensured that the user is logged in as who they say they are.
 export async function authenticate(request) {
     const sessionId = request.get('X-SESSION-ID');
-    // TODO ensure IDs are in fact integers
     if (sessionId === undefined) {
         throw new errors.AuthenticationFailure('You must provide a session ID with the X-SESSION-ID header');
     }
     // requiring user ID prevents odds of random guessing session ID from increasing with number of users
-    const userId = request.get('X-USER-ID');
-    if (userId === undefined) {
+    const userId = parseInt(request.get('X-USER-ID'), 10);
+    if (isNaN(userId)) {
         throw new errors.AuthenticationFailure('You must provide a user ID with the X-USER-ID header');
     }
     // const db = connect();

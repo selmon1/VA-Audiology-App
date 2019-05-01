@@ -24,6 +24,8 @@ import heartbeatEndpoint from './heartbeat';
 app.get('/heartbeat', heartbeatEndpoint);
 import loginEndpoint from './login';
 app.post('/login', loginEndpoint);
+import changePasswordEndpoint from './changePassword';
+app.post('/changePassword', changePasswordEndpoint);
 
 import appointmentsEndpoint from './appointments';
 import appointmentsPostEndpoint from './appointmentsPOST';

@@ -31,6 +31,12 @@ export class MissingParameter extends APIError {
     }
     httpStatus(): number { return 400; }
 }
+export class BadParameter extends APIError {
+    constructor(...params) {
+        super(...params);
+    }
+    httpStatus(): number { return 400; }
+}
 
 export class DuplicateInsertion extends APIError {
     constructor(...params) {

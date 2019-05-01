@@ -26,11 +26,7 @@ export default handler(async (req) => {
 
         const userId = userFound.rows[0].authorityid;
         auth.clearStaleKeys(db, userId);
-        const time = Date.now();
-        const sessionId = await auth.randomSessionId(db);
-        // could have multiple simultaneous session IDs with the same user if they're using multiple browsers
-        await db.query('INSERT INTO SessionKeys VALUES ($1, $2, $3, $4)', [sessionId, userId, time, time]);
-
+        const sessionId = await auth.beginSession(db, userId);
         return {
             user: userId,
             session: sessionId,
