@@ -5,8 +5,7 @@ import { Observable } from '@rxjs'
 // This will be used to typecheck incoming objects
 // and return a notes object of this form
 interface noteType {
-    message: string ,
-    patientID: string
+    message: string 
 }
 
 @Component({
@@ -24,12 +23,10 @@ export class NotesComponent implements OnInit {
  * for the corrosponding patient. 
 */
   public content: string;
-  public id: string;
 	
 
   constructor() { 
       this.content = '';
-      this.id = '';
   }
 
   public ngOnInit() {
@@ -41,10 +38,9 @@ export class NotesComponent implements OnInit {
   public getNotesQuery(): void{
 		let tmpData: noteType = JSON.parse(JSON.stringify(this.constructTestData()));
 
-		if(typeof(tmpData.message) === 'string' && typeof(tmpData.patientID) === 'string') {
+		if(typeof(tmpData.message) === 'string') {
 
             this.content = tmpData.message;
-            this.id = tmpData.patientID;
         } else {
             console.error('Incorrect Types!');
         }
@@ -58,12 +54,10 @@ export class NotesComponent implements OnInit {
           
           alert('Please enter a note!');
 
-      } else if(typeof(this.content) === 'string'  && 
-          typeof(this.id) === 'string' ) {
+      } else if(typeof(this.content) === 'string') {
           
           return {
-              message : this.content ,
-              patientID : this.id
+              message : this.content
           };
 
       } else {
