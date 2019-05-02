@@ -13,7 +13,9 @@ import { ThsDataService } from '../services/ths-data.service';
 })
 
 export class AudiologistLoginComponent {
-  public patientId: string = '';
+  // Added audiologistUserName & changed (patientId --> audiologistID)
+  public audiologistUserName: string = ''; 
+  public audiologistID: string = '';
   public authenticationFlag: boolean = true;
 
   constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService) {};
@@ -26,14 +28,16 @@ export class AudiologistLoginComponent {
    * If the value has different length, then it will be informed as incorrect check in.
    */
   public onClick() {
-    if (this.patientId === '123456') {
-      Utilities.setSessionStorage('audiologist-pin', this.patientId);
-      console.log('Audiologist log in ' + this.patientId);
+
+    // Added new check for audiologistUserName on top off audiologistID
+    if (this.audiologistUserName === 'Candi' && this.audiologistID === '123456') {
+      Utilities.setSessionStorage('audiologist-pin', this.audiologistID);
+      console.log('Audiologist log in ' + this.audiologistID);
       this.router.navigateByUrl('/audiologist');
     } else {
       this.authenticationFlag = false;
-      this.patientId = '';
-      console.log('failed log in ' + this.patientId);
+      this.audiologistID = '';
+      console.log('failed log in ' + this.audiologistID);
     }
   }
 
