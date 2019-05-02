@@ -1,0 +1,76 @@
+.center {
+    width: 100%;
+    text-align: center;
+}
+.search-container {
+    width: 50%;
+    display: inline-block;
+}
+.search-container .group-start {
+    border-width: 1px 0 1px 1px;
+    border-color: #ccc;
+    border-radius: 5px 0 0 5px;
+    padding-left: 3px;
+}
+.search-container button{
+    width: 20%;
+    background-color: #246bc9;
+    color: white;
+}
+.search-container button:hover {
+    background-color: #7eabe6;
+    color: black;
+}
+.search-container button:active {
+    background-color: #246bc9;
+    color: black;
+}
+button:disabled {
+    background-color: #eeeeee;
+    color: white;
+}
+.search-container .group-end {
+    border-width: 1px 1px 1px 0;
+    border-color: #ccc;
+    border-radius: 0 5px 5px 0;
+    padding-right: 3px;
+}
+
+.resultsTable {
+    margin: 10px auto 0 auto;
+    width: 75%;
+}
+.resultsTable th {
+    text-align: center;
+    background-color: #0448a1;
+    color: white;
+}
+.resultsTable tr:nth-child(even) {
+    background-color: #7eabe6;
+}
+.resultsTable tr td:last-child, .resultsTable tr th:last-child {
+    width: 10em;
+}
+.resultsTable button {
+    width: 100%;
+    background-color: #44ad44;
+}
+.resultsTable button:hover {
+    width: 100%;
+    background-color: #81c981;
+}
+
+.pagination {
+    padding: 3px 10px;
+    margin: 15px 5px;
+}
+
+.warning {
+    color: red;
+    animation-name: warning;
+    animation-duration: 1s;
+}
+@keyframes warning {
+    from {color: white;}
+    to {color: red;}
+}

@@ -73,6 +73,10 @@ import { FaqComponent } from './faq/faq.component';
 import { AudiologistSummaryComponent } from './audiologist-summary/audiologist-summary.component';
 import { TestsDataService } from './services/tests-data.service';
 import { NotesComponent } from './notes/notes.component';
+import { MyAccountComponent } from './my-account/my-account.component';
+import { CustomerSearchComponent } from './customer-search/customer-search.component';
+import { SurveySubmitHandler } from './services/api-survey.submit.service';
+
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -121,7 +125,10 @@ type StoreType = {
     SoundComponent,
     FaqComponent,
     AudiologistSummaryComponent,
-    NotesComponent
+    NotesComponent,
+    MyAccountComponent,
+    CustomerSearchComponent
+
   ],
   exports: [
     MatSliderModule,
@@ -161,7 +168,8 @@ type StoreType = {
     ThsStateflowService,
     ThsDataService,
     RouterGuards,
-    TestsDataService
+    TestsDataService,
+    SurveySubmitHandler
   ]
 })
 export class AppModule {

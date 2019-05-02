@@ -1,0 +1,100 @@
+button:disabled {
+    background-color: #eeeeee;
+    color: white;
+}
+button {
+    margin-top: 5px;
+}
+
+.center {
+    text-align: center;
+}
+
+.group {
+    font-size: 0;
+    border-width: 1px 1px 1px 1px;
+    border-color: #ccc;
+    border-radius: 5px;
+    border-style: solid;
+    display: block;
+    padding: 3px;
+    width: 100%;
+    overflow: hidden;
+}
+.group-start, .group-end {
+    box-sizing: border-box;
+    padding: 5px 3px;
+    font-size: 18px;
+    border: none;
+    vertical-align: middle;
+    margin: 0;
+}
+.group-start {
+    width: 9em;
+    text-align: right;
+    float: left;
+}
+.group-end {
+    display: inline-block;
+    width: calc(100% - 9em);
+    min-width: 9em;
+    color: black;
+}
+
+.blue {
+    background-color: #3344dd;
+    color: white;
+}
+.green {
+    background-color: #16a525;
+    color: white;
+}
+.red {
+    background-color: #ad0000;
+    color: white;
+}
+.yellow {
+    background-color: #f3f300;
+    color: black;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.toWarn {
+    color: red;
+    animation-name: warn;
+    animation-duration: 0.5s;
+}
+.warnToWarn {
+    color: red;
+    animation-name: warn2;
+    animation-duration: 0.5s;
+}
+.toSuccess {
+    color: green;
+    animation-name: success;
+    animation-duration: 1s;
+}
+.successToSuccess {
+    color: green;
+    animation-name: success2;
+    animation-duration: 1s;
+}
+@keyframes warn {
+    from {color: white;}
+    to {color: red;}
+}
+@keyframes warn2 {
+    from {color: white;}
+    to {color: red;}
+}
+@keyframes success {
+    from {color: white;}
+    to {color: green;}
+}
+@keyframes success2 {
+    from {color: white;}
+    to {color: green;}
+}

@@ -1,40 +1,23 @@
-// Authentication function: return true if authorized; otherwise throw an exception
-function alwaysPermitted(request) {
-  return true;
-}
-//todo move this to authenticate.ts
-class AuthenticationFailureError extends Error {
-  constructor(...params) {
-    super(...params);
-  }
-}
-//todo move this to errors.ts
-//todo handle a lot more errors, with unique messages and statuses
-function defaultErrorHandler(request, response, ex) {
-  response.status(500).json({
-    "status": "error",
-    "message": "Unknown error: " + ex.toString()
-  });
-}
+import * as auth from './authenticate';
+import * as errors from './errors';
 // Factory for API handlers
 // Accepts three function, and returns a function that handles the API call
 //   perform: Performs the user's request, and returns any requested data (or null)
+//   authenticate: If the request is not authorized, throws an exception. Otherwise, returns authenticated user id (or null)
 //   handleErrors: Sends a response based on a thrown exception
-//   authenticate: If the request is not authorized, throws an exception
-export default function handler(perform, handleErrors = defaultErrorHandler, authenticate = alwaysPermitted) {
-  return function(request, response, next) {
-    try {
-      authenticate(request);
-      Promise.resolve(perform(request)).then(data => 
-        response.status(200).json({
-          "status": "success",
-          "data": data
-        })
-      ).catch(ex => handleErrors(request, response, ex));
-    } catch (ex) {
-      //currently this doesn't handle errors differently for authenticated users than unauthenticated ones; we may want to ultimately hide some information from unauthenticated users
-      handleErrors(request, response, ex);
-    }
-    return undefined;
-  }
+export default function handler(perform, authenticate = auth.alwaysPermitted, handleErrors = errors.defaultErrorHandler) {
+    return async function(request, response, next) {
+        try {
+            const userId = await authenticate(request);
+            const data = await perform(request, userId);
+            response.status(200).json({
+                "status": "success",
+                "data": data
+            });
+        } catch (ex) {
+            //currently this doesn't handle errors differently for authenticated users than unauthenticated ones; we may want to ultimately hide some information from unauthenticated users
+            handleErrors(request, response, ex);
+        }
+        return undefined;
+    };
 }

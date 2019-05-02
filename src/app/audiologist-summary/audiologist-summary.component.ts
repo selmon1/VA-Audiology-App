@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Utilities } from '../common/utlilities';
 import { ThsDataService } from '../services/ths-data.service';
 import { TsScreenerDataService } from '../services/ts-screener-data.service';
@@ -6,6 +6,7 @@ import { TfiDataService } from '../services/tfi-data.service';
 import { TsScreenerAnswerStrings, ThsAnswerStrings } from '../common/custom-resource-strings';
 import { TestsDataService } from '../services/tests-data.service';
 import { Subscription } from 'rxjs/Subscription';
+import { SurveySubmitHandler } from '../services/api-survey.submit.service';
 
 const tfiNames: string[] = ['overallTFI', 'intrusive', 'sense', 'cognitive', 'sleep', 'auditory', 'relaxation', 'quality', 'emotional'];
 const testRadioNames: string[] = ['audiogramType', 'leftHighSev', 'leftLowSev', 'rightHighSev', 'rightLowSev', 'otoscopyType', 'tympanometryType'];
@@ -48,6 +49,17 @@ export class AudiologistSummaryComponent implements OnInit {
 
   public ngOnInit() {
     this.subscription = this.testsDataService.observableData.subscribe(data => this.updateTestResults(data));
+  }
+
+  public submitSurvey() {
+    let surveySubmitHandler = new SurveySubmitHandler();
+
+    try {
+      surveySubmitHandler.submitSurvey(this.thsScoreVars, this.tfiVars, this.ts);
+      alert('Survey submitted!');
+    }  catch(e) {
+      alert(e);
+    }
   }
 
   //////////////
@@ -158,7 +170,7 @@ export class AudiologistSummaryComponent implements OnInit {
     }
     for (let dat in data) {
       if (data.hasOwnProperty(dat)) {
-        if(testRadioNames.includes(data[dat].name)) {
+        if(testRadioNames.indexOf(data[dat].name) > -1) {
           this.testRadioVars.set(data[dat].name, data[dat].value);
         }
       }
