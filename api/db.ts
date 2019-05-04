@@ -12,10 +12,9 @@ export default async function withConnection(action) {
     // we don't need to dispose of the client (it will be undefined)
     const client = await pool.connect();
     try {
-        let res = null;
         await client.query('BEGIN');
         // This executes ACTION that is defined by the calling function
-        let results = action(client);
+        const results = await action(client);
         await client.query('COMMIT');
         return results;
     } catch (e) {
