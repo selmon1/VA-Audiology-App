@@ -87,7 +87,6 @@ export async function authenticate(request) {
     if (isNaN(userId)) {
         throw new errors.AuthenticationFailure('You must provide a user ID with the X-USER-ID header');
     }
-    // const db = connect();
     return await connect(async (db) => {
         const timesFound = await db.query('SELECT CreatedTime, LastUsedTime FROM SessionKeys WHERE SessionKeyId = $1 AND UserId = $2', [sessionId, userId]);
         if (timesFound.rows.length !== 1 || isSessionExpired(timesFound.rows[0])) {
