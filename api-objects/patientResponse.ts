@@ -1,4 +1,4 @@
-export interface PatientCreateResponse {
+export interface PatientResponse {
     patientid: number;
     deceased: boolean;
     patientnotes: string;

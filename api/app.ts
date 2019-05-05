@@ -30,7 +30,7 @@ app.get('/appointments', appointmentsEndpoint);
 
 // -- CLIENT ENDPOINTS START --
 
-import patientPOSTEndpoint from './patient/patientCreate';
+import patientPOSTEndpoint from './patient/patient-create';
 app.post('/patient', patientPOSTEndpoint);
 
 // -- CLIENT ENDPOINTS END --
