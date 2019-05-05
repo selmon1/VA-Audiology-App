@@ -75,6 +75,11 @@ import { TestsDataService } from './services/tests-data.service';
 import { NotesComponent } from './notes/notes.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { CustomerSearchComponent } from './customer-search/customer-search.component';
+import { CustomerSearchService } from './customer-search/customer-search.service';
+
+import { ServerApiService } from './services/server-api.service';
+import { HttpClientModule } from '@angular/common/http';
+
 import { SurveySubmitHandler } from './services/api-survey.submit.service';
 
 
@@ -143,6 +148,8 @@ type StoreType = {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    HttpModule,
     FormsModule,
     HttpModule,
     MatSliderModule,
@@ -169,7 +176,9 @@ type StoreType = {
     ThsDataService,
     RouterGuards,
     TestsDataService,
-    SurveySubmitHandler
+    SurveySubmitHandler,
+    CustomerSearchService,
+    ServerApiService
   ]
 })
 export class AppModule {

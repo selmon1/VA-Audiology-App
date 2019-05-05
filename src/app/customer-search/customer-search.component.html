@@ -19,8 +19,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let row of resultsTable | slice:(currentPage * 10):(currentPage + 1) * 10">
-        <td>{{row.id}}</td>
-        <td>{{row.date}}</td>
+        <td>{{row.patientid}}</td>
+        <td>{{row.appointmentdatetime}}</td>
         <td><button (click)="loadAppt(row)" class="loadBtn">Load</button></td>
       </tr>
     </tbody>
