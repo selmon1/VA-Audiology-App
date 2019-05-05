@@ -5,6 +5,7 @@ import * as errors from '../errors';
 import { Client } from 'pg';
 import { PatientCreateResponse } from '../../api-objects/patientCreateResponse';
 
+
 // Expects 'username', 'password', 'authorityName', and 'authorityType'
 // Returns the created account (NOT including the created Password)
 export default handler(async (req, userId) => {
@@ -14,12 +15,20 @@ export default handler(async (req, userId) => {
     let patientId = req.body.patientId;
 
     return withConnection(async (db: Client) => {
-        const createdPatient = await db.query('INSERT INTO patient (patientid, deceased, patientnotes) VALUES ($1, $2, $3) RETURNING *', [patientId, deceased, patientNotes]);
-        if (createdPatient.rows.length !== 1) {
-            throw new errors.APIError('Somehow failed to create New Account' + userId);
-        }
-        let patient: PatientCreateResponse = createdPatient.rows[0];
+        try {
 
-        return patient;
+            const createdPatient = await db.query('INSERT INTO patient (patientid, deceased, patientnotes) VALUES ($1, $2, $3) RETURNING *', [patientId, deceased, patientNotes]);
+            if (createdPatient.rows.length !== 1) {
+                throw new errors.APIError('Somehow failed to create New Account' + userId);
+            }
+            let patient: PatientCreateResponse = createdPatient.rows[0];
+
+            return patient;
+        } catch (error) {
+            if(error.message.includes('duplicate key value violates unique constraint "patient_pkey"')) {
+                throw new errors.DuplicateInsertion('DUPLICATE INSERTION: Attmpted to insert a client that already exists')
+            }
+            throw error;
+        }
     });
-}, auth.authenticate); 
+}, auth.authenticate);
