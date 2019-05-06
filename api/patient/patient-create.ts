@@ -15,14 +15,12 @@ export default handler(async (req, userId) => {
     let patientId = req.body.patientId;
 
     return withConnection(async (db: Client) => {
-        try {
-            const createdPatient = await db.query('INSERT INTO patient (patientid, deceased, patientnotes) VALUES ($1, $2, $3) RETURNING *', [patientId, deceased, patientNotes]);
-            return createdPatient.rows[0] as PatientResponse;
-        } catch (error) {
-            if (error.message.includes('duplicate key value violates unique constraint "patient_pkey"')) {
-                throw new errors.DuplicateInsertion('DUPLICATE INSERTION: Attmpted to insert a client that already exists')
-            }
-            throw error;
+
+        const results = await db.query('SELECT * FROM patient WHERE patient.patinetid = $1', [patientId]);
+        if (results.rowCount != 0) {
+            throw new errors.DuplicateInsertion('DUPLICATE INSERTION: Attmpted to insert a client that already exists');
         }
+        const createdPatient = await db.query('INSERT INTO patient (patientid, deceased, patientnotes) VALUES ($1, $2, $3) RETURNING *', [patientId, deceased, patientNotes]);
+        return createdPatient.rows[0] as PatientResponse;
     });
 }, auth.authenticate);
