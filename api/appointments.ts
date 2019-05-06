@@ -1,6 +1,7 @@
 import handler from './handler';
 import db from './db';
 import { QueryResult } from 'pg';
+import * as auth from './authenticate';
 
 export default handler(async (request: any) => {
     return await db(async (connection) => {
@@ -12,4 +13,4 @@ export default handler(async (request: any) => {
         }
         return results.rows;
     });
-});
+}, auth.authenticate);
