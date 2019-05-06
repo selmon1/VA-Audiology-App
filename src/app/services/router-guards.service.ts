@@ -41,22 +41,13 @@ export class RouterGuards implements CanActivate {
 
     // restrict access to audiologist pages
     if (url === '/audiologist') {
-      let session = Utilities.getSessionStorage('userId');
-      if (!session) {
-        this.router.navigateByUrl('aud-login');
-      } else {
-        // verify against static - navigate to check in if it's incorrect
-        // This can be replaced in the future with a request to verify against DB
+      let userId = Utilities.getSessionStorage('userId');
+      let sessionId = Utilities.getSessionStorage('sessionId');
 
-        this.auth.heartbeat().subscribe((response) => {
-          console.log(response.data);
-        },
-          (error) => {
-            console.log('User no longer authenticated, please log in again')
-            this.router.navigateByUrl('aud-login');
-          })
+      if (!userId || !sessionId) {
+        this.router.navigateByUrl('aud-login');
       }
+      return true;
     }
-    return true;
   }
 }

@@ -19,13 +19,7 @@ export class AudiologistLoginComponent {
   public audiologistPassword: string = '';
   public authenticationFlag: boolean = true;
 
-  constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService, private serverAuthenticationService: ServerAuthenticationService) {
-        //If we are already Authenticated: redirect to the Audiologist page
-
-    this.serverAuthenticationService.heartbeat().subscribe((response) => {
-      this.router.navigateByUrl('/audiologist');
-    });
-  }
+  constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService, private serverAuthenticationService: ServerAuthenticationService) { };
 
   /**
    * This function will be call when the "check in" button is pressed.
