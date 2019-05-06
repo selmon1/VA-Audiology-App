@@ -14,56 +14,9 @@ import { ThsDataService } from '../services/ths-data.service';
 
 export class CheckInComponent {
    public patientId: string = '';
-   public firstName: string = '';
-   public lastName: string = '';
-   public lastFourSS: string = '';
-   public idCode = '';
    public authenticationFlag: boolean = true;
 
    constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService) {};
-
-   public numRearrange(num) {
-      let fst = Number(num[0]);
-      let snd = Number(num[1]);
-      let thd = Number(num[2]);
-      let frt = Number(num[3]);
-      if (frt < 9) {
-        frt += 1;
-      } else { frt -= 5; }
-
-      if (thd < 5) {
-        thd += 4;
-      } else { thd -= 2; }
-
-      if (snd < 7) {
-        snd += 2;
-      } else { snd -= 3; }
-
-      if (fst < 7) {
-        fst += 2;
-      } else { fst -= 2; }
-
-      let result1 = thd.toString();
-      let result2 = fst.toString();
-      let result3 = frt.toString();
-      let result4 = snd.toString();
-
-      return result1 + result2 + result3 + result4;
-   }
-   public idGenerator() {
-     let hash = 0;
-     let first = this.firstName;
-     let last = this.lastName;
-     // name = this.firstName.charCodeAt(0) + this.lastName.charCodeAt(0);
-     if (this.firstName == null || this.lastName == null || this.lastFourSS == null) {
-       return hash;
-     }
-     // for (let i = 0; i < nameLength; i++) {
-     //   hash += Math.pow(name.charCodeAt(i) * 31, nameLength - i);
-     // }
-     let result = first.substr(0, 3) + last.substr(0, 3) + this.numRearrange(this.lastFourSS);
-     return result;
-   }
 
    /**
     * This function will be call when the "check in" button is pressed.
@@ -74,14 +27,14 @@ export class CheckInComponent {
     */
 
    public onClick() {
-       if(this.idCode.length === 4) {  
+       if(this.patientId.length === 4) {  
        sessionStorage.clear();
        this.tsDataService.clearHistory();
        this.tfiDataService.clearHistory();
        this.thsDataService.clearHistory();
-       Utilities.setSessionStorage('patient-id', this.idCode);
+       Utilities.setSessionStorage('patient-id', this.patientId);
        Utilities.setSessionStorage('firstName', 'DEPRECATED: GET RID OF FIRST NAME!');
-       console.log(this.idCode);
+       console.log(this.patientId);
        this.router.navigateByUrl('/appointments');
        console.log('log in with ' + this.patientId);
        } else {
@@ -89,22 +42,6 @@ export class CheckInComponent {
            this.patientId = '';
            console.log('failed log in ' + this.patientId);
        }
-     /*if (this.firstName.length >= 2 && this.lastName.length >= 2 && this.lastFourSS.length === 4
-          && isNaN(Number(this.firstName)) && isNaN(Number(this.lastName))) {
-       sessionStorage.clear();
-       this.tsDataService.clearHistory();
-       this.tfiDataService.clearHistory();
-       this.thsDataService.clearHistory();
-       Utilities.setSessionStorage('patient-id', this.idGenerator().toString());
-       Utilities.setSessionStorage('firstName', this.firstName.toString());
-       console.log(this.idGenerator().toString());
-       this.router.navigateByUrl('/appointments');
-       console.log('log in with ' + this.patientId);
-     } else {
-        this.authenticationFlag = false;
-        this.patientId = '';
-        console.log('failed log in ' + this.patientId);
-       }*/
    }
 
    /**
