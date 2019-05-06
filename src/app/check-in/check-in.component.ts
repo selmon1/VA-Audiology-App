@@ -17,6 +17,7 @@ export class CheckInComponent {
    public firstName: string = '';
    public lastName: string = '';
    public lastFourSS: string = '';
+   public idCode = '';
    public authenticationFlag: boolean = true;
 
    constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService) {};
@@ -73,8 +74,22 @@ export class CheckInComponent {
     */
 
    public onClick() {
-
-     if (this.firstName.length >= 2 && this.lastName.length >= 2 && this.lastFourSS.length === 4
+       if(this.idCode.length === 4) {  
+       sessionStorage.clear();
+       this.tsDataService.clearHistory();
+       this.tfiDataService.clearHistory();
+       this.thsDataService.clearHistory();
+       Utilities.setSessionStorage('patient-id', this.idCode);
+       Utilities.setSessionStorage('firstName', 'DEPRECATED: GET RID OF FIRST NAME!');
+       console.log(this.idCode);
+       this.router.navigateByUrl('/appointments');
+       console.log('log in with ' + this.patientId);
+       } else {
+           this.authenticationFlag = false;
+           this.patientId = '';
+           console.log('failed log in ' + this.patientId);
+       }
+     /*if (this.firstName.length >= 2 && this.lastName.length >= 2 && this.lastFourSS.length === 4
           && isNaN(Number(this.firstName)) && isNaN(Number(this.lastName))) {
        sessionStorage.clear();
        this.tsDataService.clearHistory();
@@ -89,7 +104,7 @@ export class CheckInComponent {
         this.authenticationFlag = false;
         this.patientId = '';
         console.log('failed log in ' + this.patientId);
-       }
+       }*/
    }
 
    /**
