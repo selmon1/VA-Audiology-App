@@ -1,0 +1,68 @@
+<!-- <div class="container">
+	<div class="email-container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+				<input type="input/email" name="email-input"  [(ngModel)]="email" required placeholder="Email">
+			</div>
+		</div>
+	</div>
+	<div class="username-container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+				<input type="input/text" name="username-input" [(ngModel)]="username" required placeholder="Username">
+			</div>
+		</div>
+	</div>
+	<div class="radio-btn">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+				<mat-card-content>
+					<mat-radio-group>
+						<mat-radio-button *ngFor="let type of AuthType" [value]="type" (change)="typeChange($event)">
+						</mat-radio-button>
+					</mat-radio-group>
+				</mat-card-content>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+
+<form id="new-user-form">
+	<div class="name-container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+				<input type="text" name="name-input"  [(ngModel)]="name" required placeholder="Name">
+			</div>
+		</div>
+	</div>
+	<div class="email-container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+				<input type="email" name="email-input"  [(ngModel)]="userEmail" required placeholder="Email">
+			</div>
+		</div>
+	</div>
+	<div class="username-container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+				<input type="text" name="username-input" [(ngModel)]="username" required placeholder="Username">
+			</div>
+		</div>
+	</div>
+	<div class="auth-container">
+		<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+			<label>Type</label>
+			<select ng-model="AuthType">
+				<option value=""></option>
+				<option value="AuthType.Admin">Admin</option>
+				<option value="AuthType.Audiologist">Audiologist</option>
+			</select>
+		</div>
+	</div>
+	<div class="sbmt-btn">
+		<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+			<button type="submit" form="new-user-form" value="submit" (click)="createUser()">Create User</button>
+		</div>
+	</div>
+</form>
