@@ -22,13 +22,19 @@ export class CheckInComponent {
   constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService) {};
   
   public onClick() {
-    if(this.patientId.length === 4 && this.isPatientIdNumber()) {  
+    if(this.isCredentialsValid()) {
       sessionStorage.clear();
       this.tsDataService.clearHistory();
       this.tfiDataService.clearHistory();
       this.thsDataService.clearHistory();
       Utilities.setSessionStorage('patient-id', this.patientId);
+      Utilities.setSessionStorage('first-name', this.firstName);
+      Utilities.setSessionStorage('last-name', this.lastName);
+      Utilities.setSessionStorage('email', this.email);
       console.log(this.patientId);
+      console.log(this.firstName);
+      console.log(this.lastName);
+      console.log(this.email);
       this.router.navigateByUrl('/appointments');
       console.log('log in with ' + this.patientId);
     } else {
@@ -36,6 +42,22 @@ export class CheckInComponent {
       this.patientId = '';
       console.log('failed log in ' + this.patientId);
     }
+  }
+
+  isCredentialsValid() : boolean {
+    return this.isEmailValid() && this.isNameValid() && this.isPatientIdValid();
+  }
+
+  isEmailValid() : boolean {
+    return this.email.length > 0;
+  }
+
+  isNameValid() : boolean {
+    return this.firstName.length > 0 && this.lastName > 0;
+  }
+
+  isPatientIdValid() : boolean {
+    return this.patientId.length == 4 && this.isPatientIdNumber();
   }
   
   isPatientIdNumber() : boolean {
