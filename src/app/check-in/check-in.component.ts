@@ -49,11 +49,30 @@ export class CheckInComponent {
   }
 
   isEmailValid() : boolean {
-    return this.email.length > 0;
+    let numAtSymbols : number = 0;
+
+    let i: number;
+    for(i = 0; i < this.email.length; i++) {
+      if(this.email.charAt(i) === '@')
+        numAtSymbols++;
+    }
+
+    console.log(numAtSymbols);
+
+    if(numAtSymbols !== 1)
+      return false;
+
+    // Credit for this here: https://tylermcginnis.com/validate-email-address-javascript/
+    // Doesn't seem to handle multiple @ symbols however.
+    let regexp = new RegExp('^[^\s@]+@[^\s@]+\.[^\s@]+$');
+
+    alert(regexp.test(this.email));
+
+    return false;
   }
 
   isNameValid() : boolean {
-    return this.firstName.length > 0 && this.lastName > 0;
+    return this.firstName.length > 0 && this.lastName.length > 0;
   }
 
   isPatientIdValid() : boolean {
