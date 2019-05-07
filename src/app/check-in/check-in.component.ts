@@ -57,8 +57,6 @@ export class CheckInComponent {
         numAtSymbols++;
     }
 
-    console.log(numAtSymbols);
-
     if(numAtSymbols !== 1)
       return false;
 
@@ -66,9 +64,7 @@ export class CheckInComponent {
     // Doesn't seem to handle multiple @ symbols however.
     let regexp = new RegExp('^[^\s@]+@[^\s@]+\.[^\s@]+$');
 
-    alert(regexp.test(this.email));
-
-    return false;
+    return regexp.test(this.email);
   }
 
   isNameValid() : boolean {
