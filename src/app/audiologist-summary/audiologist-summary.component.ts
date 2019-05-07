@@ -8,7 +8,7 @@ import { TestsDataService } from '../services/tests-data.service';
 import { Subscription } from 'rxjs/Subscription';
 import { SurveySubmitHandler } from '../services/api-survey.submit.service';
 
-const tfiNames: string[] = ['overallTFI', 'intrusive', 'sense', 'cognitive', 'sleep', 'auditory', 'relaxation', 'quality', 'emotional'];
+export const tfiNames: string[] = ['overallTFI', 'intrusive', 'sense', 'cognitive', 'sleep', 'auditory', 'relaxation', 'quality', 'emotional'];
 const testRadioNames: string[] = ['audiogramType', 'leftHighSev', 'leftLowSev', 'rightHighSev', 'rightLowSev', 'otoscopyType', 'tympanometryType'];
 const testCheckBoxNames: string[] = ['leftHighConfig', 'leftLowConfig', 'rightHighConfig', 'rightLowConfig'];
 

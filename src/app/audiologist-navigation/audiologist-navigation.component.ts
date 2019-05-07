@@ -1,9 +1,9 @@
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { Router } from '@angular/router';
 import { ViewChild, Component, ViewEncapsulation } from '@angular/core';
-import { aggregateBy } from '@progress/kendo-data-query';
-import { NgForm } from '@angular/forms';
-import { AudiologistSummaryComponent } from '../audiologist-summary/audiologist-summary.component';
+import { AudiologistSummaryComponent, tfiNames } from '../audiologist-summary/audiologist-summary.component';
 import { Utilities } from '../common/utlilities';
+import { State, StatesEnum, TabsEnum } from './navigation-aids';
+import { Appointment } from 'api-objects/Appointment';
 
 @Component({
   selector: 'audio-navigation',
@@ -17,57 +17,70 @@ import { Utilities } from '../common/utlilities';
  * active: boolean is a local variable will be switch between true and false to trigger the function.
  */
 export class AudiologistNavigationComponent {
-    @ViewChild(AudiologistSummaryComponent) summaryComponent : AudiologistSummaryComponent;
+  get TabsEnum() { return TabsEnum; }
+  public patientID: string = Utilities.getSessionStorage('patient-id');
+  public active: boolean = true;
+  public scale: number = 0.55;
+  public state: State = new State();
+  @ViewChild(AudiologistSummaryComponent) private summaryComponent: AudiologistSummaryComponent;
 
-    public active: boolean = true;
-    public scale: number = 0.55;
-    public recommendedTests: boolean = false;
-    public suggestedTests: boolean = false;
-    public summary: boolean = true;
-    public notes: boolean = false;
+  constructor(private router: Router) {
+  }
 
-    public onToggle() {
-      if (!this.active) {
-          this.active = true;
-          console.log('is active');
-      } else {
-        this.active = false;
-        console.log('is active');
-      }
+  public ngOnInit() {
+    if(this.summaryComponent.ts === '' || this.summaryComponent.ts === null) {
+      this.state.determineState(false);
+    } else {
+      this.state.determineState(true, false);
     }
+  }
 
-    public showRecommendedTests() {
-      this.recommendedTests = true;
-      this.suggestedTests = false;
-      this.summary = false;
-      this.notes = false;
+  public onToggle() {
+    if (!this.active) {
+      this.active = true;
+      console.log('is active');
+    } else {
+      this.active = false;
+      console.log('is inactive');
     }
+  }
 
-    public showSuggestedTests() {
-      this.recommendedTests = false;
-      this.suggestedTests = true;
-      this.summary = false;
-      this.notes = false;
+  public submitSurvey() {
+    if (this.summaryComponent != null) {
+      this.summaryComponent.submitSurvey();
     }
+  }
 
-    public showSummary() {
-      this.recommendedTests = false;
-      this.suggestedTests = false;
-      this.summary = true;
-      this.notes = false;
-    }
+  public clearData() {
+    // clear all patient data in memory
+    let sessionKeys: string[] = [
+      'patient-id', 
+      'tests-data', 
+      'tfi-dataRecord', 
+      'ths-dataRecord', 
+      'ths-history', 
+      'ts-dataRecord', 
+      'ts-history'
+    ];
+    sessionKeys.forEach( (value) => {
+      Utilities.removeItemFromSessionStorage(value);
+    });
+    this.patientID = null;
+    this.state.determineState(false);
+  }
 
-    public showNotes() {
-      this.recommendedTests = false;
-      this.suggestedTests = false;
-      this.summary = false;
-      this.notes = true;
-    }
+  public logout() {
+    this.clearData();
+    Utilities.removeItemFromSessionStorage('audiologist-pin');
+    Utilities.removeItemFromSessionStorage('permissions');
+    this.router.navigateByUrl('/home');
+  }
 
-    public submitSurvey() {
-      if(this.summaryComponent != null) {
-        this.summaryComponent.submitSurvey();
-      }
-
-    }
+  public onApptLoad(appt: Appointment) {
+    this.patientID = appt.patientid.toString();
+    this.summaryComponent.patientID = appt.patientid.toString();
+    this.summaryComponent.ts = appt.ts_type;
+    // Load the rest of the summary...
+    this.state.determineState(true, true);
+  }
 }

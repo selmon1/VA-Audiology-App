@@ -2,6 +2,8 @@ import { AudiologistNavigationComponent } from './audiologist-navigation.compone
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { DebugElement } from '@angular/core';
+import { TabsEnum } from './navigation-aids';
+import { Utilities } from '../common/utlilities';
 
 /*
   Unit tests for the Audiologist Navigation component
@@ -35,7 +37,7 @@ describe('Audiologist Navigation', () => {
   });
 
   it('should test for audiologist landing page to be summary', () => {
-    expect(component.summary).toBe(true);
+    expect(component.state.tabIsSelected(TabsEnum.SUMMARY)).toBe(true);
   });
 
   /*
@@ -54,30 +56,63 @@ describe('Audiologist Navigation', () => {
     expect(component.active).toBe(false);
   });
 
-  it('should test for audiologist recommended tests to be true', () => {
-    component.showRecommendedTests();
-    expect(component.recommendedTests).toBe(true);
+  it('should test for audiologist summary to be selected', () => {
+    Utilities.setSessionStorage('dataFromDB', 'true');
+    component.state.selectTab(TabsEnum.SUMMARY);
+    expect(component.state.tabIsSelected(TabsEnum.SUMMARY)).toBe(true);
   });
 
-  it('should test for audiologist suggested test to be true', () => {
-    component.showSuggestedTests();
-    expect(component.suggestedTests).toBe(true);
+  it('should test for audiologist tests to be selected', () => {
+    Utilities.setSessionStorage('dataFromDB', 'false');
+    component.state.selectTab(TabsEnum.TESTS);
+    expect(component.state.tabIsSelected(TabsEnum.TESTS)).toBe(true);
   });
 
-  it('should test for audiologist summary to be true', () => {
-    component.showSummary();
-    expect(component.summary).toBe(true);
+  it('should test for audiologist notes to be selected', () => {
+    Utilities.setSessionStorage('dataFromDB', 'false');
+    component.state.selectTab(TabsEnum.NOTES);
+    expect(component.state.tabIsSelected(TabsEnum.NOTES)).toBe(true);
+  });
+
+  it('should test for audiologist search to be selected', () => {
+    Utilities.removeItemFromSessionStorage('dataFromDB');
+    Utilities.setSessionStorage('permissions', 'audiologist');
+    component.state.selectTab(TabsEnum.SEARCH);
+    expect(component.state.tabIsSelected(TabsEnum.SEARCH)).toBe(true);
+  });
+
+  it('should test for audiologist account to be selected', () => {
+    Utilities.removeItemFromSessionStorage('dataFromDB');
+    Utilities.setSessionStorage('permissions', 'audiologist');
+    component.state.selectTab(TabsEnum.ACCOUNT);
+    expect(component.state.tabIsSelected(TabsEnum.ACCOUNT)).toBe(true);
   });
 
   /*
-    The following tests checks to make sure that clicking on the button will triggers the method
+    The following tests checks to make sure that clicking on the button will trigger the method
   */
-  it('should test for audiologist recommendedTests button click event', () => {
-    let recommended = spyOn(component, 'showRecommendedTests');
-    let recommendedBtn = de.nativeElement.querySelectorAll('.left-container .main-btn');
-    recommendedBtn.item(0).click();
+  it('should test for audiologist close button click event', () => {
+    let clear = spyOn(component, 'clearData');
+    let closeBtn = de.nativeElement.querySelectorAll('#close');
+    closeBtn.item(0).click();
     fixture.detectChanges();
-    expect(recommended).toHaveBeenCalled();
+    expect(clear).toHaveBeenCalled();
+  });
+
+  it('should test for audiologist close button discard event', () => {
+    let clear = spyOn(component, 'clearData');
+    let discardBtn = de.nativeElement.querySelectorAll('#discard');
+    discardBtn.item(0).click();
+    fixture.detectChanges();
+    expect(clear).toHaveBeenCalled();
+  });
+
+  it('should test for audiologist submit button click event', () => {
+    let submit = spyOn(component, 'submitSurvey');
+    let submitBtn = de.nativeElement.querySelectorAll('#submit');
+    submitBtn.item(0).click();
+    fixture.detectChanges();
+    expect(submit).toHaveBeenCalled();
   });
 
   // it('should test for audiologist suggestedTests button click event', () => {

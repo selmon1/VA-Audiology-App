@@ -116,24 +116,54 @@
   color:rgb(109, 109, 109);
 }
 
-.audio .left-container .main-btn {
+.audio .left-container .main-nav {
+  width: 100%;
+}
+.audio .left-container .btn {
   color: white;
   font-family: 'Roboto';
   font-size: 1em;
   margin-bottom: 5%;
   height: 100%;
   left: 20%;
+  text-align: center;
+  padding: 3%;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.audio .left-container .main-tab {
   width: 100%;
   text-align: left;
-  background: linear-gradient(to right, #025798, #0171bb);
-  border-left-color: #0070bb;
   padding: 3% 0 3% 3%;
   border-left-width: 20px;
-  border-radius: 4px;
+  background-repeat: no-repeat;
+  background: linear-gradient(to right, #025798, #0171bb);
+  border-left-color: #0070bb;
   border-top: 0;
   border-bottom: 0;
   border-right: 0;
   background-repeat: no-repeat;
+  
+}
+.audio .left-container .main-tab:hover {
+  background-repeat: no-repeat;
+  background: linear-gradient(to right, #0086D1, #0098DB);
+}
+.audio .left-container .green {
+  background-repeat: no-repeat;
+  background: linear-gradient(#029822, #01bb3f, #029822);
+}
+.audio .left-container .green:hover {
+  background-repeat: no-repeat;
+  background: linear-gradient(#007e2a, #01420f, #007e2a);
+}
+.audio .left-container .red {
+  background-repeat: no-repeat;
+  background: linear-gradient(#980202, #bb0101, #980202);
+}
+.audio .left-container .red:hover {
+  background-repeat: no-repeat;
+  background: linear-gradient(#940000, #5a0000, #940000);
 }
 
 .audio .left-container .search-container {
@@ -178,15 +208,18 @@
   cursor: pointer;
 }
 
-.audio .left-container .main-btn:hover {
-  background-repeat: no-repeat;
-  background: linear-gradient(to right, #0086D1, #0098DB);
-  cursor: pointer;
+.nav-head{
+  width: 100%;
+  padding: 1%;
 }
-
-/*This adjusts the margins for the home button*/
-.navbar-header{
-  margin: 2%;
+.nav-head button{
+  display: inline-block;
+}
+.nav-head span{
+  float: right;
+  padding: 2%;
+  background-color: white;
+  border-radius: 4px;
 }
 
 

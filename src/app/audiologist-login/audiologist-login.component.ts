@@ -33,6 +33,8 @@ export class AudiologistLoginComponent {
     if (this.audiologistUserName === 'Candi' && this.audiologistID === '123456') {
       Utilities.setSessionStorage('audiologist-pin', this.audiologistID);
       console.log('Audiologist log in ' + this.audiologistID);
+      Utilities.setSessionStorage('permissions' , 'audiologist');
+      //Utilities.setSessionStorage('permissions' , 'admin');
       this.router.navigateByUrl('/audiologist');
     } else {
       this.authenticationFlag = false;

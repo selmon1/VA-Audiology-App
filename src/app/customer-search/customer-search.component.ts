@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { TestsDataService } from '../services/tests-data.service';
-import { TfiDataService } from '../services/tfi-data.service';
-import { ThsDataService } from '../services/ths-data.service';
-import { TsScreenerDataService } from '../services/ts-screener-data.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Utilities } from '../common/utlilities';
 import { CustomerSearchService } from './customer-search.service';
 import { Appointment } from '../../../api-objects/Appointment';
 
@@ -12,6 +9,7 @@ import { Appointment } from '../../../api-objects/Appointment';
     styleUrls: ['./customer-search.component.css']
 })
 export class CustomerSearchComponent implements OnInit {
+  @Output() public appointment = new EventEmitter<Object>();
     public idSearch: string;
     public searchBtn: boolean = true; // Search button is disabled while querying DB
     public invalidID: boolean = false;
@@ -20,8 +18,9 @@ export class CustomerSearchComponent implements OnInit {
     public currentPage: number = 0;
 
 
+
     constructor(
-        private testDataService: TestsDataService, private tsDataService: TsScreenerDataService, private thsDataService: ThsDataService, private tfiDataService: TfiDataService, private customerSearchService: CustomerSearchService) { }
+        private customerSearchService: CustomerSearchService) { }
 
     public ngOnInit() {
     }
@@ -36,11 +35,9 @@ export class CustomerSearchComponent implements OnInit {
 
         this.searchBtn = true;
     }
-    // CHANGE this function to actually load the selected appointment into sessionStorage and tell
-    // audiologist-navigation to change state
+    // Emits the selected appointment, so that audiologist-navigation can load the appointment data
     public loadAppt(appt: Appointment) {
-        if (appt['id'] === '') { return; }
-        // for each dataService saveData
+        this.appointment.emit(appt);
         console.log('appt: ID-"' + appt.appointmentid + '"      Audiologist-"' + appt.authorityname + '"');
     }
     // pagination functions

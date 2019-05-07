@@ -1,40 +1,57 @@
-<!--<nav class="navbar navbar-fixed-top" id="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a href="#" class="btn btn-info btn-lg">
-        <span class="glyphicon glyphicon-home"></span> Home
-      </a>
-    </div>
-    <!--<div class="aud-login" id="aud-button" style="float: right">
-          <button (click)="patientOnClick()" type="button" class="btn btn-primary btn-sm">Audiologist Log In</button>
-    </div>
-  </div>
-</nav>-->
-
-
+<!--
+  To add your component you must first add the tab/button,
+  then add the component tag toward the bottom.
+-->
 <div class="audio">
   <div class="container">
     <div class="{{active ? 'left-container' : 'left-container-hide'}}">
-      <div class="row">
-        <!-- <logo logoRouteOption="1" view="audio-view"></logo> -->
+
+      <div class="nav-head">
+        <button class="btn red" (click)="logout()">Logout</button>
+        <span *ngIf="patientID !== null" >Patient ID: {{ patientID }}</span>
       </div>
 
-      <!-- ADDED THE HOME BUTTON HERE!!! -->
-      <div class="navbar-header">
-        <a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-home"></span> Home
-        </a>
+      <!--
+        Add tab/button
+        Check if your component is one commented out below first.
+        If not, then navigation-aids.ts will need to be modified to include
+        the new tab.  Instructions are there.
+      -->
+      <div *ngIf="state.tabIsAvailable(TabsEnum.SUMMARY)" class="row">
+        <button class="btn main-tab" (click)="state.selectTab(TabsEnum.SUMMARY)">Summary</button>
       </div>
-
-      <div class="search-container">
-        <input type="text" placeholder="Search...">
-        <button type="submit"><i class="fa fa-search"></i></button>
+      <div *ngIf="state.tabIsAvailable(TabsEnum.TESTS)" class="row">
+        <button class="btn main-tab" (click)="state.selectTab(TabsEnum.TESTS)">Tests</button>
       </div>
-
-    <div class="row"><button class="main-btn" (click)="showRecommendedTests()">Tests</button></div>
-    <div class="row"><button class="main-btn" (click)="showSummary()">Summary</button></div>
-    <div class="row"><button class="main-btn" (click)="showNotes()">Notes</button></div>
-    <div class="row"><button class="main-btn" (click)="submitSurvey()">Submit</button></div>
+      <div *ngIf="state.tabIsAvailable(TabsEnum.NOTES)" class="row">
+        <button class="btn main-tab" (click)="state.selectTab(TabsEnum.NOTES)">Notes</button>
+      </div>
+      <div *ngIf="state.tabIsAvailable(TabsEnum.SEARCH)" class="row">
+        <button class="btn main-tab" (click)="state.selectTab(TabsEnum.SEARCH)">Search</button>
+      </div>
+      <!--
+      <div *ngIf="state.tabIsAvailable(TabsEnum.USERS)" class="row">
+        <button class="btn main-tab" (click)="state.selectTab(TabsEnum.USERS)">Users</button>
+      </div>
+      <div *ngIf="state.tabIsAvailable(TabsEnum.QUERIES)" class="row">
+        <button class="btn main-tab" (click)="state.selectTab(TabsEnum.QUERIES)">Queries</button>
+      </div>
+      <div *ngIf="state.tabIsAvailable(TabsEnum.SPREAD)" class="row">
+        <button class="btn green main-nav" (click)="state.selectTab(TabsEnum.SPREAD)">Download Spreadsheet</button>
+      </div>
+      -->
+      <div *ngIf="state.tabIsAvailable(TabsEnum.ACCOUNT)" class="row">
+        <button class="btn main-tab" (click)="state.selectTab(TabsEnum.ACCOUNT)">My Account</button>
+      </div>
+      <div *ngIf="state.tabIsAvailable(TabsEnum.SUBMIT_BTN)" class="row">
+        <button id="submit" class="btn green main-nav" (click)="submitSurvey()">Submit</button>
+      </div>
+      <div *ngIf="state.tabIsAvailable(TabsEnum.DISCARD_BTN)" class="row">
+        <button id="discard" class="btn red main-nav" (click)="clearData()">Discard</button>
+      </div>
+      <div *ngIf="state.tabIsAvailable(TabsEnum.CLOSE_BTN)" class="row">
+        <button id="close" class="btn red main-nav" (click)="clearData()">Close</button>
+      </div>
 
     </div>
     <div class="{{active ? 'right-container' : 'right-container-full'}}">
@@ -46,16 +63,34 @@
         <div class="col-sm-3 col-md-3 col-lg-3 col-lg-offset-9 col-md-offset-9 col-sm-offset-9" style="text-align: right;">
           <button class="pdf-btn" kendo-button (click)="pdf.saveAs('download.pdf')">Save As PDF</button>
         </div>
+        <kendo-pdf-export #pdf paperSize="A4" margin="2cm" [scale]="scale">
+          <!--
+            Add your component tag here, ensure that you use the same TabsEnum as above to check for display.
+          -->
+          <customer-search 
+            class="{{state.tabIsSelected(TabsEnum.SEARCH) ? 'main-right-container' : 'main-right-container-hidden' }}" 
+            (appointment)="onApptLoad($event)">
+          </customer-search>
+          <audiologist-summary 
+            class="{{state.tabIsSelected(TabsEnum.SUMMARY) ? 'main-right-container' : 'main-right-container-hidden'}}">
+          </audiologist-summary>
+          <audiogram 
+            class="{{state.tabIsSelected(TabsEnum.TESTS) ? 'main-right-container': 'main-right-container-hidden'}}">
+          </audiogram>
+          <otoscopy 
+            class="{{state.tabIsSelected(TabsEnum.TESTS) ? 'main-right-container': 'main-right-container-hidden'}}">
+          </otoscopy>
+          <tympanometry 
+            class="{{state.tabIsSelected(TabsEnum.TESTS) ? 'main-right-container' : 'main-right-container-hidden'}}">
+          </tympanometry>
+          <my-account 
+            class="{{state.tabIsSelected(TabsEnum.ACCOUNT) ? 'main-right-container' : 'main-right-container-hidden' }}">
+          </my-account>
+          <notes 
+            class="{{state.tabIsSelected(TabsEnum.NOTES) ? 'main-right-container' : 'main-right-container-hidden'}}">
+          </notes>
+        </kendo-pdf-export>
       </div>
-      <kendo-pdf-export #pdf paperSize="A4" margin="2cm" [scale]="scale">
-        <audiologist-summary class="{{summary ? 'main-right-container' : 'main-right-container-hidden'}}"></audiologist-summary>
-        <audiogram class="{{recommendedTests ? 'main-right-container': 'main-right-container-hidden'}}"></audiogram>
-        <otoscopy class="{{recommendedTests ? 'main-right-container': 'main-right-container-hidden'}}"></otoscopy>
-        <tympanometry class="{{recommendedTests ? 'main-right-container' : 'main-right-container-hidden'}}"></tympanometry>
-        <notes class="{{notes ? 'main-right-container' : 'main-right-container-hidden'}}"></notes>
-        <!-- <my-account></my-account> -->
-        <!-- <customer-search></customer-search> -->
-      </kendo-pdf-export>
     </div>
   </div>
 </div>
