@@ -16,10 +16,16 @@ import { ServerAuthenticationService } from '../services/server-authentication.s
 export class AudiologistLoginComponent {
   // Added audiologistUserName & changed (patientId --> audiologistID)
   public audiologistUserName: string = '';
-  public audiologistID: string = '';
+  public audiologistPassword: string = '';
   public authenticationFlag: boolean = true;
 
-  constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService, private serverAuthenticationService: ServerAuthenticationService) { };
+  constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService, private serverAuthenticationService: ServerAuthenticationService) {
+        //If we are already Authenticated: redirect to the Audiologist page
+
+    this.serverAuthenticationService.heartbeat().subscribe((response) => {
+      this.router.navigateByUrl('/audiologist');
+    });
+  }
 
   /**
    * This function will be call when the "check in" button is pressed.
@@ -31,7 +37,7 @@ export class AudiologistLoginComponent {
   public onClick() {
 
     // Added new check for audiologistUserName on top off audiologistID
-    this.serverAuthenticationService.login(this.audiologistUserName, this.audiologistID).subscribe((response) => {
+    this.serverAuthenticationService.login(this.audiologistUserName, this.audiologistPassword).subscribe((response) => {
       Utilities.setSessionStorage('userId', response.data.user.toString());
       Utilities.setSessionStorage('sessionId', response.data.session.toString());
       Utilities.setSessionStorage('permissions' , 'audiologist');
@@ -42,7 +48,7 @@ export class AudiologistLoginComponent {
       error => {
         this.authenticationFlag = false;
         console.log('failed log for ' + this.audiologistUserName);
-        this.audiologistID = '';
+        this.audiologistPassword = '';
       });
   }
 
@@ -52,7 +58,7 @@ export class AudiologistLoginComponent {
    * @param event the event caught by the action.
    */
   public keyDownFunction(event) {
-    if ( event.keyCode === 13) {
+    if (event.keyCode === 13) {
       this.onClick();
     } else {
       this.authenticationFlag = true;
