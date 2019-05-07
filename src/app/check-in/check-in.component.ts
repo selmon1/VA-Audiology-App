@@ -14,6 +14,9 @@ import { ThsDataService } from '../services/ths-data.service';
 
 export class CheckInComponent {
   public patientId: string = '';
+  public firstName: string = '';
+  public lastName: string = '';
+  public email: string = '';
   public authenticationFlag: boolean = true;
   
   constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService) {};
