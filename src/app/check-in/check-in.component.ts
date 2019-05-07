@@ -68,7 +68,9 @@ export class CheckInComponent {
   }
 
   isNameValid() : boolean {
-    return this.firstName.length > 0 && this.lastName.length > 0;
+    let regexp = new RegExp('^[A-Z]([a-z]|[A-Z])+$');
+
+    return regexp.test(this.firstName) && regexp.test(this.lastName);
   }
 
   isPatientIdValid() : boolean {
