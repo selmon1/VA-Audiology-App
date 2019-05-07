@@ -19,7 +19,16 @@ export class AudiologistLoginComponent {
   public audiologistPassword: string = '';
   public authenticationFlag: boolean = true;
 
-  constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService, private serverAuthenticationService: ServerAuthenticationService) { };
+  constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService, private serverAuthenticationService: ServerAuthenticationService) { }
+
+  public ngOnInit() {
+    let userId = Utilities.getSessionStorage('userId');
+    let sessionId = Utilities.getSessionStorage('sessionId');
+
+    if (userId && sessionId) {
+      this.router.navigateByUrl('/audiologist');
+    }
+  }
 
   /**
    * This function will be call when the "check in" button is pressed.
@@ -30,18 +39,11 @@ export class AudiologistLoginComponent {
    */
   public onClick() {
 
-    // Added new check for audiologistUserName on top off audiologistID
     this.serverAuthenticationService.login(this.audiologistUserName, this.audiologistPassword).subscribe((response) => {
-      Utilities.setSessionStorage('userId', response.data.user.toString());
-      Utilities.setSessionStorage('sessionId', response.data.session.toString());
-      Utilities.setSessionStorage('permissions' , 'audiologist');
-      //Utilities.setSessionStorage('permissions' , 'admin');
-      console.log('Audiologist log in ' + this.audiologistUserName + ' as ID = ' + response.data.user);
       this.router.navigateByUrl('/audiologist');
     },
       error => {
         this.authenticationFlag = false;
-        console.log('failed log for ' + this.audiologistUserName);
         this.audiologistPassword = '';
       });
   }

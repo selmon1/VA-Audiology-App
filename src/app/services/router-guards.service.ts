@@ -43,11 +43,10 @@ export class RouterGuards implements CanActivate {
     if (url === '/audiologist') {
       let userId = Utilities.getSessionStorage('userId');
       let sessionId = Utilities.getSessionStorage('sessionId');
-
       if (!userId || !sessionId) {
         this.router.navigateByUrl('aud-login');
       }
-      return true;
     }
+    return true;
   }
 }

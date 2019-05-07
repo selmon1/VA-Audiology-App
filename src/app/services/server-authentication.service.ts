@@ -3,6 +3,8 @@ import { ServerApiService } from './server-api.service';
 import { Observable } from 'rxjs';
 import { Response } from '../../../api-objects/GenericResponse'
 import { LoginSession } from 'api-objects/LoginSession';
+import { tap } from 'rxjs/operators';
+import { Utilities } from '../common/utlilities';
 
 
 @Injectable()
@@ -12,12 +14,18 @@ export class ServerAuthenticationService {
 
     public login(username: string, password: string): Observable<Response<LoginSession>> {
         return this.serverApiService.post<LoginSession>('login', { 'username': username, 'password': password })
-        //TODO: Find technique of piping authentication into session storrage  
-            // .pipe(tap((response) => {
-            //     Utilities.setSessionStorage('X-USER-ID', response.data.user)
-            //     Utilities.setSessionStorage('X-Session-ID', response.data.session)
-            //     console.log('returned ids: ' + response.data.user + response.data.session);
-            // }));
+            //TODO: Find technique of piping authentication into session storrage  
+            .pipe(tap((response) => {
+                Utilities.setSessionStorage('userId', response.data.user.toString());
+                Utilities.setSessionStorage('sessionId', response.data.session.toString());
+                console.log('Permission check: ' + response.data.authorityType);
+                if (response.data.authorityType > 0) {
+                    Utilities.setSessionStorage('permissions', 'admin');
+                } else {
+                    Utilities.setSessionStorage('permissions', 'audiologist');
+                    console.log('PERMISSION ADMIN!!!')
+                }
+            }));
     }
 
     public heartbeat(): Observable<Response<string>> {
