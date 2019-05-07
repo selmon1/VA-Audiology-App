@@ -6,6 +6,7 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { Utilities } from '../common/utlilities';
+import { ServerAuthenticationService } from './server-authentication.service';
 // import { SecurityService } from './security.service';
 
 @Injectable()
@@ -13,6 +14,7 @@ export class RouterGuards implements CanActivate {
 
   constructor(
     public router: Router,
+    private auth: ServerAuthenticationService,
     // public securityService: SecurityService
   ) { }
 
@@ -39,8 +41,21 @@ export class RouterGuards implements CanActivate {
 
     // restrict access to audiologist pages
     if (url === '/audiologist') {
-      let pin = Utilities.getSessionStorage('audiologist-pin');
-      // TODO: ADD HEARTBEAT
+      let session = Utilities.getSessionStorage('userId');
+      if (!session) {
+        this.router.navigateByUrl('aud-login');
+      } else {
+        // verify against static - navigate to check in if it's incorrect
+        // This can be replaced in the future with a request to verify against DB
+
+        this.auth.heartbeat().subscribe((response) => {
+          console.log(response.data);
+        },
+          (error) => {
+            console.log('User no longer authenticated, please log in again')
+            this.router.navigateByUrl('aud-login');
+          })
+      }
     }
     return true;
   }
