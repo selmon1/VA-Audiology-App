@@ -16,7 +16,7 @@
   "devDependencies": {},
   "scripts": {
     "tsc": "tsc",
-    "server": "node ./build/app.js",
+    "server": "node ./build/api/app.js",
     "dev": "npm run tsc && npm run server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

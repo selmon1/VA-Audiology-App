@@ -32,6 +32,13 @@ export class MissingParameter extends APIError {
     httpStatus(): number { return 400; }
 }
 
+export class DuplicateInsertion extends APIError {
+    constructor(...params) {
+        super(...params);
+    }
+    httpStatus(): number { return 409; }
+}
+
 export function defaultErrorHandler(request, response, ex) {
     let httpStatus: number;
     let message: string;

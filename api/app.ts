@@ -28,6 +28,13 @@ app.post('/login', loginEndpoint);
 import appointmentsEndpoint from './appointments';
 app.get('/appointments', appointmentsEndpoint);
 
+// -- CLIENT ENDPOINTS START --
+
+import patientPOSTEndpoint from './patient/patient-create';
+app.post('/patient', patientPOSTEndpoint);
+
+// -- CLIENT ENDPOINTS END --
+
 import indexEndpoint from './index';
 app.get('/', indexEndpoint);
 
