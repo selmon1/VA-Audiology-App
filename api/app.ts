@@ -26,7 +26,9 @@ import loginEndpoint from './login';
 app.post('/login', loginEndpoint);
 
 import appointmentsEndpoint from './appointments';
+import appointmentsPostEndpoint from './appointmentsPOST';
 app.get('/appointments', appointmentsEndpoint);
+app.post('/appointments', appointmentsPostEndpoint);
 
 // -- CLIENT ENDPOINTS START --
 
