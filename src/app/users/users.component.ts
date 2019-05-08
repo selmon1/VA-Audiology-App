@@ -3,7 +3,6 @@ import { MyAccountComponent } from '../my-account';
 import { UsersObject } from '../../../api-objects/UsersObject';
 // import * as createAccount from '../services/createAccount'; // Uncomment when available
 
-
 @Component({
   selector: 'users',
   templateUrl: './users.component.html',
@@ -13,23 +12,23 @@ import { UsersObject } from '../../../api-objects/UsersObject';
 export class UsersComponent implements OnInit {
 
   public username: string = '';
-	public userPassword: string = '';
-	public authorityType: string = '';
-	public userEmail: string = '';
-	public name: string = '';
-	public usernameTaken: boolean = false;
+  public userPassword: string = '';
+  public authorityType: string = '';
+  public userEmail: string = '';
+  public name: string = '';
+  public usernameTaken: boolean = true;
+  public showUserInfo: boolean = false;
 
   constructor() {}
 
   public ngOnInit() {
   }
 
-
 /** Checks whether a username exists or not, sets the temp password if the user doesn't exist, 
  *  and returns true or false based on if the user exists or not.
  *  @Param username: Checked for uniqueness by the createAccount call
- */ 
-  public checkusername(username:string): boolean {
+ */
+  public checkUserName(username:string): boolean {
   	/*try{
       let userAvailable = createAccount(username);
       if(userAvailable.error)){
@@ -43,32 +42,43 @@ export class UsersComponent implements OnInit {
       console.error('An error occured!',e);
   	}
     */
-    return false;
+
+   // for now if the user entered a username, return false(meaning that the username is not taken)
+   if(this.username !== '') {
+       return false;
+    } else {
+        return true;
+    }
   }
 
-  // public checkNameWithUsername(): boolean {
-
-  //   if()
-  // }
-
+  /**
+   * Sets the authority type based on the selection from the drop down menu
+   */
+  public chooseAuth(event) {
+    this.authorityType = event.target.value;
+  }
 
   public createUser(): UsersObject {
-    this.usernameTaken = this.checkusername(this.username);
-    
-    if (this.usernameTaken === false) {
+    this.usernameTaken = this.checkUserName(this.username);
 
-      console.log(this.username,this.name,this.userEmail,this.userPassword,this.authorityType);
+    if(!this.usernameTaken) {
+        if (this.name !== '' && this.username !== '' && this.authorityType !== '' && this.userEmail !== '') {
+            console.log(this.username,this.name,this.userEmail,this.userPassword,this.authorityType);
+            this.showUserInfo = true;
 
-      return {
-    		username: this.username,
-    		name: this.name,
-        email: this.userEmail,
-    		password: this.userPassword,
-    		authorityType: this.authorityType
-      };
+            return {
+                username: this.username,
+                name: this.name,
+                email: this.userEmail,
+                password: this.userPassword,
+                authorityType: this.authorityType
+            };
+        } else {
+            alert('Please fill out all of the fields!')
+        }
 
     } else {
-      alert('username is not Available');
+      alert('Username not available!');
     }
   }
 

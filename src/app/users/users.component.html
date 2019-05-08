@@ -1,62 +1,32 @@
-<!-- <div class="container">
-	<div class="email-container">
-		<div class="row">
-			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
-				<input type="input/email" name="email-input"  [(ngModel)]="email" required placeholder="Email">
-			</div>
-		</div>
-	</div>
-	<div class="username-container">
-		<div class="row">
-			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
-				<input type="input/text" name="username-input" [(ngModel)]="username" required placeholder="Username">
-			</div>
-		</div>
-	</div>
-	<div class="radio-btn">
-		<div class="row">
-			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
-				<mat-card-content>
-					<mat-radio-group>
-						<mat-radio-button *ngFor="let type of AuthType" [value]="type" (change)="typeChange($event)">
-						</mat-radio-button>
-					</mat-radio-group>
-				</mat-card-content>
-			</div>
-		</div>
-	</div>
-</div> -->
-
-
 <form id="new-user-form">
 	<div class="name-container">
 		<div class="row">
 			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
-				<input type="text" name="name-input"  [(ngModel)]="name" required placeholder="Name">
+				<input type="text" name="name-input"  [(ngModel)]="name" placeholder="Name" required>
 			</div>
 		</div>
 	</div>
 	<div class="email-container">
 		<div class="row">
 			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
-				<input type="email" name="email-input"  [(ngModel)]="userEmail" required placeholder="Email">
+				<input type="email" name="email-input"  [(ngModel)]="userEmail"  placeholder="Email" required>
 			</div>
 		</div>
 	</div>
 	<div class="username-container">
 		<div class="row">
 			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
-				<input type="text" name="username-input" [(ngModel)]="username" required placeholder="Username">
+				<input type="text" name="username-input" [(ngModel)]="username"  placeholder="Username" required>
 			</div>
 		</div>
 	</div>
 	<div class="auth-container">
 		<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
 			<label>Type</label>
-			<select ng-model="AuthType">
+			<select (change)="chooseAuth($event)">
 				<option value=""></option>
-				<option value="AuthType.Admin">Admin</option>
-				<option value="AuthType.Audiologist">Audiologist</option>
+				<option value="Admin">Admin</option>
+				<option value="Audiologist">Audiologist</option>
 			</select>
 		</div>
 	</div>
@@ -65,4 +35,19 @@
 			<button type="submit" form="new-user-form" value="submit" (click)="createUser()">Create User</button>
 		</div>
 	</div>
+	<div *ngIf="showUserInfo" else="!showUserInfo">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+				<label><h3>Name: </h3></label>{{name}}<br/>
+			    <label><h3>Email: </h3></label>{{userEmail}}<br/>
+		        <label><h3>Username: </h3> </label>{{username}}<br/>
+			    <label><h3>Temporary Password: </h3></label>{{userPassword}}<br/>
+			    <label><h3>Authority Type: </h3></label>{{authorityType}}<br/>
+			</div>
+		</div>
+
+	</div>
+	<ng-template #!showUserInfo>
+		<h1>Username is not available!</h1>
+	</ng-template>
 </form>
