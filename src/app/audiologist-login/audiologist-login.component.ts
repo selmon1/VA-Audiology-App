@@ -40,6 +40,7 @@ export class AudiologistLoginComponent {
   public onClick() {
 
     this.serverAuthenticationService.login(this.audiologistUserName, this.audiologistPassword).subscribe((response) => {
+      // console.log(response.data.authorityType);
       this.router.navigateByUrl('/audiologist');
     },
       error => {

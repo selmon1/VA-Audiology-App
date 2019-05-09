@@ -10,7 +10,7 @@ export default handler(async (req) => {
     // TODO update to new DB usage, with transaction
     errors.requireParams(req.body, ['username', 'password']);
     return await connect(async (db: Client) => {
-        const userFound = await db.query('SELECT AuthorityId, Password FROM Authority WHERE UserName = $1', [req.body.username]);
+        const userFound = await db.query('SELECT AuthorityId, Password, authoritytype FROM Authority WHERE UserName = $1', [req.body.username]);
         if (userFound.rows.length !== 1) {
             // potential timing attack determines whether a username is valid
             // waste some time to make the attack more difficult
@@ -25,11 +25,13 @@ export default handler(async (req) => {
         }
 
         const userId = userFound.rows[0].authorityid;
+        const authoritytype = userFound.rows[0].authoritytype;
         auth.clearStaleKeys(db, userId);
         const sessionId = await auth.beginSession(db, userId);
         return {
             user: userId,
             session: sessionId,
+            authorityType: authoritytype,
         };
     });
 });

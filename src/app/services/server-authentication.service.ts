@@ -18,12 +18,11 @@ export class ServerAuthenticationService {
             .pipe(tap((response) => {
                 Utilities.setSessionStorage('userId', response.data.user.toString());
                 Utilities.setSessionStorage('sessionId', response.data.session.toString());
-                console.log('Permission check: ' + response.data.authorityType);
+                // Making Permission Check
                 if (response.data.authorityType > 0) {
                     Utilities.setSessionStorage('permissions', 'admin');
                 } else {
                     Utilities.setSessionStorage('permissions', 'audiologist');
-                    console.log('PERMISSION ADMIN!!!')
                 }
             }));
     }
