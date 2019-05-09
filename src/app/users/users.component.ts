@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MyAccountComponent } from '../my-account';
 import { UsersObject } from '../../../api-objects/UsersObject';
 // import * as createAccount from '../services/createAccount'; // Uncomment when available
 
@@ -63,7 +62,7 @@ export class UsersComponent implements OnInit {
 
     if(!this.usernameTaken) {
         if (this.name !== '' && this.username !== '' && this.authorityType !== '' && this.userEmail !== '') {
-            console.log(this.username,this.name,this.userEmail,this.userPassword,this.authorityType);
+            // console.log(this.username,this.name,this.userEmail,this.userPassword,this.authorityType);
             this.showUserInfo = true;
 
             return {

@@ -34,7 +34,7 @@ export class AudiologistLoginComponent {
       Utilities.setSessionStorage('audiologist-pin', this.audiologistID);
       console.log('Audiologist log in ' + this.audiologistID);
       Utilities.setSessionStorage('permissions' , 'audiologist');
-      //Utilities.setSessionStorage('permissions' , 'admin');
+      // Utilities.setSessionStorage('permissions' , 'admin');
       this.router.navigateByUrl('/audiologist');
     } else {
       this.authenticationFlag = false;
