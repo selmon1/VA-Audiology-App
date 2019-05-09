@@ -11,7 +11,7 @@ import { UsersObject } from '../../../api-objects/UsersObject';
 export class UsersComponent implements OnInit {
 
   public username: string = '';
-  public userPassword: string = '';
+  public userPassword: string = 'htxliwq7ja'; // example temp password to be displayed to the user(Remove later)
   public authorityType: string = '';
   public userEmail: string = '';
   public name: string = '';
@@ -62,7 +62,6 @@ export class UsersComponent implements OnInit {
 
     if(!this.usernameTaken) {
         if (this.name !== '' && this.username !== '' && this.authorityType !== '' && this.userEmail !== '') {
-            // console.log(this.username,this.name,this.userEmail,this.userPassword,this.authorityType);
             this.showUserInfo = true;
 
             return {

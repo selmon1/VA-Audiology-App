@@ -38,11 +38,13 @@
 	<div *ngIf="showUserInfo" else="!showUserInfo">
 		<div class="row">
 			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
-				<label><h3>Name: </h3></label>{{name}}<br/>
-			    <label><h3>Email: </h3></label>{{userEmail}}<br/>
-		        <label><h3>Username: </h3> </label>{{username}}<br/>
-			    <label><h3>Temporary Password: </h3></label>{{userPassword}}<br/>
-			    <label><h3>Authority Type: </h3></label>{{authorityType}}<br/>
+				<br/>
+				<label class="warning">IMPORTANT: For your security please change your password as soon as possible!</label><br/><br/>
+				<label><h3>Name: </h3></label>  {{name}}<br/>
+			    <label><h3>Email: </h3></label>  {{userEmail}}<br/>
+				<label><h3>Username: </h3></label>  {{username}}<br/>
+			    <label><h3>Temporary Password: </h3></label>  {{userPassword}}<br/>
+			    <label><h3>Authority Type: </h3></label>  {{authorityType}}<br/><br/>
 			</div>
 		</div>
 
