@@ -89,7 +89,7 @@ import { ApiUsersCrudService } from './services/api-users-crud.service';
 import { ServerAuthenticationService } from './services/server-authentication.service';
 import { NotificationService } from './services/notification.service';
 import { ErrorHandlingService } from './services/error-handling.service';
-import { AdminPatientHandler } from './services/admin-patient.service.ts';
+import { AdminPatientService } from './services/admin-patient.service.ts';
 
 
 import { CurrentUsersComponent } from './current-users/current-users.component';
@@ -193,7 +193,7 @@ type StoreType = {
     RouterGuards,
     TestsDataService,
     SurveySubmitHandler,
-    AdminPatientHandler,
+    AdminPatientService,
     CustomerSearchService,
     ServerApiService,
     ApiUsersCrudService,
