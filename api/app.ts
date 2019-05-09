@@ -48,6 +48,10 @@ app.post('/patient', patientPOSTEndpoint);
 
 import patientUpdateNotes from './patient/patient-update-notes';
 app.post('/patient/*/notes', patientUpdateNotes);
+
+import patientDelete from './patient/patient-delete';
+app.delete('/patient/:patientId', patientDelete);
+
 // -- CLIENT ENDPOINTS END --
 
 import indexEndpoint from './index';
