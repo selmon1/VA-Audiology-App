@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ServerApiService {
   // TODO: Configure base Url, to point to hosted endpoint. (localhost:3333 isn't a valid endpoint.)
 
-  private baseUrl = 'REPLACE ME';  // URL to web api
+  private baseUrl = 'https://596e9d41-ba66-4f44-90aa-081aebfc3fff.mock.pstmn.io/';  // URL to web api
 
   constructor(private http: HttpClient) { }
   

@@ -1,5 +1,5 @@
-export class UserResponse {
-    public username: string;
-    public password: string;
-    public success: boolean;
+export interface UserResponse {
+    username: string,
+    password: string,
+    success: boolean
 }

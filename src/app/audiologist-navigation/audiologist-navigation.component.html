@@ -9,6 +9,7 @@
       <div class="nav-head">
         <button class="btn red" (click)="logout()">Logout</button>
         <span *ngIf="patientID !== null" >Patient ID: {{ patientID }}</span>
+        <span>Users: {{ users }}</span>
       </div>
 
       <!--
@@ -28,6 +29,9 @@
       </div>
       <div *ngIf="state.tabIsAvailable(TabsEnum.SEARCH)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.SEARCH)">Search</button>
+      </div>
+      <div class="row">
+        <button class="btn main-tab" (click)="testUsersCRUD()">Test CRUD</button>
       </div>
       <!--
       <div *ngIf="state.tabIsAvailable(TabsEnum.USERS)" class="row">
