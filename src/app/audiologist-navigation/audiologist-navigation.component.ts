@@ -4,7 +4,6 @@ import { AudiologistSummaryComponent, tfiNames } from '../audiologist-summary/au
 import { Utilities } from '../common/utlilities';
 import { State, StatesEnum, TabsEnum } from './navigation-aids';
 import { Appointment } from 'api-objects/Appointment';
-import { ApiUsersCrudService } from '../services/api-users-crud.service';
 
 @Component({
   selector: 'audio-navigation',
@@ -23,10 +22,9 @@ export class AudiologistNavigationComponent {
   public active: boolean = true;
   public scale: number = 0.55;
   public state: State = new State();
-  public users: string = 'Users';
   @ViewChild(AudiologistSummaryComponent) private summaryComponent: AudiologistSummaryComponent;
 
-  constructor(private router: Router, private service: ApiUsersCrudService) {
+  constructor(private router: Router) {
   }
 
   public ngOnInit() {
