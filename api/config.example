@@ -1,5 +1,7 @@
 //Make a copy of this file called config.ts with the correct information
+//Changes to config.ts do not take effect until you recompile and restart the server
 export default {
+    //Credentials to connect to the database
     database: {
         user: 'postgres',
         host: 'localhost',
@@ -23,5 +25,15 @@ export default {
         maxIdle: 60 * 60 * 1000,
         //session keys expire after 14 hours even if in use
         maxAge: 14 * 60 * 60 * 1000,
+    },
+    //Settings for generating random passwords, whenever creating a user or resetting a password
+    randomPasswords: {
+        // set of all characters that may appear in a randomly-generated password
+        // the default includes all standard US keyboard keys except ` space " \
+        // must contain at least 50 characters and at most 256 characters
+        allowedCharacters: "abcdefghijklmnopqrstuvwzyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()-=[];',./_+{}|:<>?",
+        // length of all randomly generated passwords
+        // should be at least 10
+        length: 12,
     },
 };
