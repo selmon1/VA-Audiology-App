@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersObject } from '../../../api-objects/UsersObject';
-// import * as createAccount from '../services/createAccount'; // Uncomment when available
+import { UsersObject, authorityTypes } from '../../../api-objects/UsersObject';
+// import * as createAccount from '../services/api-users-crud.services.ts'; // Uncomment when available
 
 @Component({
   selector: 'users',
@@ -12,72 +12,66 @@ export class UsersComponent implements OnInit {
 
   public username: string = '';
   public userPassword: string = 'htxliwq7ja'; // example temp password to be displayed to the user(Remove later)
-  public authorityType: string = '';
+  public authorityType: number;
   public userEmail: string = '';
   public name: string = '';
   public usernameTaken: boolean = true;
   public showUserInfo: boolean = false;
+  public validEmail: boolean;
 
   constructor() {}
-
+  
   public ngOnInit() {
   }
+  
+  get authorityTypes() { return authorityTypes; }
 
-/** Checks whether a username exists or not, sets the temp password if the user doesn't exist, 
+/** Checks whether a username exists or not, sets the temp password if the user doesn't exist,
  *  and returns true or false based on if the user exists or not.
  *  @Param username: Checked for uniqueness by the createAccount call
  */
-  public checkUserName(username:string): boolean {
-  	/*try{
-      let userAvailable = createAccount(username);
-      if(userAvailable.error)){
-        return this.usernameTaken = true;
-      } else {
-        this.userPassword = userAvailable.password;
-        reutrn this.usernameTaken = false;
-      }
+  public checkUserName(UserRequest: UsersObject): boolean {
 
-  	} catch(e){
-      console.error('An error occured!',e);
-  	}
-    */
+    // TODO: 
+    return false;
+  }
 
-   // for now if the user entered a username, return false(meaning that the username is not taken)
-   if(this.username !== '') {
-       return false;
-    } else {
-        return true;
-    }
+  public isInputValid(email: string): boolean {
+    let checkEmail = /\S+@\S+\.\S+/;
+    return checkEmail.test(String(email));
   }
 
   /**
    * Sets the authority type based on the selection from the drop down menu
    */
-  public chooseAuth(event) {
-    this.authorityType = event.target.value;
+  public chooseAuth(event):void {
+    this.authorityType = authorityTypes.indexOf(event.target.value);
   }
 
-  public createUser(): UsersObject {
-    this.usernameTaken = this.checkUserName(this.username);
+  public createUser(): void {
 
-    if(!this.usernameTaken) {
-        if (this.name !== '' && this.username !== '' && this.authorityType !== '' && this.userEmail !== '') {
-            this.showUserInfo = true;
-
-            return {
-                username: this.username,
-                name: this.name,
-                email: this.userEmail,
-                password: this.userPassword,
-                authorityType: this.authorityType
-            };
-        } else {
-            alert('Please fill out all of the fields!')
-        }
-
+    if(this.isInputValid(this.userEmail)) {
+      this.validEmail = true;
     } else {
-      alert('Username not available!');
+      this.validEmail = false;
+      this.showUserInfo = false;
+    }
+
+    if (this.name !== '' && this.username !== '' && this.validEmail !== false) {
+      this.showUserInfo = true;
+
+      let UsersCreateRequest: UsersObject = {
+        username: this.username,
+        name: this.name,
+        email: this.userEmail,
+        password: this.userPassword,
+        authorityType: this.authorityType
+      };
+
+      this.usernameTaken = this.checkUserName(UsersCreateRequest);
+
+      } else {
+        console.log("NO");
+      }
     }
   }
-
-}
