@@ -1,1 +1,0 @@
-export type userType = 'Admin' | 'Audiologist';
