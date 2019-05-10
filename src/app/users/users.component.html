@@ -1,4 +1,6 @@
-<form id="new-user-form">
+
+{{debugging}}
+<form id="new-user">
 	<div class="name-container">
 		<div class="row">
 			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
@@ -18,6 +20,7 @@
 		<div class="row">
 			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
 				<input type="text" name="username" [(ngModel)]="username"  placeholder="Username" required>
+				<div *ngIf="usernameTaken" class="alert alert-danger">Username Not Available</div>
 			</div>
 		</div>
 	</div>
@@ -32,7 +35,7 @@
 	</div>
 	<div class="sbmt-btn">
 		<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
-			<button type="submit" form="new-user-form" value="submit" (click)="createUser()">Create User</button>
+			<button type="submit" (click)="createUser()">Create User</button>
 		</div>
 	</div>
 	<div *ngIf="showUserInfo">
@@ -43,7 +46,7 @@
 				<label><h3>Name:</h3></label>  {{name}}<br/>
 			    <label><h3>Email:</h3></label>  {{userEmail}}<br/>
 				<label><h3>Username:</h3></label>  {{username}}<br/>
-			    <label><h3>Temporary Password:</h3></label>  {{userPassword}}<br/><br/>
+				<label><h3>Temporary Password:</h3></label>  {{userPassword}}<br/><br/>
 			</div>
 		</div>
 
