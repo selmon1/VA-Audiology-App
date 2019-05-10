@@ -3,7 +3,7 @@ import withConnection from '../db';
 import * as auth from '../authenticate';
 import * as errors from '../errors';
 import { Client } from 'pg';
-import { PatientResponse } from '../../api-objects/PatientResponse';
+import { PatientResponse } from '../../api-objects/patientResponse';
 
 
 // Expects username, password, authorityName, and authorityType
