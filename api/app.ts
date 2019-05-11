@@ -27,7 +27,7 @@ app.post('/login', loginEndpoint);
 import changePasswordEndpoint from './changePassword';
 app.post('/changePassword', changePasswordEndpoint);
 
-import accountCreate from './accounts/accountCreate';
+import accountCreate from './accounts/create';
 app.post('/accounts/create', accountCreate);
 
 import appointmentsEndpoint from './appointments';

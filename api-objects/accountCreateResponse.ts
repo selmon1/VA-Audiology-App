@@ -1,6 +1,7 @@
 export interface AccountCreateResponse {
-    authorityid: number;
+    authorityId: number;
     username: string;
-    authorityname: string;
-    authoritytype: number;
+    authorityName: string;
+    authorityType: number;
+    password: string;
 }
