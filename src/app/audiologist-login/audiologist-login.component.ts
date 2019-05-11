@@ -19,7 +19,7 @@ export class AudiologistLoginComponent {
   public audiologistPassword: string = '';
   public authenticationFlag: boolean = true;
 
-  constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService, private serverAuthenticationService: ServerAuthenticationService) { }
+  constructor(private router: Router, private serverAuthenticationService: ServerAuthenticationService) { }
 
   public ngOnInit() {
     let userId = Utilities.getSessionStorage('userId');
@@ -40,7 +40,6 @@ export class AudiologistLoginComponent {
   public onClick() {
 
     this.serverAuthenticationService.login(this.audiologistUserName, this.audiologistPassword).subscribe((response) => {
-      // console.log(response.data.authorityType);
       this.router.navigateByUrl('/audiologist');
     },
       error => {
