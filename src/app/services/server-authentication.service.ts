@@ -6,6 +6,7 @@ import { LoginSession } from 'api-objects/LoginSession';
 import { tap } from 'rxjs/operators';
 import { Utilities } from '../common/utlilities';
 import { map } from 'rxjs/operators';
+import { authorityTypes } from '../../../api-objects/UsersObject';
 
 @Injectable()
 export class ServerAuthenticationService {
@@ -16,14 +17,11 @@ export class ServerAuthenticationService {
         return this.serverApiService.post<LoginSession>('login', { 'username': username, 'password': password })
             .pipe(
                 tap((response) => {
+
                     Utilities.setSessionStorage('userId', response.data.user.toString());
                     Utilities.setSessionStorage('sessionId', response.data.session.toString());
-                    // Making Permission Check
-                    if (response.data.authorityType > 0) {
-                        Utilities.setSessionStorage('permissions', 'admin');
-                    } else {
-                        Utilities.setSessionStorage('permissions', 'audiologist');
-                    }
+                    console.log(authorityTypes[response.data.authorityType]);
+                    Utilities.setSessionStorage('permissions', authorityTypes[response.data.authorityType]);
                 }),
                 map<Response<LoginSession>, null>(_ => null)
             );
