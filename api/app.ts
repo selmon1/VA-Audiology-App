@@ -43,13 +43,13 @@ app.get('/patient/:patientId', patientGet);
 // Handles select all patients query
 app.get('/patient', patientGet);
 
-import patientPOSTEndpoint from './patient/patientCreate';
-app.post('/patient', patientPOSTEndpoint);
+import patientPost from './patient/create';
+app.post('/patient', patientPost);
 
-import patientUpdateNotes from './patient/patient-update-notes';
+import patientUpdateNotes from './patient/updateNotes';
 app.post('/patient/*/notes', patientUpdateNotes);
 
-import patientDelete from './patient/patient-delete';
+import patientDelete from './patient/delete';
 app.delete('/patient/:patientId', patientDelete);
 
 // -- CLIENT ENDPOINTS END --

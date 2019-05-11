@@ -16,7 +16,7 @@ export default handler(async (req, userId) => {
 
     return withConnection(async (db: Client) => {
 
-        const results = await db.query('SELECT * FROM patient WHERE patient.patinetid = $1', [patientId]);
+        const results = await db.query('SELECT * FROM patient WHERE patient.patientid = $1', [patientId]);
         if (results.rowCount != 0) {
             throw new errors.DuplicateInsertion('DUPLICATE INSERTION: Attmpted to insert a client that already exists');
         }
