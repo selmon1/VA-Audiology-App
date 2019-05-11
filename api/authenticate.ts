@@ -8,6 +8,9 @@ import { Client } from 'pg';
 // should be extremely unlikely to generate two keys with the same id; retry when you do, up to this many times
 const maxKeygenRetries = 20;
 
+// maximum number of tries to generate a random character; extremely unlikely to be hit
+const maxRandomCharRetries = 40;
+
 // Authentication function: return user id if authorized; otherwise throw an exception
 export function alwaysPermitted(request) {
     return null;
@@ -29,6 +32,31 @@ export async function setPassword(db: Client, userId: number, password: string) 
 
 export async function matchesHash(password: string, hash: string): Promise<boolean> {
     return await bcrypt.compare(password, hash);
+}
+
+function randomChar(): string {
+    const alphabet = config.randomPasswords.allowedCharacters;
+    // ensure that all characters are equally likely to appear
+    const maxAllowableRandomByte = 255 - (256 % alphabet.length);
+    for (let retries = 0; retries < maxRandomCharRetries; retries++) {
+        // could reduce the average number of random bytes produced by generating the whole password at once rather than one char at a time
+        // but simplicity is more important than performance here
+        const randomByte = crypto.randomBytes(1)[0];
+        if (randomByte <= maxAllowableRandomByte) {
+            return alphabet[randomByte % alphabet.length];
+        }
+    }
+    throw new errors.APIError('Failed to generate a random password character after ' + maxRandomCharRetries + ' tries.');
+}
+
+
+export function randomPassword(): string {
+    const len = config.randomPasswords.length;
+    const result = new Array(len);
+    for (let i = 0; i < len; i++) {
+        result[i] = randomChar();
+    }
+    return result.join('');
 }
 
 async function randomSessionId(db): Promise<string> {
