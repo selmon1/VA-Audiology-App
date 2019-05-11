@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersObject, authorityTypes } from '../../../api-objects/UsersObject';
-// import APIUsersCrudService from '../services/api-users-crud.services'; 
+// import APIUsersCrudService from '../services/api-users-crud.services';
 
 @Component({
   selector: 'users',
@@ -32,17 +32,23 @@ export class UsersComponent implements OnInit {
    * Checks whether a username exists or not, sets the temp password if the user doesn't exist, sets the usernameTaken flag to true
    * if no errors returned, and false if errors are returned. The HTML file will then visually display a block under the username field
    * to let them know the username is not available if the usernameTaken is set true.
-   *  @Param UserRequest Object of type UsersObject which has fields {username,name,email,password,authorityType}
+   *  @Param UserRequest Object of type UsersObject which has fields {username,name,email,authorityType}
    */
   /*
-    private checkUserName(UserRequest: UsersObject): void {
-      this.UserServices.createUsers(UserRequest).subscribe((result) =>{
+    private userCreateRequest(UserRequest: UsersObject): void {
+      this.UserServices.createUsers(UserRequest).subscribe((result,error) =>{
         try{
           this.userPassword = result.password;
           this.usernameTaken = false;
-        } catch(result.error.exisitingUsername) {
+        } catch(error.duplicateInsertion) {
           this.usernameTaken = true;
-          console.log("Username not Avaliable");
+          console.log('Username not Available');
+        } catch(error.APIError) {
+          this.usernameTaken = true;
+          console.log('Server Error Occurred please try again later!');
+        } catch(error) {
+          this.usernameTaken = true;
+          console.log('Some Error Occurred)
         }
       });
     }
@@ -70,27 +76,37 @@ export class UsersComponent implements OnInit {
    */
   public createUser(): void {
 
-    if(this.isInputValid(this.userEmail) && this.name !== '' && this.username !== '' && (this.authorityType === 0 || this.authorityType === 1)) {
+    if ( this.isInputValid(this.userEmail) && this.name !== '' && this.username !== '' && (this.authorityType === 0 || this.authorityType === 1)) {
 
       this.validEmail = true;
-      this.showUserInfo = true;
-      this.usernameTaken = false; // TODO: Remove once service is connected
-
       // Create new user object
       let UserRequest = new UsersObject(
         this.username,
         this.name,
         this.userEmail,
-        this.userPassword,
         this.authorityType);
 
-      // this.checkUserName(UserRequest); // TODO: Uncomment once service is connected
+      // TODO: Uncomment once service is connected
+      // this.userCreateRequest(UserRequest);
 
+      // if(!this.usernameTaken) {
+      //   this.showUserInfo = true;
+      // } else {
+        // this.showUserInfo = false;
+      // }
+
+      // TODO: Remove once service is connected
+      this.showUserInfo = true;
+      this.usernameTaken = false;
+
+    } else if ( !this.isInputValid(this.userEmail)) {
+      this.validEmail = false;
+      this.showUserInfo = false;
+      console.log('else if block');
     } else {
-      this.validEmail = true;
       this.showUserInfo = false;
       this.usernameTaken = true; // TODO: Remove once service is connected
-      console.log('NO GOOD');
+      console.log('else block');
     }
   }
 }
