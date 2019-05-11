@@ -19,7 +19,6 @@ export class UsersComponent implements OnInit {
   public showUserInfo: boolean = false;
   public validEmail: boolean = true;
 
-
   // UNCOMMENT when Admin CRUD service is available
   constructor(/*
     private UserServices: APICrudService*/) { }
@@ -30,9 +29,10 @@ export class UsersComponent implements OnInit {
   get authorityTypes() { return authorityTypes; }
 
   /**
-   * Checks whether a username exists or not, sets the temp password if the user doesn't exist, sets the usernameTaken flag to true 
-   * if no errors returned, and false if errors are returned.
-   *  @Param UserRequest: Object of type UsersObject which has fields {username,name,email,password,authorityType}
+   * Checks whether a username exists or not, sets the temp password if the user doesn't exist, sets the usernameTaken flag to true
+   * if no errors returned, and false if errors are returned. The HTML file will then visually display a block under the username field
+   * to let them know the username is not available if the usernameTaken is set true.
+   *  @Param UserRequest Object of type UsersObject which has fields {username,name,email,password,authorityType}
    */
   /*
     private checkUserName(UserRequest: UsersObject): void {
