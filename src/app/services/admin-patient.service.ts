@@ -2,17 +2,33 @@ import { Injectable } from '@angular/core';
 import { ServerApiService } from './server-api.service';
 
 export class CreateUserResponse {
-	public message: string;
+  public message: string;
+}
+
+export class RenameUserResponse {
+  public message: string;
+}
+
+export class ResetPasswordResponse {
+  public password: string;
+}
+
+export class DeleteUserResponse {
+  public message: string;
+}
+
+export class UserListItem {
+  public name: string;
+  public type: string;
+}
+
+export class UserList {
+  public data: UserListItem[];
 }
 
 @Injectable()
 export class AdminPatientService {
   constructor(private serverApiService: ServerApiService) { }
-
-  public dummy_heartbeat() : void {
-    this.serverApiService.get('/')
-      .subscribe(response => console.log(response));
-  }
 
   public createUser(name: string, password: string, type: string) {
     this.serverApiService.post<CreateUserResponse>('/user/create', {'name': name, 'password': password, 'type': type})
@@ -20,12 +36,12 @@ export class AdminPatientService {
   }
 
   public renameUser(currName: string, nextName: string) {
-    this.serverApiService.post('/user/rename', {'oldName': currName, 'newName': nextName})
+    this.serverApiService.post<RenameUserResponse>('/user/rename', {'oldName': currName, 'newName': nextName})
       .subscribe(response => console.log(response));
   }
 
   public resetPassword(name: string) {
-    this.serverApiService.post('/user/resetPassword', { 'name': name })
+    this.serverApiService.post<ResetPasswordResponse>('/user/resetPassword', { 'name': name })
       .subscribe(response => console.log(response));
   }
 
@@ -34,13 +50,13 @@ export class AdminPatientService {
 
     params.set('name', name);
 
-    this.serverApiService.delete('/user/delete', params)
+    this.serverApiService.delete<DeleteUserResponse>('/user/delete', params)
       .subscribe(response => console.log(response));
   }
 
   public listUsers() {
-    this.serverApiService.get('/user/list')
-      .subscribe(response => console.log(response));
+    this.serverApiService.get<UserListItem[]>('/user/list')
+      .subscribe(response => console.log(response.data));
   }
 }
 
