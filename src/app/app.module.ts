@@ -18,7 +18,7 @@ import {
 } from '@angular/router';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material';
+import { MatSliderModule, MatSnackBarModule  } from '@angular/material';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -87,6 +87,8 @@ import { UsersComponent } from './users/users.component';
 
 import { ApiUsersCrudService } from './services/api-users-crud.service';
 import { ServerAuthenticationService } from './services/server-authentication.service';
+import { NotificationService } from './services/notification.service';
+import { ErrorHandlingService } from './services/error-handling.service';
 
 
 
@@ -148,7 +150,9 @@ type StoreType = {
     MatRadioModule,
     MatInputModule,
     MatCheckboxModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule ,
+
   ],
   /**
    * Import Angular's modules.
@@ -161,6 +165,7 @@ type StoreType = {
     FormsModule,
     HttpModule,
     MatSliderModule,
+    MatSnackBarModule ,
     MatRadioModule,
     MatInputModule,
     MatCheckboxModule,
@@ -169,7 +174,7 @@ type StoreType = {
       useHash: Boolean(history.pushState) === false,
       preloadingStrategy: PreloadAllModules
     }),
-    PDFExportModule
+    PDFExportModule,
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
@@ -188,7 +193,9 @@ type StoreType = {
     CustomerSearchService,
     ServerApiService,
     ApiUsersCrudService,
-    ServerAuthenticationService
+    ServerAuthenticationService,
+    NotificationService,
+    ErrorHandlingService,
   ]
 })
 export class AppModule {
