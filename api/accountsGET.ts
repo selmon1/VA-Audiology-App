@@ -1,19 +1,10 @@
 import handler from './handler';
 import db from './db';
-
+import { QueryResult } from 'pg';
 
 export default handler(async (request: any) => {
   return await db(async (connection) => {
-    // Define variables
-    let accounts_datapoints: string[] = [
-        "username"
-    ]
-    let accounts_sql = "SELECT username, authorityname FROM authority"
-
-    Promise.all([
-      connection.query(accounts_sql)
-    ]).then(values => {
-      return values
-    }).catch(err => console.log(err))
+    let results: QueryResult = await connection.query("SELECT authorityid, username, authorityname, authoritytype FROM authority");
+    return results.rows;
   });
 });
