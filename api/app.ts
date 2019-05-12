@@ -31,7 +31,7 @@ import accountCreate from './accounts/create';
 app.post('/accounts/create', accountCreate);
 
 import resetUsername from './accounts/account-update-username';
-app.post('/accounts/resetUsername', accountUpdateUsername);
+app.post('/accounts/resetUsername', resetUsername);
 
 import appointmentsEndpoint from './appointments';
 import appointmentsPostEndpoint from './appointmentsPOST';
@@ -47,7 +47,6 @@ app.post('/patient/*/notes', patientUpdateNotes);
 // -- CLIENT ENDPOINTS END --
 
 import indexEndpoint from './index';
-import accountUpdateUsername from './accounts/account-update-username';
 app.get('/', indexEndpoint);
 
 // Set app to listen on a given port
