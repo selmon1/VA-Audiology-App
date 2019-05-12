@@ -83,4 +83,5 @@ export class AudiologistNavigationComponent {
     // Load the rest of the summary...
     this.state.determineState(true, true);
   }
+
 }
