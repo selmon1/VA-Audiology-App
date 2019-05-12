@@ -1,20 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ServerApiService } from './server-api.service';
+import { Observable } from 'rxjs';
 
-export class CreateUserResponse {
-  public message: string;
-}
-
-export class RenameUserResponse {
+export class GenericAdminPatientResponse {
   public message: string;
 }
 
 export class ResetPasswordResponse {
   public password: string;
-}
-
-export class DeleteUserResponse {
-  public message: string;
 }
 
 export class UserListItem {
@@ -27,18 +20,15 @@ export class AdminPatientService {
   constructor(private serverApiService: ServerApiService) { }
 
   public createUser(name: string, password: string, type: string) {
-    this.serverApiService.post<CreateUserResponse>('/user/create', {'name': name, 'password': password, 'type': type})
-      .subscribe((response) => console.log(response));
+    return this.serverApiService.post<GenericAdminPatientResponse>('/user/create', {'name': name, 'password': password, 'type': type});
   }
 
   public renameUser(currName: string, nextName: string) {
-    this.serverApiService.post<RenameUserResponse>('/user/rename', {'oldName': currName, 'newName': nextName})
-      .subscribe(response => console.log(response));
+    return this.serverApiService.post<GenericAdminPatientResponse>('/user/rename', {'oldName': currName, 'newName': nextName});
   }
 
   public resetPassword(name: string) {
-    this.serverApiService.post<ResetPasswordResponse>('/user/resetPassword', { 'name': name })
-      .subscribe(response => console.log(response));
+    return this.serverApiService.post<ResetPasswordResponse>('/user/resetPassword', { 'name': name });
   }
 
   public deleteUser(name: string) {
@@ -46,13 +36,11 @@ export class AdminPatientService {
 
     params.set('name', name);
 
-    this.serverApiService.delete<DeleteUserResponse>('/user/delete', params)
-      .subscribe(response => console.log(response));
+    return this.serverApiService.delete<GenericAdminPatientResponse>('/user/delete', params);
   }
 
   public listUsers() {
-    this.serverApiService.get<UserListItem[]>('/user/list')
-      .subscribe(response => console.log(response.data));
+    return this.serverApiService.get<UserListItem[]>('/user/list');
   }
 }
 
