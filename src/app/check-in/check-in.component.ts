@@ -45,11 +45,17 @@ export class CheckInComponent {
   }
 
   isCredentialsValid() : boolean {
-    return this.isEmailValid() && this.isNameValid() && this.isPatientIdValid();
+    return this.isEmailValid() && this.isPatientIdValid();
   }
 
   isEmailValid() : boolean {
     let numAtSymbols : number = 0;
+
+    // Email is an optional field the user does not need
+    // to fill out. However, should they choose to do so, it
+    // should follow a proper format.
+    if(this.email.length === 0)
+      return true;
 
     let i: number;
     for(i = 0; i < this.email.length; i++) {
@@ -65,12 +71,6 @@ export class CheckInComponent {
     let regexp = new RegExp('^[^\s@]+@[^\s@]+\.[^\s@]+$');
 
     return regexp.test(this.email);
-  }
-
-  isNameValid() : boolean {
-    let regexp = new RegExp('^[A-Z]([a-z]|[A-Z])+$');
-
-    return regexp.test(this.firstName) && regexp.test(this.lastName);
   }
 
   isPatientIdValid() : boolean {
