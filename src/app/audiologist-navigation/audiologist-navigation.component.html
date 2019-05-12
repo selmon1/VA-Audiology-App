@@ -35,10 +35,7 @@
       <!-- <div *ngIf="state.tabIsAvailable(TabsEnum.QUERIES)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.QUERIES)">Queries</button>
       </div>
-      <div *ngIf="state.tabIsAvailable(TabsEnum.SPREAD)" class="row">
-        <button class="btn green main-nav" (click)="state.selectTab(TabsEnum.SPREAD)">Download Spreadsheet</button>
-      </div> -->
-     
+      -->
       <div *ngIf="state.tabIsAvailable(TabsEnum.ACCOUNT)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.ACCOUNT)">My Account</button>
       </div>
@@ -50,6 +47,9 @@
       </div>
       <div *ngIf="state.tabIsAvailable(TabsEnum.CLOSE_BTN)" class="row">
         <button id="close" class="btn red main-nav" (click)="clearData()">Close</button>
+      </div>
+      <div *ngIf="state.tabIsAvailable(TabsEnum.SPREAD)" class="row">
+        <button class="btn green main-nav" (click)="downloadSpreadsheet()">Download Spreadsheet</button>
       </div>
 
     </div>
