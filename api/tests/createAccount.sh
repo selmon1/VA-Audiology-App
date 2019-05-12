@@ -10,7 +10,7 @@ password=`echo $result | extractField password`
 echo $password
 
 echo -e '\nShould Login'
-loginWith "$(curlEcho localhost:3333/login -d "username=$name&" --data-urlencode "password=$password")"
+login $name $password
 
 echo -e '\nDuplicate Insertion'
 curlHeaders localhost:3333/accounts/create -d "username=$name&authorityName=TestShouldFail&authorityType=0"
