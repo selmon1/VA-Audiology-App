@@ -28,7 +28,7 @@ export class AudiologistNavigationComponent {
   }
 
   public ngOnInit() {
-    if(this.summaryComponent.ts === '' || this.summaryComponent.ts === null) {
+    if (this.summaryComponent.ts === '' || this.summaryComponent.ts === null) {
       this.state.determineState(false);
     } else {
       this.state.determineState(true, false);
@@ -54,15 +54,15 @@ export class AudiologistNavigationComponent {
   public clearData() {
     // clear all patient data in memory
     let sessionKeys: string[] = [
-      'patient-id', 
-      'tests-data', 
-      'tfi-dataRecord', 
-      'ths-dataRecord', 
-      'ths-history', 
-      'ts-dataRecord', 
+      'patient-id',
+      'tests-data',
+      'tfi-dataRecord',
+      'ths-dataRecord',
+      'ths-history',
+      'ts-dataRecord',
       'ts-history'
     ];
-    sessionKeys.forEach( (value) => {
+    sessionKeys.forEach((value) => {
       Utilities.removeItemFromSessionStorage(value);
     });
     this.patientID = null;
@@ -71,7 +71,8 @@ export class AudiologistNavigationComponent {
 
   public logout() {
     this.clearData();
-    Utilities.removeItemFromSessionStorage('audiologist-pin');
+    Utilities.removeItemFromSessionStorage('userId');
+    Utilities.removeItemFromSessionStorage('sessionId');
     Utilities.removeItemFromSessionStorage('permissions');
     this.router.navigateByUrl('/home');
   }
@@ -83,4 +84,5 @@ export class AudiologistNavigationComponent {
     // Load the rest of the summary...
     this.state.determineState(true, true);
   }
+
 }

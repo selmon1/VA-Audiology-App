@@ -48,7 +48,7 @@ PRIMARY KEY (PatientID)
 );
 
 create table Authority ( 
-AuthorityId int NOT NULL, 
+AuthorityId SERIAL, 
 Username text UNIQUE,
 Password text,
 AuthorityName text, 

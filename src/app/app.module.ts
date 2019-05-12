@@ -81,6 +81,8 @@ import { ServerApiService } from './services/server-api.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SurveySubmitHandler } from './services/api-survey.submit.service';
+import { ApiUsersCrudService } from './services/api-users-crud.service';
+import { ServerAuthenticationService } from './services/server-authentication.service';
 
 
 // Application wide providers
@@ -178,7 +180,9 @@ type StoreType = {
     TestsDataService,
     SurveySubmitHandler,
     CustomerSearchService,
-    ServerApiService
+    ServerApiService,
+    ApiUsersCrudService,
+    ServerAuthenticationService
   ]
 })
 export class AppModule {

@@ -1,4 +1,5 @@
 import { Utilities } from '../common/utlilities';
+import { authorityTypes, AuthorityEnum } from '../../../api-objects/UsersObject';
 
 /*
     If you need to add a new option to the audiologist and/or admin:
@@ -53,9 +54,9 @@ export class State {
             if(fromDB) { this.setupState(StatesEnum.LOADED_APPT); }
             else { this.setupState(StatesEnum.FROM_QUEST); }
         } else {
-            if (Utilities.getSessionStorage('permissions') === 'audiologist') {
+            if (Utilities.getSessionStorage('permissions') === authorityTypes[AuthorityEnum.Audiologist]) {
                 this.setupState(StatesEnum.AUD_NO_DATA);
-            } else if (Utilities.getSessionStorage('permissions') === 'admin') {
+            } else if (Utilities.getSessionStorage('permissions') === authorityTypes[AuthorityEnum.Admin]) {
                 this.setupState(StatesEnum.ADMIN_NO_DATA);
             }
         }
