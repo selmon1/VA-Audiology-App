@@ -22,10 +22,6 @@ export class UserListItem {
   public type: string;
 }
 
-export class UserList {
-  public data: UserListItem[];
-}
-
 @Injectable()
 export class AdminPatientService {
   constructor(private serverApiService: ServerApiService) { }
