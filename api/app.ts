@@ -36,6 +36,13 @@ app.get('/appointments', appointmentsEndpoint);
 app.post('/appointments', appointmentsPostEndpoint);
 
 // -- CLIENT ENDPOINTS START --
+
+import patientGet from './patient/get';
+// Handles a single patient query
+app.get('/patient/:patientId', patientGet);
+// Handles select all patients query
+app.get('/patient', patientGet);
+
 import patientPOSTEndpoint from './patient/patientCreate';
 app.post('/patient', patientPOSTEndpoint);
 
