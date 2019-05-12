@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable, ErrorHandler } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Response } from '../../../api-objects/GenericResponse';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Utilities } from '../common/utlilities';
+import { ErrorHandlingService } from './error-handling.service';
 
 @Injectable()
 export class ServerApiService {
@@ -13,19 +14,25 @@ export class ServerApiService {
 
   private baseUrl = 'REPLACE ME';  // URL to web api
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private errorHandler: ErrorHandlingService) { }
 
   // Base Function
   public get<T>(urlExtension: string, queryParams?: Map<string, string>): Observable<Response<T>> {
-    return this.http.get<Response<T>>(this.baseUrl + urlExtension, this.createHeaders(queryParams));
+    return this.http.get<Response<T>>(this.baseUrl + urlExtension, this.createHeaders(queryParams)).pipe(
+      catchError(this.errorHandler.handleServerError<Response<T>>())
+      );
   }
 
   public post<T>(urlExtension: string, body: any, queryParams?: Map<string, string>): Observable<Response<T>> {
-    return this.http.post<Response<T>>(this.baseUrl + urlExtension, body, this.createHeaders(queryParams));
+    return this.http.post<Response<T>>(this.baseUrl + urlExtension, body, this.createHeaders(queryParams)).pipe(
+      catchError(this.errorHandler.handleServerError<Response<T>>())
+    );
   }
 
   public delete<T>(urlExtension: string, queryParams?: Map<string, string>): Observable<Response<T>> {
-    return this.http.delete<Response<T>>(this.baseUrl + urlExtension, this.createHeaders(queryParams));
+    return this.http.delete<Response<T>>(this.baseUrl + urlExtension, this.createHeaders(queryParams)).pipe(
+      catchError(this.errorHandler.handleServerError<Response<T>>())
+    );
   }
 
   private createHeaders(queryParams?: Map<string, string>) {
