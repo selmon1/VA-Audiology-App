@@ -36,19 +36,16 @@ export class UsersComponent implements OnInit {
    */
   /*
     private userCreateRequest(UserRequest: UsersObject): void {
-      this.UserServices.createUsers(UserRequest).subscribe((result,error) =>{
-        try{
-          this.userPassword = result.password;
-          this.usernameTaken = false;
-        } catch(error.duplicateInsertion) {
+      this.UserServices.createUsers(UserRequest).subscribe((result)=> {
+        this.userPassword = result.password;
+        this.usernameTaken = false;
+      },(error) =>{
+         if(error is instanceof duplicateInsertion) {
           this.usernameTaken = true;
           console.log('Username not Available');
-        } catch(error.APIError) {
+         if(error is instanceof APIError) {
           this.usernameTaken = true;
           console.log('Server Error Occurred please try again later!');
-        } catch(error) {
-          this.usernameTaken = true;
-          console.log('Some Error Occurred)
         }
       });
     }
