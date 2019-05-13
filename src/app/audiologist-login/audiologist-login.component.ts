@@ -5,6 +5,7 @@ import { Utilities } from '../common/utlilities';
 import { TsScreenerDataService } from '../services/ts-screener-data.service';
 import { TfiDataService } from '../services/tfi-data.service';
 import { ThsDataService } from '../services/ths-data.service';
+import { ServerAuthenticationService } from '../services/server-authentication.service';
 
 @Component({
   selector: 'audiologist-login',
@@ -14,11 +15,20 @@ import { ThsDataService } from '../services/ths-data.service';
 
 export class AudiologistLoginComponent {
   // Added audiologistUserName & changed (patientId --> audiologistID)
-  public audiologistUserName: string = ''; 
-  public audiologistID: string = '';
+  public audiologistUserName: string = '';
+  public audiologistPassword: string = '';
   public authenticationFlag: boolean = true;
 
-  constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService) {};
+  constructor(private router: Router, private serverAuthenticationService: ServerAuthenticationService) { }
+
+  public ngOnInit() {
+    let userId = Utilities.getSessionStorage('userId');
+    let sessionId = Utilities.getSessionStorage('sessionId');
+
+    if (userId && sessionId) {
+      this.router.navigateByUrl('/audiologist');
+    }
+  }
 
   /**
    * This function will be call when the "check in" button is pressed.
@@ -29,18 +39,13 @@ export class AudiologistLoginComponent {
    */
   public onClick() {
 
-    // Added new check for audiologistUserName on top off audiologistID
-    if (this.audiologistUserName === 'Candi' && this.audiologistID === '123456') {
-      Utilities.setSessionStorage('audiologist-pin', this.audiologistID);
-      console.log('Audiologist log in ' + this.audiologistID);
-      Utilities.setSessionStorage('permissions' , 'audiologist');
-      // Utilities.setSessionStorage('permissions' , 'admin');
+    this.serverAuthenticationService.login(this.audiologistUserName, this.audiologistPassword).subscribe((response) => {
       this.router.navigateByUrl('/audiologist');
-    } else {
-      this.authenticationFlag = false;
-      this.audiologistID = '';
-      console.log('failed log in ' + this.audiologistID);
-    }
+    },
+      error => {
+        this.authenticationFlag = false;
+        this.audiologistPassword = '';
+      });
   }
 
   /**
@@ -49,7 +54,7 @@ export class AudiologistLoginComponent {
    * @param event the event caught by the action.
    */
   public keyDownFunction(event) {
-    if ( event.keyCode === 13) {
+    if (event.keyCode === 13) {
       this.onClick();
     } else {
       this.authenticationFlag = true;

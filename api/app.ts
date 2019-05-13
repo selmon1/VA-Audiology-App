@@ -27,6 +27,9 @@ app.post('/login', loginEndpoint);
 import changePasswordEndpoint from './changePassword';
 app.post('/changePassword', changePasswordEndpoint);
 
+import accountCreate from './accounts/create';
+app.post('/accounts/create', accountCreate);
+
 import appointmentsEndpoint from './appointments';
 import appointmentsPostEndpoint from './appointmentsPOST';
 app.get('/appointments', appointmentsEndpoint);
@@ -34,9 +37,17 @@ app.post('/appointments', appointmentsPostEndpoint);
 
 // -- CLIENT ENDPOINTS START --
 
-import patientPOSTEndpoint from './patient/patient-create';
+import patientGet from './patient/get';
+// Handles a single patient query
+app.get('/patient/:patientId', patientGet);
+// Handles select all patients query
+app.get('/patient', patientGet);
+
+import patientPOSTEndpoint from './patient/patientCreate';
 app.post('/patient', patientPOSTEndpoint);
 
+import patientUpdateNotes from './patient/patient-update-notes';
+app.post('/patient/*/notes', patientUpdateNotes);
 // -- CLIENT ENDPOINTS END --
 
 import indexEndpoint from './index';

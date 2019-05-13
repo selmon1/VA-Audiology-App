@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Response } from '../../../api-objects/GenericResponse';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Utilities } from '../common/utlilities';
 
 @Injectable()
 export class ServerApiService {
@@ -13,7 +14,7 @@ export class ServerApiService {
   private baseUrl = 'REPLACE ME';  // URL to web api
 
   constructor(private http: HttpClient) { }
-  
+
   // Base Function
   public get<T>(urlExtension: string, queryParams?: Map<string, string>): Observable<Response<T>> {
     return this.http.get<Response<T>>(this.baseUrl + urlExtension, this.createHeaders(queryParams));
@@ -30,7 +31,7 @@ export class ServerApiService {
   private createHeaders(queryParams?: Map<string, string>) {
     let parameters = new HttpParams();
     if (queryParams) {
-      queryParams.forEach((value, key , map) => {
+      queryParams.forEach((value, key, map) => {
         parameters = parameters.set(key, value);
       });
     }
@@ -38,20 +39,14 @@ export class ServerApiService {
       params: parameters,
       headers: new HttpHeaders({
         'Accept': 'application/json',
-        'X-USER-ID': this.getAuthorization(),
-        'X-SESSION-ID': this.getSessionId()
+        'X-USER-ID': this.getAuth('userId'),
+        'X-SESSION-ID': this.getAuth('sessionId')
       })
     };
   }
 
-  // TODO: Add appropriate authorization that should be collected when a Audiologist or Admin Logs in.
-  // TODO: We will pull this into sepperate https interceptor at a future point.
-  private getAuthorization(): string {
-    return '15';
+  private getAuth(input: string): string {
+    let value = Utilities.getSessionStorage(input);
+    return (value === null) ? ' ' : value;
   }
-
-  private getSessionId(): string {
-    return '15';
-  }
-
 }
