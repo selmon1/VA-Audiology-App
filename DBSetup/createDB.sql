@@ -28,7 +28,7 @@ TFI_A float,
 TFI_R float, 
 TFI_Q float, 
 TFI_E float, 
-TFI_OverallScore int,
+TFI_OverallScore float,
 PRIMARY KEY (tfiSurveyID)
 ); 
 
