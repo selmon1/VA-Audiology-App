@@ -15,7 +15,10 @@ export default handler(async (req, userId): Promise<string> => {
         if (matchingAccount.rows.length !== 1) {
             throw new errors.BadParameter('No such account with username ' + username);
         }
-        await db.query('UPDATE authority SET username = $1 WHERE username = $2', [newname, username]);
+        const updateResults = await db.query('UPDATE authority SET username = $1 WHERE username = $2', [newname, username]);
+        if (updateResults.rowCount !== 1){
+            throw new errors.BadParameter('No such account with username ' + username); 
+        }
         return newname;
     });
 }, auth.authenticate);

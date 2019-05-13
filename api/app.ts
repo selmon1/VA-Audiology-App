@@ -30,8 +30,8 @@ app.post('/changePassword', changePasswordEndpoint);
 import accountCreate from './accounts/create';
 app.post('/accounts/create', accountCreate);
 
-import resetUsername from './accounts/account-update-username';
-app.post('/accounts/resetUsername', resetUsername);
+import changeUsername from './accounts/changeUsername';
+app.post('/accounts/changeUsername', changeUsername);
 
 import appointmentsEndpoint from './appointments';
 import appointmentsPostEndpoint from './appointmentsPOST';
