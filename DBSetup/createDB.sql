@@ -4,9 +4,9 @@ create database VA_Trial;
 create table Patient (
 PatientID int NOT NULL,
 Deceased bool NOT NULL,
-FirstName text NOT NULL, 
-LastName text NOT NULL,
-Email text NOT NULL,
+FirstName text, 
+LastName text, 
+Email text,
 PatientNotes text,
 PRIMARY KEY (PatientID)
 );
