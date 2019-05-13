@@ -1,3 +1,30 @@
-<p>
-  current-users works!
-</p>
+<div class="container">
+  <label><h1>USERS</h1></label>
+  <table *ngIf="usersTable.length !== 0 else notFound" class="usersTable" border="1">
+    <thead>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Email</th>
+      <!-- <th>Authority Type</th> -->
+      <th>Delete User</th>
+      <th>Update Username</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersTable | slice:(pageCounter * 10): (pageCounter + 1) * 10">
+        <td>{{user.name}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <!-- <td>{{user.authorityType}}</td> -->
+        <td><button (click)="deleteUser(user)" class="deletebtn" id="deletebtn">Delete</button></td>
+        <td><div class="update-container">
+            <input type="text" name="username" [(ngModel)]="user.username" placeholder="Enter new Username..." id="username" required>
+        </div><button (click)="updateUser(user)" class="updatebtn">Update</button></td>
+        
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-buttons-container">
+    <button [disabled]="pageCounter === 0" (click)="prevPage(1)" class="pagination"><</button>
+    <button [disabled]="usersTable.length <= (pageCounter + 1) * 10" (click)="nextPage(1)" class="pagination">></button>
+  </div>
+</div>

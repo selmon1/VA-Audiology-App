@@ -25,6 +25,7 @@ export class AudiologistNavigationComponent {
   public scale: number = 0.55;
   public state: State = new State();
   @ViewChild(AudiologistSummaryComponent) private summaryComponent: AudiologistSummaryComponent;
+  
 
   constructor(private router: Router, private customerSearchService: CustomerSearchService) {
   }

@@ -1,0 +1,59 @@
+.container {
+    width: 100%;
+    text-align: center;
+}
+
+.update-container {
+    width: 65%;
+    text-align: center inherit;
+}
+.usersTable {
+    margin: 10px auto 0 auto;
+    width: 75%;
+}
+
+.usersTable th {
+    text-align: center;
+    background-color: #0448a1;
+    color: white;
+}
+
+.usersTable tr:nth-child(even) {
+    background-color: #7eabe6;
+}
+
+.usersTable tr td:last-child, .usersTable tr th:last-child {
+    width: 10em;
+}
+
+.usersTable button {
+    width: 100%;
+    height: auto;
+    background-color: red;
+}
+
+.resultsTable button:hover {
+    width: 100%;
+    background-color: #81c981;
+}
+
+.pagination {
+    padding: 3px 10px;
+    margin: 15px 5px;
+}
+
+.warning {
+    color: red;
+    animation-name: warning;
+    animation-duration: 1s;
+}
+
+button:disabled {
+    background-color: aliceblue;
+    color: white;
+}
+
+@keyframes warning {
+    from {color: white;}
+    to {color: red;}
+}
