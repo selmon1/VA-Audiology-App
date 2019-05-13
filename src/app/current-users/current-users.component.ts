@@ -60,9 +60,7 @@ export class CurrentUsersComponent implements OnInit {
 
  public updateUser(update: UsersObject) {
    this.user.emit(update);
-   let indexupdate:number = this.usersTable.indexOf(update);
-   console.log('Before: ' + this.usersTable[indexupdate].username);
-   console.log('After: ' + update.username);
+   console.log('New Username: ' + update.username);
    console.log(this.usersTable.length);
  }
 
