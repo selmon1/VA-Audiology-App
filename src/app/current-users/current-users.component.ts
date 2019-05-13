@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Users } from './users';
-import { UsersObject, AuthorityTypes } from '../../../api-objects/UsersObject';
+import { UsersObject } from '../../../api-objects/UsersObject';
 
 @Component({
   selector: 'current-users',
@@ -9,8 +10,6 @@ import { UsersObject, AuthorityTypes } from '../../../api-objects/UsersObject';
 })
 
 export class CurrentUsersComponent implements OnInit {
-  @Output() public user: EventEmitter<Object> = new EventEmitter<Object>();
-  @Output() public update: EventEmitter<object> = new EventEmitter<Object>();
   public usersTable: UsersObject[] = [];
   public pageCounter: number = 0;
 
@@ -52,16 +51,25 @@ export class CurrentUsersComponent implements OnInit {
    }
  }
 
- public deleteUser(User: UsersObject) {
-   this.user.emit(User);
-   console.log(User.name + ' Deleted');
-
+ /**
+  * Deletes a user at a given index.
+  * @param user a user object to be deleted
+  */
+ public deleteUser(user: UsersObject) {
+   let index: number = this.usersTable.indexOf(user);
+   this.usersTable.splice(index, 1);
  }
 
- public updateUser(update: UsersObject) {
-   this.user.emit(update);
-   console.log('New Username: ' + update.username);
-   console.log(this.usersTable.length);
+ /**
+  * Updates the username of the user, at a given index.
+  * @param f NgForm that contains the value inside the form tag in the template view
+  * @param update UsersObject that keeps track of the index.
+  */
+ public updateUser(f: NgForm , update: UsersObject) {
+   let index: number = this.usersTable.indexOf(update);
+   if(f.value.username !== '') {
+     this.usersTable[index].username = f.value.username;
+   }
  }
 
 }
