@@ -10,6 +10,7 @@ import { UsersObject, AuthorityTypes } from '../../../api-objects/UsersObject';
 
 export class CurrentUsersComponent implements OnInit {
   @Output() public user: EventEmitter<Object> = new EventEmitter<Object>();
+  @Output() public update: EventEmitter<object> = new EventEmitter<Object>();
   public usersTable: UsersObject[] = [];
   public pageCounter: number = 0;
 
@@ -55,6 +56,14 @@ export class CurrentUsersComponent implements OnInit {
    this.user.emit(User);
    console.log(User.name + ' Deleted');
 
+ }
+
+ public updateUser(update: UsersObject) {
+   this.user.emit(update);
+   let indexupdate:number = this.usersTable.indexOf(update);
+   console.log('Before: ' + this.usersTable[indexupdate].username);
+   console.log('After: ' + update.username);
+   console.log(this.usersTable.length);
  }
 
 }

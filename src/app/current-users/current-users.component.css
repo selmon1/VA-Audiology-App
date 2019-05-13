@@ -3,10 +3,6 @@
     text-align: center;
 }
 
-.update-container {
-    width: 65%;
-    text-align: center inherit;
-}
 .usersTable {
     margin: 10px auto 0 auto;
     width: 75%;
@@ -27,9 +23,13 @@
 }
 
 .usersTable button {
-    width: 100%;
+    /* width: 100%;
     height: auto;
-    background-color: red;
+    background-color: red; */
+    padding: 1px 20px;
+    background-color: rgba(216, 9, 9, 0.986);
+    border: 1px solid #ddd;
+    color: black;
 }
 
 .resultsTable button:hover {
@@ -47,6 +47,55 @@
     animation-name: warning;
     animation-duration: 1s;
 }
+
+ /* Style the form - display items horizontally */
+ .form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+  }
+  
+  /* Add some margins for each label */
+  .form-inline label {
+    margin: 5px 10px 5px 0;
+  }
+  
+  /* Style the input fields */
+  .form-inline input {
+    vertical-align: middle;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+  }
+  
+  /* Style the submit button */
+  .form-inline button {
+    padding: 1px 20px;
+    background-color: rgb(70, 192, 14);
+    border: 1px solid #ddd;
+    color: white;
+  }
+  
+  .form-inline button:hover {
+    background-color: royalblue;
+  }
+
+  .ng-invalid:not(form) {
+      border-left: 5px solid gray;
+  }
+  
+  /* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
+  @media (max-width: 800px) {
+    .form-inline input {
+      margin: 10px 0;
+    }
+  
+    .form-inline {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  } 
 
 button:disabled {
     background-color: aliceblue;

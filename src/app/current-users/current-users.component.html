@@ -15,11 +15,13 @@
         <td>{{user.username}}</td>
         <td>{{user.email}}</td>
         <!-- <td>{{user.authorityType}}</td> -->
-        <td><button (click)="deleteUser(user)" class="deletebtn" id="deletebtn">Delete</button></td>
-        <td><div class="update-container">
-            <input type="text" name="username" [(ngModel)]="user.username" placeholder="Enter new Username..." id="username" required>
-        </div><button (click)="updateUser(user)" class="updatebtn">Update</button></td>
-        
+        <td><button (click)="deleteUser(user)" class="deletebtn">Delete</button></td>
+        <td>
+          <form class="form-inline">
+            <input type="text" name="username"  placeholder="Enter new Username..." required>
+            <button type="submit" (click)="updateUser(user)" class="updatebtn">Update</button>
+          </form>
+        </td>
       </tr>
     </tbody>
   </table>
