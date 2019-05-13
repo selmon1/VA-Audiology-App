@@ -13,3 +13,4 @@ export class UsersObject {
 	public password: string;
 	public authorityType: number;
 }
+

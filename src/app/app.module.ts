@@ -77,12 +77,17 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { CustomerSearchComponent } from './customer-search/customer-search.component';
 import { CustomerSearchService } from './customer-search/customer-search.service';
 
+
 import { ServerApiService } from './services/server-api.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SurveySubmitHandler } from './services/api-survey.submit.service';
+
+import { UsersComponent } from './users/users.component';
+
 import { ApiUsersCrudService } from './services/api-users-crud.service';
 import { ServerAuthenticationService } from './services/server-authentication.service';
+
 
 
 // Application wide providers
@@ -134,7 +139,8 @@ type StoreType = {
     AudiologistSummaryComponent,
     NotesComponent,
     MyAccountComponent,
-    CustomerSearchComponent
+    CustomerSearchComponent,
+    UsersComponent
 
   ],
   exports: [

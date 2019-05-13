@@ -1,0 +1,54 @@
+
+{{debugging}}
+<form id="new-user">
+	<div class="name-container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+				<input type="text" name="name"  [(ngModel)]="name" placeholder="Name" id="name" required>
+			</div>
+		</div>
+	</div>
+	<div class="email-container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+				<input type="email" name="email"  [(ngModel)]="userEmail"  placeholder="Email" required>
+				<div *ngIf="!validEmail" class="alert alert-danger">Email must be formated as "word@example.com"</div>
+			</div>
+		</div>
+	</div>
+	<div class="username-container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+				<input type="text" name="username" [(ngModel)]="username"  placeholder="Username" required>
+				<div *ngIf="usernameTaken" class="alert alert-danger">Username Not Available</div>
+			</div>
+		</div>
+	</div>
+	<div class="auth-container">
+		<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+			<label>Type</label>
+			<select (change)="chooseAuth($event)">
+				<option selected disabled hidden>Choose a Type...</option>
+				<option *ngFor="let type of authorityTypes" value="{{type}}">{{type}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="sbmt-btn">
+		<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+			<button type="submit" (click)="createUser()">Create User</button>
+		</div>
+	</div>
+	<div *ngIf="showUserInfo">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+				<br/>
+				<label class="warning">IMPORTANT: For your security please change your password as soon as possible!</label><br/><br/>
+				<label><h3>Name:</h3></label>  {{name}}<br/>
+			    <label><h3>Email:</h3></label>  {{userEmail}}<br/>
+				<label><h3>Username:</h3></label>  {{username}}<br/>
+				<label><h3>Temporary Password:</h3></label>  {{userPassword}}<br/><br/>
+			</div>
+		</div>
+
+	</div>
+</form>

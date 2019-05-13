@@ -29,17 +29,16 @@
       <div *ngIf="state.tabIsAvailable(TabsEnum.SEARCH)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.SEARCH)">Search</button>
       </div>
-      <!--
       <div *ngIf="state.tabIsAvailable(TabsEnum.USERS)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.USERS)">Users</button>
       </div>
-      <div *ngIf="state.tabIsAvailable(TabsEnum.QUERIES)" class="row">
+      <!-- <div *ngIf="state.tabIsAvailable(TabsEnum.QUERIES)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.QUERIES)">Queries</button>
       </div>
       <div *ngIf="state.tabIsAvailable(TabsEnum.SPREAD)" class="row">
         <button class="btn green main-nav" (click)="state.selectTab(TabsEnum.SPREAD)">Download Spreadsheet</button>
-      </div>
-      -->
+      </div> -->
+     
       <div *ngIf="state.tabIsAvailable(TabsEnum.ACCOUNT)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.ACCOUNT)">My Account</button>
       </div>
@@ -89,6 +88,9 @@
           <notes 
             class="{{state.tabIsSelected(TabsEnum.NOTES) ? 'main-right-container' : 'main-right-container-hidden'}}">
           </notes>
+          <users 
+            class="{{state.tabIsSelected(TabsEnum.USERS) ? 'main-right-container' : 'main-right-container-hidden'}}">
+          </users>
         </kendo-pdf-export>
       </div>
     </div>
