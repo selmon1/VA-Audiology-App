@@ -1,7 +1,3 @@
-export class TestClass {
-  public myNum: number;
-}
-
 export class GenericAdminPatientResponse {
   public message: string;
 }
