@@ -31,16 +31,10 @@ export class CheckInComponent {
       Utilities.setSessionStorage('first-name', this.firstName);
       Utilities.setSessionStorage('last-name', this.lastName);
       Utilities.setSessionStorage('email', this.email);
-      console.log(this.patientId);
-      console.log(this.firstName);
-      console.log(this.lastName);
-      console.log(this.email);
       this.router.navigateByUrl('/appointments');
-      console.log('log in with ' + this.patientId);
     } else {
       this.authenticationFlag = false;
       this.patientId = '';
-      console.log('failed log in ' + this.patientId);
     }
   }
 
@@ -75,22 +69,9 @@ export class CheckInComponent {
 
   isPatientIdValid() : boolean {
     const PATIENT_ID_LENGTH = 4;
+    let regexp = new RegExp('^\\d{' + PATIENT_ID_LENGTH + '}$');
 
-    return this.patientId.length == PATIENT_ID_LENGTH && this.isPatientIdNumber();
-  }
-  
-  isPatientIdNumber() : boolean {
-    let result : boolean = true;
-
-    let i : number = 0;
-    for(i = 0; i < this.patientId.length; i++) {
-      if(isNaN(parseInt(this.patientId[i], 10))) {
-        result = false;
-        break;
-      }
-    }
-
-    return result;
+    return regexp.test(this.patientId);
   }
   
   /**
