@@ -1,19 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ServerApiService } from './server-api.service';
 import { Observable } from 'rxjs';
-
-export class GenericAdminPatientResponse {
-  public message: string;
-}
-
-export class ResetPasswordResponse {
-  public password: string;
-}
-
-export class UserListItem {
-  public name: string;
-  public type: string;
-}
+import { GenericAdminPatientResponse, ResetPasswordResponse, UserListItem } from '../../../api-objects/AdminPatient';
 
 @Injectable()
 export class AdminPatientService {
