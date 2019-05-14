@@ -1,4 +1,4 @@
-export class GenericAdminPatientResponse {
+export class AdminPatientResponse {
   public message: string;
 }
 
