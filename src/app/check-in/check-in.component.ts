@@ -18,6 +18,9 @@ export class CheckInComponent {
   public lastName: string = '';
   public email: string = '';
   public authenticationFlag: boolean = true;
+
+  public badPatientId: boolean = false;
+  public badEmail: boolean = false;
   
   constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService) {};
   
@@ -39,7 +42,24 @@ export class CheckInComponent {
   }
 
   isCredentialsValid() : boolean {
-    return this.isEmailValid() && this.isPatientIdValid();
+    this.badPatientId = false;
+    this.badEmail = false;
+
+    let result = true;
+
+    // Check these individually so we can set the corresponding flags
+    // and still return the result.
+    if(!this.isPatientIdValid()) {
+      this.badPatientId = true;
+      result = false;
+    }
+
+    if(!this.isEmailValid()) {
+      this.badEmail = true;
+      result = false;
+    }
+
+    return result;
   }
 
   isEmailValid() : boolean {
@@ -51,20 +71,10 @@ export class CheckInComponent {
     if(this.email.length === 0)
       return true;
 
-    let i: number;
-    for(i = 0; i < this.email.length; i++) {
-      if(this.email.charAt(i) === '@')
-        numAtSymbols++;
-    }
-
-    if(numAtSymbols !== 1)
-      return false;
-
     // Credit for this here: https://tylermcginnis.com/validate-email-address-javascript/
     // Doesn't seem to handle multiple @ symbols however.
-    let regexp = new RegExp('^[^\s@]+@[^\s@]+\.[^\s@]+$');
-
-    return regexp.test(this.email);
+    var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(this.email);
   }
 
   isPatientIdValid() : boolean {
@@ -84,6 +94,9 @@ export class CheckInComponent {
       this.onClick();
     } else {
       this.authenticationFlag = true;
+
+      this.badPatientId = false;
+      this.badEmail = false;
     }
   }
 }
