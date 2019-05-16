@@ -13,96 +13,86 @@ import { ThsDataService } from '../services/ths-data.service';
 })
 
 export class CheckInComponent {
-   public patientId: string = '';
-   public firstName: string = '';
-   public lastName: string = '';
-   public lastFourSS: string = '';
-   public authenticationFlag: boolean = true;
+  public patientId: string = '';
+  public firstName: string = '';
+  public lastName: string = '';
+  public email: string = '';
+  public authenticationFlag: boolean = true;
 
-   constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService) {};
-
-   public numRearrange(num) {
-      let fst = Number(num[0]);
-      let snd = Number(num[1]);
-      let thd = Number(num[2]);
-      let frt = Number(num[3]);
-      if (frt < 9) {
-        frt += 1;
-      } else { frt -= 5; }
-
-      if (thd < 5) {
-        thd += 4;
-      } else { thd -= 2; }
-
-      if (snd < 7) {
-        snd += 2;
-      } else { snd -= 3; }
-
-      if (fst < 7) {
-        fst += 2;
-      } else { fst -= 2; }
-
-      let result1 = thd.toString();
-      let result2 = fst.toString();
-      let result3 = frt.toString();
-      let result4 = snd.toString();
-
-      return result1 + result2 + result3 + result4;
-   }
-   public idGenerator() {
-     let hash = 0;
-     let first = this.firstName;
-     let last = this.lastName;
-     // name = this.firstName.charCodeAt(0) + this.lastName.charCodeAt(0);
-     if (this.firstName == null || this.lastName == null || this.lastFourSS == null) {
-       return hash;
-     }
-     // for (let i = 0; i < nameLength; i++) {
-     //   hash += Math.pow(name.charCodeAt(i) * 31, nameLength - i);
-     // }
-     let result = first.substr(0, 3) + last.substr(0, 3) + this.numRearrange(this.lastFourSS);
-     return result;
-   }
-
-   /**
-    * This function will be call when the "check in" button is pressed.
-    * It evaluates the value is typed in the input area; if the value has the length of 6,
-    * then the page will be route to the "audiologist" page;
-    * if the value of length 4, then the page will be route to the "appointment" page.
-    * If the value has different length, then it will be informed as incorrect check in.
-    */
-
-   public onClick() {
-
-     if (this.firstName.length >= 2 && this.lastName.length >= 2 && this.lastFourSS.length === 4
-          && isNaN(Number(this.firstName)) && isNaN(Number(this.lastName))) {
-       sessionStorage.clear();
-       this.tsDataService.clearHistory();
-       this.tfiDataService.clearHistory();
-       this.thsDataService.clearHistory();
-       Utilities.setSessionStorage('patient-id', this.idGenerator().toString());
-       Utilities.setSessionStorage('firstName', this.firstName.toString());
-       console.log(this.idGenerator().toString());
-       this.router.navigateByUrl('/appointments');
-       console.log('log in with ' + this.patientId);
-     } else {
-        this.authenticationFlag = false;
-        this.patientId = '';
-        console.log('failed log in ' + this.patientId);
-       }
-   }
-
-   /**
-    * This function is called when the "enter" key on the keyboard is pressed.
-    * If the key has the value of 13, then this function will call the "onClick" function from above.
-    * @param event the event caught by the action.
-    */
-   public keyDownFunction(event) {
-    if ( event.keyCode === 13) {
-      this.onClick();
+  public badPatientId: boolean = false;
+  public badEmail: boolean = false;
+  
+  constructor(private router: Router, private tsDataService: TsScreenerDataService, private tfiDataService: TfiDataService, private thsDataService: ThsDataService) {};
+  
+  public onClick() {
+    if(this.isCredentialsValid()) {
+      sessionStorage.clear();
+      this.tsDataService.clearHistory();
+      this.tfiDataService.clearHistory();
+      this.thsDataService.clearHistory();
+      Utilities.setSessionStorage('patient-id', this.patientId);
+      Utilities.setSessionStorage('first-name', this.firstName);
+      Utilities.setSessionStorage('last-name', this.lastName);
+      Utilities.setSessionStorage('email', this.email);
+      this.router.navigateByUrl('/appointments');
     } else {
-      this.authenticationFlag = true;
+      this.authenticationFlag = false;
+      this.patientId = '';
     }
   }
 
+  isCredentialsValid() : boolean {
+    this.badPatientId = false;
+    this.badEmail = false;
+
+    let result = true;
+
+    // Check these individually so we can set the corresponding flags
+    // and still return the result.
+    if(!this.isPatientIdValid()) {
+      this.badPatientId = true;
+      result = false;
+    }
+
+    if(!this.isEmailValid()) {
+      this.badEmail = true;
+      result = false;
+    }
+
+    return result;
   }
+
+  isEmailValid() : boolean {
+    let numAtSymbols : number = 0;
+
+    // Email is an optional field the user does not need
+    // to fill out. However, should they choose to do so, it
+    // should follow a proper format.
+    if(this.email.length === 0)
+      return true;
+
+    // Credit for this here: https://tylermcginnis.com/validate-email-address-javascript/
+    var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(this.email);
+  }
+
+  isPatientIdValid() : boolean {
+    return /^\d+$/.test(this.patientId);
+  }
+  
+  /**
+   * This function is called when the "enter" key on the keyboard is pressed.
+   * If the key has the value of 13, then this function will call the "onClick" function from above.
+   * @param event the event caught by the action.
+  */
+  public keyDownFunction(event) {
+    if (event.keyCode === 13) {
+      this.onClick();
+    } else {
+      this.authenticationFlag = true;
+
+      this.badPatientId = false;
+      this.badEmail = false;
+    }
+  }
+}

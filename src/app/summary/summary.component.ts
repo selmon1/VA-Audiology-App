@@ -24,7 +24,6 @@ export class SummaryComponent implements OnInit {
    */
   public readonly patientID;
   public readonly appointmentType;
-  public readonly first_name;
 
   public patientOnClick() {
     this.router.navigateByUrl('/landing');
@@ -50,7 +49,6 @@ export class SummaryComponent implements OnInit {
     this.constructTFIReport();
     this.patientID = Utilities.getSessionStorage('patient-id');
     this.appointmentType = Utilities.getSessionStorage('appt');
-    this.first_name = Utilities.getSessionStorage('firstName');
   };
 
   public ngOnInit() {
