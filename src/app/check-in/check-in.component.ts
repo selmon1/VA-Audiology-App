@@ -72,7 +72,6 @@ export class CheckInComponent {
       return true;
 
     // Credit for this here: https://tylermcginnis.com/validate-email-address-javascript/
-    // Doesn't seem to handle multiple @ symbols however.
     var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(this.email);
   }
