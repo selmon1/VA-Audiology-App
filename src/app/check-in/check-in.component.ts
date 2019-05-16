@@ -77,10 +77,7 @@ export class CheckInComponent {
   }
 
   isPatientIdValid() : boolean {
-    const PATIENT_ID_LENGTH = 4;
-    let regexp = new RegExp('^\\d{' + PATIENT_ID_LENGTH + '}$');
-
-    return regexp.test(this.patientId);
+    return /^\d+$/.test(this.patientId);
   }
   
   /**
