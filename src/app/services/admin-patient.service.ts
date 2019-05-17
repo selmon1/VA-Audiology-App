@@ -9,6 +9,10 @@ import { PatientResponse } from '../../../api-objects/patientResponse';
 export class AdminPatientService {
   constructor(private serverApiService: ServerApiService) { }
 
+  public createPatient(patientId : string, deceased : boolean, patientNotes : string) : Observable<Response<PatientResponse>> {
+    return this.serverApiService.post('patient', {'patientId': patientId, 'deceased': deceased, 'patientNotes': patientNotes});
+  }
+
   public getPatients() : Observable<Response<PatientResponse[]>> {
     return this.serverApiService.get<PatientResponse[]>('patient');
   }
