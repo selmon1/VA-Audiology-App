@@ -3,33 +3,26 @@ import { ServerApiService } from './server-api.service';
 import { Observable } from 'rxjs';
 import { Response } from '../../../api-objects/GenericResponse';
 import { AdminPatientResponse, ResetPasswordResponse, UserListItem } from '../../../api-objects/AdminPatient';
+import { PatientResponse } from '../../../api-objects/patientResponse';
 
 @Injectable()
 export class AdminPatientService {
   constructor(private serverApiService: ServerApiService) { }
 
-  public createUser(name: string, password: string, type: string) : Observable<Response<AdminPatientResponse>> {
-    return this.serverApiService.post<AdminPatientResponse>('/accounts/create', {'name': name, 'password': password, 'type': type});
+  public getPatients() : Observable<Response<PatientResponse[]>> {
+    return this.serverApiService.get<PatientResponse[]>('patient');
   }
 
-  public renameUser(currName: string, nextName: string) : Observable<Response<AdminPatientResponse>> {
-    return this.serverApiService.post<AdminPatientResponse>('/accounts/rename', {'oldName': currName, 'newName': nextName});
+  public getPatient(patientId : number) : Observable<Response<PatientResponse[]>> {
+    return this.serverApiService.get<PatientResponse[]>('patient/' + patientId);
   }
 
-  public resetPassword(name: string) : Observable<Response<ResetPasswordResponse>> {
-    return this.serverApiService.post<ResetPasswordResponse>('/accounts/resetPassword', { 'name': name });
+  public deletePatient(patientId : number) : Observable<Response<any>> {
+    return this.serverApiService.delete<any>('patient/' + patientId);
   }
 
-  public deleteUser(name: string) : Observable<Response<AdminPatientResponse>> {
-    let params : Map<string, string> = new Map();
-
-    params.set('name', name);
-
-    return this.serverApiService.delete<AdminPatientResponse>('/accounts/delete', params);
-  }
-
-  public listUsers() : Observable<Response<UserListItem[]>> {
-    return this.serverApiService.get<UserListItem[]>('/accounts/list');
+  public updateNotes(patientId : number, notes : string) : Observable<Response<any>> {
+    return this.serverApiService.post<any>('patient/' + patientId + '/notes', {notes});
   }
 }
 
