@@ -92,6 +92,7 @@ import { ErrorHandlingService } from './services/error-handling.service';
 import { AdminPatientService } from './services/admin-patient.service.ts';
 import { AdminPatientsListComponent } from './admin-patients-list/admin-patients-list.component';
 import { AdminPatientListModalComponent } from './admin-patients-list/admin-patient-list-modal/admin-patient-list-modal.component';
+import { PatientLoginComponent } from './patient-login/patient-login.component';
 
 import { ReloginPopupComponent } from './relogin-popup/relogin-popup.component';
 import { ReloginPopupService } from './relogin-popup/relogin-popup.service';
@@ -153,6 +154,7 @@ type StoreType = {
     ReloginPopupComponent,
     AdminPatientsListComponent,
     AdminPatientListModalComponent
+    PatientLoginComponent,
 
   ],
   exports: [

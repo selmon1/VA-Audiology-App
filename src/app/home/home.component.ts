@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
    * develop that the button was pressed successfully.
    */
   public patientOnClick() {
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/appointments');
     console.log('patient button to log in');
   }
 }

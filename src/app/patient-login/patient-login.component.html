@@ -1,0 +1,48 @@
+<div class="container">
+  <label><h1>Create a new patient</h1></label>
+  <table class="resultsTable" border="1">
+    <thead>
+      <th>New ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Select</th>
+    </thead>
+    <tbody>
+      <tr focus>
+        <td>{{nextId}}</td>
+        <td><input type="text" [(ngModel)]="newFirst" placeholder="Patient First Name"></td>
+        <td><input type="text" [(ngModel)]="newLast" placeholder="Patient Last Name"></td>
+        <td><input type="text" [(ngModel)]="newEmail" placeholder="Patient Email"></td>
+        <td><button (click)="createPatient()" class="loadbtn">Create</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <label><h1>Select an existing patient</h1></label>
+  <table *ngIf="patients.length !== 0 else notFound" class="resultsTable" border="1">
+    <thead>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Select</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patients | slice:(currentPage * 10): (currentPage + 1) * 10">
+        <td>{{patient.patientid}}</td>
+        <td>{{patient.firstname}}</td>
+        <td>{{patient.lastname}}</td>
+        <td>{{patient.email}}</td>
+        <td><button (click)="loadPatient(patient)" class="loadbtn">Select</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-buttons-container">
+    <button [disabled]="currentPage === 0" (click)="prevPage(1)" class="pagination"><</button>
+    <button [disabled]="patients.length <= (currentPage + 1) * 10" (click)="nextPage(1)" class="pagination">></button>
+  </div>
+
+  <ng-template #notFound>
+    <p>No patients found.</p>
+  </ng-template>
+</div>

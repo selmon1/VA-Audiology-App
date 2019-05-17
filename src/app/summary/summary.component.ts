@@ -49,6 +49,10 @@ export class SummaryComponent implements OnInit {
     this.constructTFIReport();
     this.patientID = Utilities.getSessionStorage('patient-id');
     this.appointmentType = Utilities.getSessionStorage('appt');
+    // Reset survey states
+    Utilities.removeItemFromSessionStorage('ths-currentState');
+    Utilities.removeItemFromSessionStorage('ts-currentState');
+    Utilities.removeItemFromSessionStorage('tfi-currentState');
   };
 
   public ngOnInit() {

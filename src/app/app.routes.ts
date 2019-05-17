@@ -24,20 +24,21 @@ import { RelaxationComponent } from './relaxation/relaxation.component';
 import { SleepComponent } from './sleep/sleep.component';
 import { SoundComponent } from './sound/sound.component';
 import { FaqComponent } from './faq/faq.component';
+import { PatientLoginComponent } from './patient-login/patient-login.component'
 
 // URL paths to redirect to and load components when appropriate
 export const ROUTES: Routes = [
-  { path: '',      redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home',  component: HomeComponent },
-  { path: 'login', component: CheckInComponent},
-  { path: 'appointments', component: AppointmentsComponent, canActivate: [RouterGuards]},
-  { path: 'audiologist', component: AudiologistNavigationComponent, canActivate: [RouterGuards]},
-  { path: 'thank-you', component: ThankYouComponent, canActivate: [RouterGuards]},
-  { path: 'summary', component: SummaryComponent, canActivate: [RouterGuards] },
-  { path: 'ts', component: TsScreenerComponent, canActivate: [RouterGuards]},
-  { path: 'tfi', component: TfiComponent, canActivate: [RouterGuards] },
-  { path: 'ths', component: ThsComponent, canActivate: [RouterGuards]},
-	{ path: 'aud-login', component: AudiologistLoginComponent, canActivate: [RouterGuards]},
+	{ path: '', redirectTo: 'home', pathMatch: 'full' },
+	{ path: 'home', component: HomeComponent },
+	{ path: 'login', component: CheckInComponent },
+	{ path: 'appointments', component: AppointmentsComponent, canActivate: [RouterGuards] },
+	{ path: 'audiologist', component: AudiologistNavigationComponent, canActivate: [RouterGuards] },
+	{ path: 'thank-you', component: ThankYouComponent, canActivate: [RouterGuards] },
+	{ path: 'summary', component: SummaryComponent, canActivate: [RouterGuards] },
+	{ path: 'ts', component: TsScreenerComponent, canActivate: [RouterGuards] },
+	{ path: 'tfi', component: TfiComponent, canActivate: [RouterGuards] },
+	{ path: 'ths', component: ThsComponent, canActivate: [RouterGuards] },
+	{ path: 'aud-login', component: AudiologistLoginComponent, canActivate: [RouterGuards] },
 	{ path: 'landing', component: LandingComponent, canActivate: [RouterGuards] },
 	{ path: 'pa', component: PaComponent, canActivate: [RouterGuards] },
 	{ path: 'ct', component: CtComponent, canActivate: [RouterGuards] },
@@ -47,5 +48,6 @@ export const ROUTES: Routes = [
 	{ path: 'sleep', component: SleepComponent, canActivate: [RouterGuards] },
 	{ path: 'sound', component: SoundComponent, canActivate: [RouterGuards] },
 	{ path: 'faq', component: FaqComponent, canActivate: [RouterGuards] },
+	{ path: 'patient-login', component: PatientLoginComponent, canActivate: [RouterGuards] },
 	{ path: '**', component: NoContentComponent },
 ];

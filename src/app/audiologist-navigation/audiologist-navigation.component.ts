@@ -69,7 +69,8 @@ export class AudiologistNavigationComponent {
       'ths-dataRecord',
       'ths-history',
       'ts-dataRecord',
-      'ts-history'
+      'ts-history',
+      'appt'
     ];
     sessionKeys.forEach((value) => {
       Utilities.removeItemFromSessionStorage(value);

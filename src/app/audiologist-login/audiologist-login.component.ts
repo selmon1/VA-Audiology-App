@@ -19,6 +19,8 @@ export class AudiologistLoginComponent {
   public audiologistPassword: string = '';
   public authenticationFlag: boolean = true;
 
+  private nextURL: string = '/patient-login';
+
   constructor(private router: Router, private serverAuthenticationService: ServerAuthenticationService) { }
 
   public ngOnInit() {
@@ -26,7 +28,7 @@ export class AudiologistLoginComponent {
     let sessionId = Utilities.getSessionStorage('sessionId');
 
     if (userId && sessionId) {
-      this.router.navigateByUrl('/audiologist');
+      this.router.navigateByUrl(this.nextURL);
     }
   }
 
@@ -40,7 +42,7 @@ export class AudiologistLoginComponent {
   public onClick() {
 
     this.serverAuthenticationService.login(this.audiologistUserName, this.audiologistPassword).subscribe((response) => {
-      this.router.navigateByUrl('/audiologist');
+      this.router.navigateByUrl(this.nextURL);
     },
       error => {
         this.authenticationFlag = false;
