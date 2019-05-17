@@ -34,9 +34,11 @@ export class PatientLoginComponent implements OnInit {
   }
 
   public createPatient() {
-    // TODO: call create patient
+    // TODO: call createPatient
+    // if createPatient succeeds
     Utilities.setSessionStorage('patient-id', this.nextId.toString());
     this.router.navigateByUrl(this.nextURL);
+    // else display error
   }
 
   public loadPatient(patient: PatientResponse) {
