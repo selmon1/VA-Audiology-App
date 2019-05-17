@@ -11,10 +11,6 @@ export default handler(async (req, userId): Promise<string> => {
     const username = req.body.username;
     const newname = req.body.newusername;
     return withConnection(async (db: Client) => {
-        const matchingAccount = await db.query('SELECT username FROM authority WHERE username = $1', [username]);
-        if (matchingAccount.rows.length !== 1) {
-            throw new errors.BadParameter('No such account with username ' + username);
-        }
         const updateResults = await db.query('UPDATE authority SET username = $1 WHERE username = $2', [newname, username]);
         if (updateResults.rowCount !== 1){
             throw new errors.BadParameter('No such account with username ' + username); 
