@@ -89,6 +89,7 @@ import { ApiUsersCrudService } from './services/api-users-crud.service';
 import { ServerAuthenticationService } from './services/server-authentication.service';
 
 
+import { CurrentUsersComponent } from './current-users/current-users.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -140,7 +141,8 @@ type StoreType = {
     NotesComponent,
     MyAccountComponent,
     CustomerSearchComponent,
-    UsersComponent
+    UsersComponent,
+    CurrentUsersComponent
 
   ],
   exports: [

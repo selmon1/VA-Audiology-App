@@ -29,6 +29,10 @@
       <div *ngIf="state.tabIsAvailable(TabsEnum.SEARCH)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.SEARCH)">Search</button>
       </div>
+      <div *ngIf="state.tabIsAvailable(TabsEnum.CURRENT_USERS)" class="row">
+          <button class="btn main-tab" (click)="state.selectTab(TabsEnum.CURRENT_USERS)">Current Users</button>
+        </div>
+      <!--
       <div *ngIf="state.tabIsAvailable(TabsEnum.USERS)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.USERS)">Users</button>
       </div>
@@ -91,6 +95,9 @@
           <users 
             class="{{state.tabIsSelected(TabsEnum.USERS) ? 'main-right-container' : 'main-right-container-hidden'}}">
           </users>
+          <current-users
+            class="{{state.tabIsSelected(TabsEnum.CURRENT_USERS) ? 'main-right-container' : 'main-right-container-hidden'}}">
+          </current-users>
         </kendo-pdf-export>
       </div>
     </div>
