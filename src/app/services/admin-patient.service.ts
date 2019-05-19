@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Response } from '../../../api-objects/GenericResponse';
 import { PatientResponse } from '../../../api-objects/patientResponse';
 import { Appointment } from '../../../api-objects/Appointment';
-import { CreatePatientData } from '../../../api-objects/AdminPatient';
+import { CreatePatientData, NoteData } from '../../../api-objects/AdminPatient';
 
 @Injectable()
 export class AdminPatientService {
@@ -28,12 +28,12 @@ export class AdminPatientService {
     return this.serverApiService.get<Appointment[]>('appointments', new Map([['id', patientId]]));
   }
 
-  public deletePatient(patientId : number) : Observable<Response<any>> {
-    return this.serverApiService.delete<any>('patient/' + patientId);
+  public deletePatient(patientId : number) : Observable<Response<null>> {
+    return this.serverApiService.delete<null>('patient/' + patientId);
   }
 
-  public updateNotes(patientId : number, notes : string) : Observable<Response<any>> {
-    return this.serverApiService.post<any>('patient/' + patientId + '/notes', {notes});
+  public updateNotes(patientId : number, notes : string) : Observable<Response<NoteData>> {
+    return this.serverApiService.post<NoteData>('patient/' + patientId + '/notes', {notes});
   }
 }
 

@@ -3,3 +3,7 @@ export class CreatePatientData {
   public deceased : boolean;
   public patientNotes : string;
 }
+
+export class NoteData {
+  public notes : string;
+}
