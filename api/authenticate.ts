@@ -127,16 +127,34 @@ export async function authenticate(request) {
 }
 
 // Returns a function to be passed as the `authenticate` parameter of `handler`. Requires the user to be logged in and have the specified role.
-export function mustHaveRole(role) {
+function mustHaveRole(role) {
     return async function (request) {
         // theoretically, these two checks could be done simultaneously for performance
         const userId = await authenticate(request);
         return await connect(async (db) => {
-            const actualRole = await db.query('SELECT Type FROM Authority WHERE AuthorityId = $1');
+            const roleResult = await db.query('SELECT AuthorityType FROM Authority WHERE AuthorityId = $1', [userId]);
+            if (roleResult.rows.length !== 1) {
+                throw new errors.APIError('Unable to determine your role.');
+            }
+            const actualRole = roleResult.rows[0].authoritytype;
             if (actualRole !== role) {
-                throw new errors.PermissionFailure('You do not have permission to perform this action. You are ' + actualRole + '; you must be ' + role);
+                throw new errors.PermissionFailure('You do not have permission to perform this action. You are ' + roleNames[actualRole] + '; you must be ' + roleNames[role] + '.');
             }
             return userId;
         });
     };
 }
+
+//Maps role names to their numbers
+export const roles = {
+    audiologist: 0,
+    admin: 1,
+};
+//Maps role numbers to their names
+const roleNames = (() => {
+    var reverseMap = {};
+    Object.entries(roles).forEach(entry => reverseMap[entry[1]] = entry[0]);
+    return reverseMap;
+})();
+
+export const mustBeAdmin = mustHaveRole(roles.admin);

@@ -19,4 +19,4 @@ export default handler(async (req, userId): Promise<string> => {
         await db.query('UPDATE authority SET password = $1 WHERE username = $2', [hash, username]);
         return password;
     });
-}, auth.authenticate);
+}, auth.mustBeAdmin);

@@ -8,4 +8,4 @@ export default handler(async (request: any) => {
     let results: QueryResult = await connection.query("SELECT authorityid, username, authorityname, authoritytype FROM authority");
     return results.rows;
   });
-}, auth.authenticate);
+}, auth.mustBeAdmin);

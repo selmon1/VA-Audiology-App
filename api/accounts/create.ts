@@ -31,4 +31,4 @@ export default handler(async (req, userId): Promise<AccountCreateResponse> => {
             password,
         };
     });
-}, auth.authenticate);
+}, auth.mustBeAdmin);
