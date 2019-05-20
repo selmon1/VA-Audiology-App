@@ -10,20 +10,13 @@ export class ErrorHandlingService {
 
   public handleServerError<T>() {
     return (error: HttpErrorResponse): Observable<T> => {
-      if (error.status == 400) {
-        this.notificationService.showError(error.error.type + ': ' + error.error.message);
-      } else if (error.status == 401) {
-        this.notificationService.showError(error.error.type + ': ' + error.error.message);
-      } else if (error.status == 403) {
+      if ([400, 401, 403, 409].includes(error.status)) {
         this.notificationService.showError(error.error.type + ': ' + error.error.message);
       } else if (error.status == 404) {
-        this.notificationService.showError("Connection Not Found: Please check your internet connection.");
-      } else if (error.status == 409) {
-        this.notificationService.showError(error.error.type + ': ' + error.error.message);
+        this.notificationService.showError("Server Not Found: Server was unable to find the requested endpoint: " + error.url);
       } else {
         this.notificationService.showError('Unexpected Error: ' + error.message);
       }
-      //TODO: Create Default Observable object here.
       throw error;
     };
   }
