@@ -1,5 +1,6 @@
 import handler from './handler';
 import db from './db';
+import * as auth from './authenticate';
 
 let tfi_datapoints : string[]  = [
   'patientid',
@@ -83,4 +84,4 @@ export default handler(async (request: any) => {
       connection.query(appointment_sql, appointment_values)
     }).catch(err => console.log(err))
   });
-});
+}, auth.authenticate);
