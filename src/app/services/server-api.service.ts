@@ -7,30 +7,28 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Utilities } from '../common/utlilities';
 import { ErrorHandlingService } from './error-handling.service';
+import baseUrl from '../common/base-url';
 
 @Injectable()
 export class ServerApiService {
-  // TODO: Configure base Url, to point to hosted endpoint. (localhost:3333 isn't a valid endpoint.)
-
-  private baseUrl = 'REPLACE ME';  // URL to web api
 
   constructor(private http: HttpClient, private errorHandler: ErrorHandlingService) { }
 
   // Base Function
   public get<T>(urlExtension: string, queryParams?: Map<string, string>): Observable<Response<T>> {
-    return this.http.get<Response<T>>(this.baseUrl + urlExtension, this.createHeaders(queryParams)).pipe(
+    return this.http.get<Response<T>>(baseUrl + urlExtension, this.createHeaders(queryParams)).pipe(
       catchError(this.errorHandler.handleServerError<Response<T>>())
       );
   }
 
   public post<T>(urlExtension: string, body: any, queryParams?: Map<string, string>): Observable<Response<T>> {
-    return this.http.post<Response<T>>(this.baseUrl + urlExtension, body, this.createHeaders(queryParams)).pipe(
+    return this.http.post<Response<T>>(baseUrl + urlExtension, body, this.createHeaders(queryParams)).pipe(
       catchError(this.errorHandler.handleServerError<Response<T>>())
     );
   }
 
   public delete<T>(urlExtension: string, queryParams?: Map<string, string>): Observable<Response<T>> {
-    return this.http.delete<Response<T>>(this.baseUrl + urlExtension, this.createHeaders(queryParams)).pipe(
+    return this.http.delete<Response<T>>(baseUrl + urlExtension, this.createHeaders(queryParams)).pipe(
       catchError(this.errorHandler.handleServerError<Response<T>>())
     );
   }

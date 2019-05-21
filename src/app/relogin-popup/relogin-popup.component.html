@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Your session has expired.<br />Please re-login.</h1>
+
+<form>
+  <div mat-dialog-content>
+    <label>Username:</label>
+    <mat-form-field>
+      <input matInput cdkFocusInitial placeholder="Username..." [(ngModel)]="data.username" name="username">
+    </mat-form-field>
+    <label>Password:</label>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password..." [(ngModel)]="data.password" name="password">
+    </mat-form-field>
+    <p *ngIf="loginFail" class="error">Unable to login, please try again.</p>
+  </div>
+
+  <div mat-dialog-actions align="end">
+    <button mat-button type="submit" (click)="onLogin()">Login</button>
+    <button mat-button (click)="onLogout()">Logout</button>
+  </div>
+</form>

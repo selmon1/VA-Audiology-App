@@ -1,0 +1,7 @@
+.error {
+    color: rgba(255, 0, 0, 0.767);
+}
+
+button + button {
+    margin-left: 5px;
+}
