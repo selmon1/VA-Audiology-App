@@ -11,9 +11,9 @@
     <tbody>
       <tr focus>
         <td>{{nextId}}</td>
-        <td><input type="text" [(ngModel)]="newFirst" placeholder="Patient First Name"></td>
-        <td><input type="text" [(ngModel)]="newLast" placeholder="Patient Last Name"></td>
-        <td><input type="text" [(ngModel)]="newEmail" placeholder="Patient Email"></td>
+        <td><input type="text" [(ngModel)]="newPatientData.firstName" placeholder="Patient First Name"></td>
+        <td><input type="text" [(ngModel)]="newPatientData.lastName" placeholder="Patient Last Name"></td>
+        <td><input type="text" [(ngModel)]="newPatientData.email" placeholder="Patient Email"></td>
         <td><button (click)="createPatient()" class="loadbtn">Create</button></td>
       </tr>
     </tbody>
