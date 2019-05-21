@@ -10,8 +10,8 @@ export class ApiUsersCrudService {
   constructor(private serverApiService: ServerApiService) { }
 
   // Response data should be the generated password.
-  public createUser(usersObj: UsersObject): Observable<Response<string>> {
-    return this.serverApiService.post<string>('createUser', usersObj);
+  public createUser(usersObj: UsersObject): Observable<Response<AccountCreateResponse>> {
+      return this.serverApiService.post<AccountCreateResponse>('accounts/create', usersObj);
   }
 
   // Response data should be an array of UsersObject

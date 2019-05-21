@@ -8,9 +8,9 @@ import { AccountCreateResponse } from '../../api-objects/accountCreateResponse';
 // Expects 'username', 'authorityName', and 'authorityType'
 // Returns the created account and the randomly generated password
 export default handler(async (req, userId): Promise<AccountCreateResponse> => {
-    errors.requireParams(req.body, ['username', 'authorityName', 'authorityType']);
+    errors.requireParams(req.body, ['username', 'name', 'authorityType']);
     const username = req.body.username;
-    const authorityName = req.body.authorityName;
+    const authorityName = req.body.name;
     const authorityType = req.body.authorityType;
     return withConnection(async (db: Client) => {
         const matchingAccount = await db.query('SELECT username FROM authority WHERE username = $1', [username]);
