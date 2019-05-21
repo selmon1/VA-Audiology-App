@@ -1,10 +1,9 @@
 export enum AuthorityEnum { 
 	Audiologist, 
-	Statistician, 
 	Admin,
 }
 
-export const authorityTypes: Array<string> = ['Audiologist', 'Statistician', 'Admin'];
+export const authorityTypes: Array<string> = ['Audiologist', 'Admin'];
 
 export class UsersObject {
 	public username: string;
