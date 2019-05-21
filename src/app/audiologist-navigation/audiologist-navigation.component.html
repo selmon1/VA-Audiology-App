@@ -8,7 +8,7 @@
 
       <div class="nav-head">
         <button class="btn red" (click)="logout()">Logout</button>
-        <span *ngIf="patientID !== null" >Patient ID: {{ patientID }}</span>
+        <span *ngIf="patientID !== null">Patient ID: {{ patientID }}</span>
       </div>
 
       <!--
@@ -36,10 +36,13 @@
       <div *ngIf="state.tabIsAvailable(TabsEnum.USERS)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.USERS)">Users</button>
       </div>
-      <!-- <div *ngIf="state.tabIsAvailable(TabsEnum.QUERIES)" class="row">
+      <div *ngIf="state.tabIsAvailable(TabsEnum.QUERIES)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.QUERIES)">Queries</button>
       </div>
       -->
+      <div *ngIf="state.tabIsAvailable(TabsEnum.LIST_PATIENTS)" class="row">
+        <button class="btn main-tab" (click)="state.selectTab(TabsEnum.LIST_PATIENTS);adminPatientsList.loadPatients()">Patients</button>
+      </div>
       <div *ngIf="state.tabIsAvailable(TabsEnum.ACCOUNT)" class="row">
         <button class="btn main-tab" (click)="state.selectTab(TabsEnum.ACCOUNT)">My Account</button>
       </div>
@@ -63,36 +66,41 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-3 col-md-3 col-lg-3 col-lg-offset-9 col-md-offset-9 col-sm-offset-9" style="text-align: right;">
+        <div class="col-sm-3 col-md-3 col-lg-3 col-lg-offset-9 col-md-offset-9 col-sm-offset-9"
+          style="text-align: right;">
           <button class="pdf-btn" kendo-button (click)="pdf.saveAs('download.pdf')">Save As PDF</button>
         </div>
         <kendo-pdf-export #pdf paperSize="A4" margin="2cm" [scale]="scale">
           <!--
             Add your component tag here, ensure that you use the same TabsEnum as above to check for display.
           -->
-          <customer-search 
-            class="{{state.tabIsSelected(TabsEnum.SEARCH) ? 'main-right-container' : 'main-right-container-hidden' }}" 
+          <admin-patients-list
+            class="{{state.tabIsSelected(TabsEnum.LIST_PATIENTS) ? 'main-right-container' : 'main-right-container-hidden' }}"
+            #adminPatientsList>
+          </admin-patients-list>
+          <customer-search
+            class="{{state.tabIsSelected(TabsEnum.SEARCH) ? 'main-right-container' : 'main-right-container-hidden' }}"
             (appointment)="onApptLoad($event)">
           </customer-search>
-          <audiologist-summary 
+          <audiologist-summary
             class="{{state.tabIsSelected(TabsEnum.SUMMARY) ? 'main-right-container' : 'main-right-container-hidden'}}">
           </audiologist-summary>
-          <audiogram 
+          <audiogram
             class="{{state.tabIsSelected(TabsEnum.TESTS) ? 'main-right-container': 'main-right-container-hidden'}}">
           </audiogram>
-          <otoscopy 
+          <otoscopy
             class="{{state.tabIsSelected(TabsEnum.TESTS) ? 'main-right-container': 'main-right-container-hidden'}}">
           </otoscopy>
-          <tympanometry 
+          <tympanometry
             class="{{state.tabIsSelected(TabsEnum.TESTS) ? 'main-right-container' : 'main-right-container-hidden'}}">
           </tympanometry>
-          <my-account 
+          <my-account
             class="{{state.tabIsSelected(TabsEnum.ACCOUNT) ? 'main-right-container' : 'main-right-container-hidden' }}">
           </my-account>
-          <notes 
+          <notes
             class="{{state.tabIsSelected(TabsEnum.NOTES) ? 'main-right-container' : 'main-right-container-hidden'}}">
           </notes>
-          <users 
+          <users
             class="{{state.tabIsSelected(TabsEnum.USERS) ? 'main-right-container' : 'main-right-container-hidden'}}">
           </users>
           <current-users

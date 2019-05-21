@@ -90,6 +90,8 @@ import { ServerAuthenticationService } from './services/server-authentication.se
 import { NotificationService } from './services/notification.service';
 import { ErrorHandlingService } from './services/error-handling.service';
 import { AdminPatientService } from './services/admin-patient.service.ts';
+import { AdminPatientsListComponent } from './admin-patients-list/admin-patients-list.component';
+import { AdminPatientListModalComponent } from './admin-patients-list/admin-patient-list-modal/admin-patient-list-modal.component';
 
 import { ReloginPopupComponent } from './relogin-popup/relogin-popup.component';
 import { ReloginPopupService } from './relogin-popup/relogin-popup.service';
@@ -148,7 +150,9 @@ type StoreType = {
     CustomerSearchComponent,
     UsersComponent,
     CurrentUsersComponent,
-    ReloginPopupComponent
+    ReloginPopupComponent,
+    AdminPatientsListComponent,
+    AdminPatientListModalComponent
 
   ],
   exports: [
@@ -207,7 +211,8 @@ type StoreType = {
     ReloginPopupService,
   ],
   entryComponents: [
-    ReloginPopupComponent
+    ReloginPopupComponent,
+    AdminPatientListModalComponent
   ]
 })
 export class AppModule {

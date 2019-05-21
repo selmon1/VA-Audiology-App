@@ -1,0 +1,44 @@
+<div class="container">
+  <label>
+    <h1>PATIENTS</h1>
+  </label>
+  <div class="row">
+    <div class="column-left">
+      <table *ngIf="patients.length !== 0 else notFound" class="resultsTable" border="1">
+        <thead>
+          <th>ID</th>
+          <th>Deceased</th>
+          <!-- <th>Load</th> -->
+          <th>Delete</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let patient of patients | slice:(currentPage * 10): (currentPage + 1) * 10"
+            (mouseenter)="changeSelectedPatient(patient.patientnotes, patient.patientid)" [ngClass]="{
+            patientSelected: selectedPat === patient.patientid,
+            patientNotSelected: selectedPat !== patient.patientid
+          }">
+            <td>{{patient.patientid}}</td>
+            <td>{{patient.deceased}}</td>
+            <!-- <td><button (click)="loadPatient(patient)" class="loadbtn">Load</button></td> -->
+            <td><button (click)="deletePatient(patient)" class="deletebtn">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #notFound>
+        <p>No patients found.</p>
+      </ng-template>
+      
+      <div class="page-buttons-container">
+        <button [disabled]="currentPage === 0" (click)="prevPage(1)" class="pagination">
+          <</button> <button [disabled]="patients.length <= (currentPage + 1) * 10" (click)="nextPage(1)"
+            class="pagination">>
+        </button>
+      </div>
+    </div>
+    <div class="column-right">
+      <textarea [(ngModel)]="patientNotes" readonly>Patient Notes</textarea>
+    </div>
+  </div>
+
+</div>
