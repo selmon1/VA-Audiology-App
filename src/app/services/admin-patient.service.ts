@@ -11,9 +11,7 @@ export class AdminPatientService {
   constructor(private serverApiService: ServerApiService) { }
 
   public createPatient(patientData : CreatePatientData) : Observable<Response<PatientResponse>> {
-    return this.serverApiService.post('patient', {'patientId' : patientData.patientId,
-                                                  'deceased' : patientData.deceased,
-                                                  'patientNotes' :patientData.patientNotes});
+    return this.serverApiService.post('patient', patientData);
   }
 
   public getPatients() : Observable<Response<PatientResponse[]>> {

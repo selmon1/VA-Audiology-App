@@ -2,7 +2,7 @@ create database VA_Trial;
 \c va_trial
 
 create table Patient (
-PatientID int NOT NULL,
+PatientID SERIAL,
 Deceased bool NOT NULL,
 FirstName text, 
 LastName text, 

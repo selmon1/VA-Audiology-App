@@ -1,7 +1,10 @@
 export class CreatePatientData {
-  public patientId : string;
-  public deceased : boolean;
-  public patientNotes : string;
+  public patientId : number = 0;
+  public firstName : string = '';
+  public lastName : string = '';
+  public email : string = '';
+  public deceased : boolean = false;
+  public patientNotes : string = '';
 }
 
 export class NoteData {
