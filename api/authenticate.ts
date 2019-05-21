@@ -138,7 +138,7 @@ function mustHaveRole(role) {
             }
             const actualRole = roleResult.rows[0].authoritytype;
             if (actualRole !== role) {
-                throw new errors.PermissionFailure('You do not have permission to perform this action. You are ' + roleNames[actualRole] + '; you must be ' + roleNames[role] + '.');
+                throw new errors.PermissionFailure('You do not have permission to perform this action. Your role is ' + roleNames[actualRole] + '; your role must be ' + roleNames[role] + '.');
             }
             return userId;
         });
