@@ -11,9 +11,6 @@ import { PatientResponse } from '../../api-objects/patientResponse';
 export default handler(async (req, userId) => {
     errors.requireParams(req.body, ['deceased', 'patientNotes', 'email', 'firstName', 'lastName']);
     let createPatient = req.body;
-    // let deceased = req.body.deceased;
-    // let patientNotes = req.body.patientNotes;
-
     return withConnection(async (db: Client) => {
         const createdPatient = await db.query('INSERT INTO patient (deceased, patientnotes, email, firstName, lastName) VALUES ($1, $2, $3, $4, $5) RETURNING *', [createPatient.deceased, createPatient.patientNotes, createPatient.email, createPatient.firstName, createPatient.lastName]);
         return createdPatient.rows[0] as PatientResponse;

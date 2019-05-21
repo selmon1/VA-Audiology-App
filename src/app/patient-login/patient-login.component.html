@@ -2,7 +2,6 @@
   <label><h1>Create a new patient</h1></label>
   <table class="resultsTable" border="1">
     <thead>
-      <th>New ID</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
@@ -10,7 +9,6 @@
     </thead>
     <tbody>
       <tr focus>
-        <td>{{nextId}}</td>
         <td><input type="text" [(ngModel)]="newPatientData.firstName" placeholder="Patient First Name"></td>
         <td><input type="text" [(ngModel)]="newPatientData.lastName" placeholder="Patient Last Name"></td>
         <td><input type="text" [(ngModel)]="newPatientData.email" placeholder="Patient Email"></td>

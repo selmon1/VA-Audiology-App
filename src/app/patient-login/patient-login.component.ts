@@ -17,7 +17,6 @@ export class PatientLoginComponent implements OnInit {
   public newPatientData: CreatePatientData = new CreatePatientData();
 
   public currentPage: number = 0;
-  //public nextId: number = -1;
   public newFirst: string = '';
   public newLast: string = '';
   public newEmail: string = '';
@@ -35,7 +34,6 @@ export class PatientLoginComponent implements OnInit {
       this.router.navigateByUrl(this.nextURL);
     }
     this.loadPatients();
-    // this.nextId = this.patients[this.patients.length - 1].patientid + 1;
   }
 
   public createPatient() {
