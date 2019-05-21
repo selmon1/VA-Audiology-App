@@ -38,7 +38,9 @@ export class AudiologistNavigationComponent {
     } else {
       this.state.determineState(true, false);
     }
-    this.notesComponent.loadNotes(parseInt(this.patientID));
+    if (this.patientID) {
+      this.notesComponent.loadNotes(parseInt(this.patientID));
+    }
   }
 
   public onToggle() {
