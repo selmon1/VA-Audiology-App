@@ -34,4 +34,4 @@ export default handler(async (req) => {
             authorityType: authoritytype,
         };
     });
-});
+}, auth.alwaysPermitted);

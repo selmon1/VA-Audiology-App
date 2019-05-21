@@ -62,7 +62,7 @@ insert into Authority values
 (333, 'Audio3', '$2b$12$1i4LYl4aKBXCnrV1mtZ2Suw1Xnk6gId0TfFOapCO.5yMsGxQ1s3Au', 'Jimmy (password3)', 0),
 (444, 'Stat', '$2b$12$iAq0Y1m7sxjn52wVm45omeAyselFqK7KHpQ52HBi3l2ZV7JurDbDW', 'Emily (qwertyuiop)', 1),
 (555, 'Audio4', '$2b$12$CnUTwCaYtQFkNboPDHb4d.fIwVZeAICqoca8lxIKYcwwPd4/gQAFq', 'Jill (password4)', 0),
-(666, 'Admin', '$2b$12$g/slSWxU4kvytubcT3ZEWuo5uIrdKyEnhB6HI6n7atCc/Yz8yq8GO', 'Satan (Master)', 2),
+(666, 'Admin', '$2b$12$g/slSWxU4kvytubcT3ZEWuo5uIrdKyEnhB6HI6n7atCc/Yz8yq8GO', 'Satan (Master)', 1),
 (777, 'Audio5', '$2b$12$MTADOtwldX8YedHCMi4qpOY.KWibqgZMW2VcAG9eaiWCdkqz9x7g2', 'Janet (password5)', 0);
 
 insert into AudiologistExams values

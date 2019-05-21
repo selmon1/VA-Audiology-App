@@ -3,8 +3,14 @@ curl localhost:3333
 echo
 source login.sh
 name="test$RANDOM"
+
+echo -e '\nInsufficient permissions'
+curlHeaders localhost:3333/accounts/resetPassword -d "username=$name"
+
+login Stat qwertyuiop
+
 echo -e '\nShould Succeed'
-curlHeaders localhost:3333/accounts/create -d "username=$name&authorityName=TestAuthority&authorityType=2"
+curlHeaders localhost:3333/accounts/create -d "username=$name&authorityName=TestAuthority&authorityType=1"
 
 result=$(curlHeaders localhost:3333/accounts/resetPassword -d "username=$name")
 echo $result
