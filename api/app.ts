@@ -35,6 +35,9 @@ app.post('/accounts/create', accountCreate);
 import resetPassword from './accounts/resetPassword';
 app.post('/accounts/resetPassword', resetPassword);
 
+import changeUsername from './accounts/changeUsername';
+app.post('/accounts/changeUsername', changeUsername);
+
 import appointmentsEndpoint from './appointments';
 import appointmentsPostEndpoint from './appointmentsPOST';
 app.get('/appointments', appointmentsEndpoint);
