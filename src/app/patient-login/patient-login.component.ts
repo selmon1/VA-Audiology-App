@@ -45,7 +45,6 @@ export class PatientLoginComponent implements OnInit {
         this.router.navigateByUrl(this.nextURL);
       }
     )
-    // else display error
   }
 
   public loadPatient(patient: PatientResponse) {
