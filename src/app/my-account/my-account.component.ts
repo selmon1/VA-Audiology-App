@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ApiUsersCrudService } from '../services/api-users-crud.service';
 
 @Component({
   selector: 'my-account',
@@ -13,16 +14,12 @@ export class MyAccountComponent implements OnInit {
   public submitDisabled: boolean = false;
 
 
-  //TODO: !!!!! REMOVE THIS WHEN CONNECTS TO DB!!!!!//
-  private pword: string = 'Passw0rd!';
-  /////////////////////////////////////////////
-
-  constructor() {
+  constructor(private apiUsersCrudService: ApiUsersCrudService) {
     this.colors = { red: 0, green: 1, yellow: 2, blue: 3, red2: 4, green2: 5 };
     this.messages = { color: this.colors.red, display: false, message: '' };
     this.passColors = { oldPass: this.colors.blue, newPass: this.colors.blue, verifyPass: this.colors.blue };
     this.passFields = { oldPassField: '', newPassField: '', verifyPassField: '' };
-   }
+  }
 
   public ngOnInit() {
   }
@@ -56,25 +53,18 @@ export class MyAccountComponent implements OnInit {
       this.messages.message = 'New Passwords Do Not Match!';
     } else if (this.passFields.oldPassField === this.passFields.newPassField) {
       this.messages.message = 'Choose A New Password!';
-    } else if (!this.oldPassMatches()) {
-      this.passColors.oldPass = this.colors.red;
-      this.messages.message = 'Old Password Is Invalid!';
     } else {
-      // TODO: REMOVE the following line when we connect to DB
-      this.pword = this.passFields.newPassField;
-      this.messages.message = 'Password Changed';
-      warn = false;
-      this.passColors.oldPass = this.colors.green;
+      this.apiUsersCrudService.changePassword(this.passFields.oldPassField, this.passFields.newPassField).subscribe(
+        (_) => {
+          this.messages.message = 'Password Changed';
+          warn = false;
+          this.passColors.oldPass = this.colors.green;
+        });
     }
     this.animWarn(warn);
     this.submitDisabled = false;
-    console.log(this.pword);
   }
 
-  // TODO: CHANGE this to check with actual password in DB
-  private oldPassMatches(): boolean {
-    return this.passFields.oldPassField === this.pword;
-  }
   private passwordStrength(): number {
     if (this.passFields.newPassField === '') { return this.colors.blue; }
     if (this.passFields.newPassField.length < 8) { return this.colors.red; } // Minimum length of 8
@@ -91,12 +81,12 @@ export class MyAccountComponent implements OnInit {
   }
   private sixUnique(): boolean {
     let array: Array<number> = [];
-    for(let char of this.passFields.newPassField) {
+    for (let char of this.passFields.newPassField) {
       array[char] = 1 + (array[char] || 0);
     }
     let unique = 0;
-    for(let num in array) {
-      if(array[num] === 1) {
+    for (let num in array) {
+      if (array[num] === 1) {
         unique++;
       }
     }
